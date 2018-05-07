@@ -3,7 +3,11 @@ package cl.novuscreate.backend.rest;
 //import cl.novuscreate.backend.entity.User;
 //import cl.novuscreate.backend.repository.UserRepository;
 import cl.novuscreate.backend.entity.Problem;
+import cl.novuscreate.backend.entity.User;
+import cl.novuscreate.backend.entity.UserProblem;
 import cl.novuscreate.backend.repository.ProblemRepository;
+import cl.novuscreate.backend.repository.UserProblemRepository;
+import cl.novuscreate.backend.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -18,6 +22,15 @@ public class ProblemService {
 
     @Autowired
     private ProblemRepository problemRepository;
+
+    @Autowired
+    private UserRepository userRepository;
+
+
+    @Autowired
+    private UserProblemRepository userProblemRepository;
+
+
 
 
     @GetMapping
@@ -67,6 +80,44 @@ public class ProblemService {
         problemRepository.delete(problem);
 
         return ResponseEntity.ok().build();
+    }
+
+    @RequestMapping(value = "/{problem_id}/users/{id}/completed",method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.CREATED)
+    @ResponseBody
+    public Problem createCompleteUserProblem(@PathVariable("id") Integer id, @PathVariable("problem_id") Integer problem_id) {
+        User user = userRepository.findOne(id);
+        if(user!=null)
+        {
+            Problem problem = problemRepository.findOne(problem_id);
+            UserProblem userProblem = new UserProblem(user, problem, 1);
+            userProblemRepository.save(userProblem);
+            return problem;
+        }
+        else
+        {
+            return null;
+        }
+
+    }
+
+    @RequestMapping(value = "/{problem_id}/users/{id}/incompleted",method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.CREATED)
+    @ResponseBody
+    public Problem createIncompleteUserProblem(@PathVariable("id") Integer id, @PathVariable("problem_id") Integer problem_id) {
+        User user = userRepository.findOne(id);
+        if(user!=null)
+        {
+            Problem problem = problemRepository.findOne(problem_id);
+            UserProblem userProblem = new UserProblem(user, problem, 0);
+            userProblemRepository.save(userProblem);
+            return problem;
+        }
+        else
+        {
+            return null;
+        }
+
     }
 
 

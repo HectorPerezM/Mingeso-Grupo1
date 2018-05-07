@@ -2,6 +2,11 @@ package cl.novuscreate.backend.entity;
 
 import javax.persistence.*;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 import static javax.persistence.GenerationType.IDENTITY;
 
 @Entity
@@ -13,6 +18,13 @@ public class Problem {
     private String problemStatement;
 
     private User user;
+//
+//    @OneToMany(
+//            mappedBy = "problem",
+//            cascade = CascadeType.ALL,
+//            orphanRemoval = true
+//    )
+    private Set<UserProblem> userProblems = new HashSet<UserProblem>();
 
 
 
@@ -53,5 +65,14 @@ public class Problem {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "problem", orphanRemoval=true)
+    public Set<UserProblem> getUserProblems() {
+        return userProblems;
+    }
+
+    public void setUserProblems(Set<UserProblem> userProblems) {
+        this.userProblems = userProblems;
     }
 }

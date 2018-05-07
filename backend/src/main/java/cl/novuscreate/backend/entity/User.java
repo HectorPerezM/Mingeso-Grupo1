@@ -4,7 +4,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import static javax.persistence.GenerationType.IDENTITY;
@@ -20,6 +22,15 @@ public class User {
     private int userType;
     @JsonIgnore
     private Set<Problem> problems = new HashSet<Problem>(0);;
+
+    @OneToMany(
+            mappedBy = "user",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    private Set<UserProblem> userProblems = new HashSet<UserProblem>();
+
+
 
     @Id
     @GeneratedValue(strategy = IDENTITY)
@@ -58,4 +69,22 @@ public class User {
     public void setProblems(Set<Problem> problems) {
         this.problems = problems;
     }
+
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "user", orphanRemoval=true)
+    public Set<UserProblem> getUserProblems() {
+        return userProblems;
+    }
+
+    public void setUserProblems(Set<UserProblem> userProblems) {
+        this.userProblems = userProblems;
+    }
+
+
+//    public void addProblem(Problem problem) {
+////        UserProblem userProblem = new UserProblem(this, problem);
+////        userProblems.add(userProblem);
+////        problem.getUsers().add(userProblem);
+////    }
+
+
 }
