@@ -16,7 +16,7 @@ public class Problem {
     private int problemId;
     private String problemTitle;
     private String problemStatement;
-
+    private String Language;
     private User user;
 //
 //    @OneToMany(
@@ -74,5 +74,13 @@ public class Problem {
 
     public void setUserProblems(Set<UserProblem> userProblems) {
         this.userProblems = userProblems;
+    }
+
+    public String getLanguage() {
+        return Language;
+    }
+
+    public void setLanguage(String language) {
+        Language = language;
     }
 }
