@@ -1,41 +1,36 @@
 package cl.novuscreate.backend.rest;
 
+//import cl.novuscreate.backend.entity.User;
+//import cl.novuscreate.backend.repository.UserRepository;
 import cl.novuscreate.backend.entity.Problem;
-import cl.novuscreate.backend.entity.User;
 import cl.novuscreate.backend.repository.ProblemRepository;
-import cl.novuscreate.backend.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
-import java.util.Set;
-
 @CrossOrigin
 @RestController
-@RequestMapping("/users")
-public class UserService {
+@RequestMapping("/problems")
+public class ProblemService {
 
 
-    @Autowired
-    private UserRepository userRepository;
     @Autowired
     private ProblemRepository problemRepository;
 
 
     @GetMapping
-    public Iterable<User> getAllUsers() {
+    public Iterable<Problem> getAllProducts() {
 
-        return userRepository.findAll();
+        return problemRepository.findAll();
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     @ResponseBody
-    public User findOne(@PathVariable("id") Integer id) {
+    public Problem findOne(@PathVariable("id") Integer id) {
 
-        return userRepository.findOne(id);
+        return problemRepository.findOne(id);
 
     }
 
@@ -43,9 +38,9 @@ public class UserService {
     @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
     @ResponseBody
-    public User create(@RequestBody User resource) {
+    public Problem create(@RequestBody Problem resource) {
         System.out.println(resource);
-        return userRepository.save(resource);
+        return problemRepository.save(resource);
     }
 
 
@@ -67,21 +62,15 @@ public class UserService {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteUser(@PathVariable(value = "id") Integer Id) {
-        User user = userRepository.findOne(Id);
+        Problem problem = problemRepository.findOne(Id);
 
-        userRepository.delete(user);
+        problemRepository.delete(problem);
 
         return ResponseEntity.ok().build();
     }
 
-    @RequestMapping(value = "/{id}/problems", method = RequestMethod.GET)
-    @ResponseBody
-    public Set<Problem> findActorMovies(@PathVariable("id") Integer id) {
 
-        User user = userRepository.findOne(id);
-
-        return user.getProblems();
-    }
 
 
 }
+

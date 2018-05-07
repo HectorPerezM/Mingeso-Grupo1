@@ -1,6 +1,11 @@
 package cl.novuscreate.backend.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
+
+import java.util.HashSet;
+import java.util.Set;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
@@ -13,13 +18,8 @@ public class User {
     private int userId;
     private String userEmail;
     private int userType;
-
-
-    public User(int userId, String userEmail, int userType) {
-        this.userId = userId;
-        this.userEmail = userEmail;
-        this.userType = userType;
-    }
+    @JsonIgnore
+    private Set<Problem> problems = new HashSet<Problem>(0);;
 
     @Id
     @GeneratedValue(strategy = IDENTITY)
@@ -48,5 +48,14 @@ public class User {
 
     public void setUserType(int userType) {
         this.userType = userType;
+    }
+
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "user", orphanRemoval=true)
+    public Set<Problem> getProblems() {
+        return problems;
+    }
+
+    public void setProblems(Set<Problem> problems) {
+        this.problems = problems;
     }
 }
