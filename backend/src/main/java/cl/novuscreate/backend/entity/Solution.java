@@ -23,7 +23,7 @@ public class Solution {
         this.solutionId = solutionId;
     }
 
-    @Column(name = "SOLUTION_CODE", nullable = false)
+    @Column(name = "SOLUTION_CODE", nullable = false, columnDefinition = "TEXT")
     public String getSolutionCode() {
         return solutionCode;
     }
@@ -42,4 +42,12 @@ public class Solution {
     public void setUserProblem(UserProblem userProblem) {
         this.userProblem = userProblem;
     }
+
+
+
+
+    public void execPythonScript(String Code){
+
+    }
+
 }

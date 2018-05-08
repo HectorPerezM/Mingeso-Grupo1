@@ -31,7 +31,7 @@ public class UserProblem {
 
     private Solution solution;
 
-//    private UserProblem() {}
+    private UserProblem() {}
 
     public UserProblem(User user, Problem problem, Integer statusComplete) {
         this.user = user;
