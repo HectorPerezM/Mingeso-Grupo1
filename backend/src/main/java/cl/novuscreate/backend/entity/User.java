@@ -19,7 +19,9 @@ public class User {
 
     private int userId;
     private String userEmail;
+    private String userPassword;
     private int userType;
+
     @JsonIgnore
     private Set<Problem> problems = new HashSet<Problem>(0);;
 
@@ -50,6 +52,15 @@ public class User {
 
     public void setUserEmail(String userEmail) {
         this.userEmail = userEmail;
+    }
+
+    @Column(name = "USER_PASSWORD", nullable = false)
+    public String getUserPassword() {
+        return userPassword;
+    }
+
+    public void setUserPassword(String userPassword) {
+        this.userPassword = userPassword;
     }
 
     @Column(name = "USER_TYPE", nullable = false)
