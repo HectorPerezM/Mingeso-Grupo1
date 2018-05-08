@@ -33,7 +33,6 @@ public class User {
     private Set<UserProblem> userProblems = new HashSet<UserProblem>();
 
 
-
     @Id
     @GeneratedValue(strategy = IDENTITY)
     @Column(name = "USER_ID", unique = true, nullable = false)

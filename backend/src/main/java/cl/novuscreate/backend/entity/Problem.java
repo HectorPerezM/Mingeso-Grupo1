@@ -48,7 +48,7 @@ public class Problem {
         this.problemTitle = problemTitle;
     }
 
-    @Column(name = "PROBLEM_STATEMENT", nullable = false)
+    @Column(name = "PROBLEM_STATEMENT", nullable = false, columnDefinition = "TEXT")
     public String getProblemStatement() {
         return problemStatement;
     }

@@ -34,7 +34,7 @@ public class ProblemService {
 
 
     @GetMapping
-    public Iterable<Problem> getAllProducts() {
+    public Iterable<Problem> getAllProblems() {
 
         return problemRepository.findAll();
     }

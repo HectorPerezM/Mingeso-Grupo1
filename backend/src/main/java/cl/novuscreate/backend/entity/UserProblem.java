@@ -29,6 +29,8 @@ public class UserProblem {
     @Column(name = "statusComplete", nullable = false)
     private Integer statusComplete;
 
+    private Solution solution;
+
 //    private UserProblem() {}
 
     public UserProblem(User user, Problem problem, Integer statusComplete) {
@@ -37,6 +39,13 @@ public class UserProblem {
         this.statusComplete = statusComplete;
     }
 
+    public UserProblem(User user, Problem problem, Date createdOn, Integer statusComplete, Solution solution) {
+        this.user = user;
+        this.problem = problem;
+        this.createdOn = createdOn;
+        this.statusComplete = statusComplete;
+        this.solution = solution;
+    }
 
     @Id
     @GeneratedValue(strategy = IDENTITY)
@@ -77,12 +86,22 @@ public class UserProblem {
         this.createdOn = createdOn;
     }
 
-    public Integer isStatusComplete() {
+    public Integer getStatusComplete() {
         return statusComplete;
     }
 
     public void setStatusComplete(Integer statusComplete) {
         this.statusComplete = statusComplete;
+    }
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "SOLUTION_ID")
+    public Solution getSolution() {
+        return solution;
+    }
+
+    public void setSolution(Solution solution) {
+        this.solution = solution;
     }
 
     @Override
