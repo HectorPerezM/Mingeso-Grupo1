@@ -2,9 +2,11 @@ package cl.novuscreate.backend.rest;
 
 //import cl.novuscreate.backend.entity.User;
 //import cl.novuscreate.backend.repository.UserRepository;
+import cl.novuscreate.backend.entity.Example;
 import cl.novuscreate.backend.entity.Problem;
 import cl.novuscreate.backend.entity.User;
 import cl.novuscreate.backend.entity.UserProblem;
+import cl.novuscreate.backend.repository.ExampleRepository;
 import cl.novuscreate.backend.repository.ProblemRepository;
 import cl.novuscreate.backend.repository.UserProblemRepository;
 import cl.novuscreate.backend.repository.UserRepository;
@@ -30,6 +32,8 @@ public class ProblemService {
     @Autowired
     private UserProblemRepository userProblemRepository;
 
+    @Autowired
+    private ExampleRepository exampleRepository;
 
 
 
@@ -53,7 +57,16 @@ public class ProblemService {
     @ResponseBody
     public Problem create(@RequestBody Problem resource) {
         System.out.println(resource);
-        return problemRepository.save(resource);
+
+        problemRepository.save(resource);
+        if ( !resource.getProblemExamples().isEmpty()  ){
+            for (Example temp : resource.getProblemExamples()) {
+                System.out.println(temp.getExampleTitle());
+                exampleRepository.save(temp);
+            }
+        }
+
+        return resource;
     }
 
 

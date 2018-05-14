@@ -2,8 +2,12 @@ package cl.novuscreate.backend.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
+
+import java.util.HashSet;
+import java.util.Set;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
@@ -14,6 +18,9 @@ public class Example {
     private int exampleId;
     private String exampleTitle;
     private Problem problem;
+
+    private Set<Input> exampleInputs;
+
 
 
     @Id
@@ -45,5 +52,16 @@ public class Example {
 
     public void setProblem(Problem problem) {
         this.problem = problem;
+    }
+
+
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "example", orphanRemoval=true)
+    @JsonManagedReference
+    public Set<Input> getExampleInputs() {
+        return exampleInputs;
+    }
+
+    public void setExampleInputs(Set<Input> problemInputs) {
+        this.exampleInputs = problemInputs;
     }
 }
