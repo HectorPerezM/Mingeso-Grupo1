@@ -21,6 +21,7 @@ public class Example {
 
     private Set<Input> exampleInputs;
 
+    private Result result;
 
 
     @Id
@@ -63,5 +64,18 @@ public class Example {
 
     public void setExampleInputs(Set<Input> problemInputs) {
         this.exampleInputs = problemInputs;
+    }
+
+
+
+    @OneToOne(fetch = FetchType.LAZY,
+            cascade =  CascadeType.ALL,
+            mappedBy = "example")
+    public Result getResult() {
+        return result;
+    }
+
+    public void setResult(Result result) {
+        this.result = result;
     }
 }
