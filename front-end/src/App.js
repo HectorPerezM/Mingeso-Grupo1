@@ -1,10 +1,9 @@
 import React from 'react';
 import {BrowserRouter as Router, Route, NavLink} from 'react-router-dom';
-// Container components
-import Form from './containers/Form.js';
+
 import ProblemsStudent from './containers/ProblemsStudent.js'
 import FormStudent from './containers/FormStudent.js'
-import dynamicInput from './containers/dynamicInput.js'
+import FormProblem from './containers/FormProblem.js'
 // Assets
 import logo from './images/logo.png';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -20,16 +19,14 @@ const App = () => {
                     <nav className="main-nav">
                         <ul>
                             <li><NavLink activeClassName="selected" to="/problems">Lista de Problemas</NavLink></li>
-                            <li><NavLink activeClassName="selected" to="/add">Añadir Problema 1</NavLink></li>
-                            <li><NavLink activeClassName="selected" to="/dynamic">Añadir Problema 2</NavLink></li>
+                            <li><NavLink activeClassName="selected" to="/add">Añadir Problema </NavLink></li>
                         </ul>
                     </nav>
                 </div>
 
                 <div className="container">
                     <Route path="/problems/" component={ProblemsStudent}/>
-                    <Route path="/add" component={Form}/>
-                    <Route path="/dynamic" component={dynamicInput}/>
+                    <Route path="/add" component={FormProblem}/>
                     <Route path="/edit/:id" component={FormStudent}/>
                 </div>
             </div>
