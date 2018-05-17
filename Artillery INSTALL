@@ -1,0 +1,20 @@
+Composer:
+	Para levantar la plataforma ejecutar en la raiz del proyecto el siguiente comando:
+	"docker-compose up"
+
+Artillery:
+	Requiere instalar plugin "NodeJS" en jenkins:
+		"Manage Jenkins" -> "Manage Plugins" -> "Available" -> search "NodeJS"
+	Añadir herramienta Node en Jenkins
+		"Manage Jenkins" -> "Global Tool Configuration" -> "NodeJS" -> "Add NodeJS"
+			* Name: Node 9 (u opcional)
+			* Version: NodeJS 4 o superior
+			* Global npm packages to install: "bower@~1.8.0 grunt-cli@~1.2.0" (sin comillas) 
+	Generar Job Artillery (Dashboard->new item->Freestyle project->Nombre: 'Load_Tester'):
+		Nombre: 'Load_Tester' (importante)
+		Build Environment -> Provide Node & npm bin/ folder to PATH -> NodeJS Installation: <Nombre herramienta NodeJS>
+		Source Code Management -> Git -> Repositories -> Repository URL: git@github.com:HectorPerezM/Mingeso-Grupo1.git
+		Source Code Management -> Git -> Branches to build	-> Branch Specifier: */develop 
+		Build -> Add Build Step -> Execute Shell -> (En el textspace colocar el contenido del archivo "Artillery.conf")
+		Guardar y ejecutar el job
+

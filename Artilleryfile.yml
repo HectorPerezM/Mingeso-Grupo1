@@ -1,8 +1,8 @@
 config:
   target: 'https://artillery.io'
   phases:
-    - duration: 60
-      arrivalRate: 20
+    - duration: 100
+      arrivalRate: 17
   defaults:
     headers:
       x-my-service-auth: '987401838271002188298567'

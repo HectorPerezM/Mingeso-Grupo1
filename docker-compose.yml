@@ -1,16 +1,6 @@
 version: '2'
 
 services:
-  jenkins_master: 
-    image: jenkinsci/jenkins:lts 
-    environment: 
-      JAVA_OPTS: "-Djava.awt.headless=true" 
-    ports: 
-      - "50000:50000" 
-      - "8080:8080" 
-    volumes: 
-      - /var/jenkins_home
-
   sonarqube:
     image: sonarqube:lts
     ports:
@@ -70,12 +60,21 @@ services:
       - TESTLINK_EMAIL=admin@example.com
 
   mantisbt:
-      image: vimagick/mantisbt:latest
-      ports:
-        - "8989:80"
-      links:
-        - mariadb
-      restart: always
+    image: vimagick/mantisbt:latest
+    ports:
+      - "8989:80"
+    links:
+      - mysql
+    restart: always
+
+  mysql:
+    image: mysql:latest
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=bugtracker
+      - MYSQL_USER=mantisbt
+      - MYSQL_PASSWORD=mantisbt
+    restart: always
 
 networks:
   sonarnet:
