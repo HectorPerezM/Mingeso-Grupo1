@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import {Row, Col} from "react-bootstrap";
 import {Button, FormGroup, ControlLabel, FormControl, HelpBlock} from "react-bootstrap";
+import {CustomInput} from "reactstrap";
 
 const addProblem = problem => {
   console.log(problem.title);
@@ -71,9 +72,8 @@ class FormProblem extends Component {
 
   getValidationState() {
     const length = this.state.title.length;
-    if (length > 10) return 'success';
-    else if (length > 5) return 'warning';
-    else if (length > 0) return 'error';
+    if (length > 0) return 'success';
+    else if  (length == 0) return 'error';
     return null;
   }
 
@@ -149,7 +149,7 @@ class FormProblem extends Component {
             <ControlLabel>Tipo:</ControlLabel>
           </Col>
           <Col xs={10} md={4}>
-            <Button bsStyle="success" bsSize="xsmall" onClick={this.handleAddShareholder}>+</Button>
+            <Button bsStyle="success" bsSize="xsmall" onClick={this.handleAddShareholder}>Agregar</Button>
           </Col>
         </Row>
 
@@ -167,16 +167,21 @@ class FormProblem extends Component {
             />
             <FormControl.Feedback />
             </Col>
-            <Col xs={6} md={4}>
-               <select name="type"
+            <Col xs={6} md={2}>
+               <FormControl
+               componentClass="select"
+               placeholder="select"
+               name="type"
                value={shareholder.type}
                onChange={this.handleShareholderTypeChange(idx)}>
                  <option value="str">String</option>
                  <option value="int">Entero</option>
-               </select>
+               </FormControl>
+            </Col>
+            <Col xs={6} md={2}>
             </Col>
             <Col xsHidden md={4}>
-            <Button bsStyle="danger" bsSize="xsmall" onClick={this.handleRemoveShareholder(idx)} >x</Button>
+            <Button bsStyle="danger" bsSize="xsmall" onClick={this.handleRemoveShareholder(idx)} >Eliminar</Button>
             </Col>
           </Row>
           </div>
@@ -184,7 +189,7 @@ class FormProblem extends Component {
         <br />
 
         <Row className="show-grid">
-          <Col xs={6} md={6}>
+          <Col xs={6} md={4}>
           <ControlLabel>Salida del problema:</ControlLabel>
           </Col>
           <Col xs={6} md={6}>
@@ -193,7 +198,7 @@ class FormProblem extends Component {
         </Row>
 
         <Row className="show-grid">
-          <Col xs={6} md={6}>
+          <Col xs={6} md={4}>
             <FormControl
               name ="output"
               type="text"
@@ -204,17 +209,18 @@ class FormProblem extends Component {
             <FormControl.Feedback />
             <HelpBlock>Una salida coherente plis :D</HelpBlock>
           </Col>
-          <Col xs={6} md={6}>
-             <select name="typeOutput"
-             value={this.state.typeOutput}
-             onChange={e => this.Change(e)}>
-               <option value="str">String</option>
-               <option value="int">Entero</option>
-             </select>
+          <Col xs={6} md={2}>
+              <FormControl
+              componentClass="select"
+              placeholder="select"
+              name="typeOutput"
+              value={this.state.typeOutput}
+              onChange={e => this.Change(e)}>
+                <option value="str">String</option>
+                <option value="int">Entero</option>
+              </FormControl>
           </Col>
         </Row>
-
-
 
         <br />
         <ControlLabel>Descripción</ControlLabel>
