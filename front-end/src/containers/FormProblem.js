@@ -69,7 +69,6 @@ class FormProblem extends Component {
     };
   }
 
-
   getValidationState() {
     const length = this.state.title.length;
     if (length > 0) return 'success';
