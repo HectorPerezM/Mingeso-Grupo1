@@ -14,16 +14,21 @@ const App = () => {
         <Router>
             <div className="App">
                 <div className="App-header">
-                    <h1>NOVUS CREARE</h1>
-                    <img src={logo} className="App-logo" alt="logo"/>
-                    <nav className="main-nav">
-                        <ul>
-                            <li><NavLink activeClassName="selected" to="/problems">Lista de Problemas</NavLink></li>
-                            <li><NavLink activeClassName="selected" to="/add">Añadir Problema </NavLink></li>
-                        </ul>
-                    </nav>
+                    <h1>...</h1>
                 </div>
-
+                <div id="sidebar" className="sidebar">
+                <nav className="side-nav">
+                    <ul>
+                        <li>
+                        <span></span>
+                        <NavLink to="/problems">Lista de Problemas</NavLink>
+                        </li>
+                        <li>
+                        <NavLink to="/add">Añadir Problema </NavLink>
+                        </li>
+                    </ul>
+                </nav>
+                </div>
                 <div className="container">
                     <Route path="/problems/" component={ProblemsStudent}/>
                     <Route path="/add" component={FormProblem}/>
