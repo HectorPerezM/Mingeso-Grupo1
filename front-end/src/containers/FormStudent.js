@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import axios from 'axios';
 import {Button, ControlLabel, FormControl} from "react-bootstrap";
+import MonacoEditor from 'react-monaco-editor';
+import { MonacoDiffEditor } from 'react-monaco-editor';
 
 class Form extends Component {
 
@@ -10,8 +12,19 @@ class Form extends Component {
     output: "",
     description: "",
     language: "",
-    algoritmo: ""
+    code: ""
   };
+
+  editorDidMount(editor, monaco) {
+      console.log('editorDidMount', editor);
+      editor.focus();
+    }
+    onChange = (newValue, e) => {
+      console.log('onChange', newValue, e);
+      this.setState({
+        code: newValue
+      });
+    };
 
   change = e => {
     this.setState({
@@ -21,11 +34,7 @@ class Form extends Component {
 
   onSubmit = e => {
     e.preventDefault();
-    alert("el algoritmo que será evaluado es: "+this.state.algoritmo);
-    // this.props.onSubmit(this.state);
-    //this.setState({
-    //  algoritmo: ""
-    //});
+    alert("el algoritmo que será evaluado es: "+this.state.code);
   };
 
 
@@ -40,27 +49,38 @@ class Form extends Component {
           output: "",
           description: problem.problemStatement,
           language: problem.language,
-          algoritmo: ""
+          code: ""
         });
       })
   };
 
   render() {
+    const code = this.state.code;
+    const options = {
+      selectOnLineNumbers: true,
+      roundedSelection: true,
+      readOnly: false,
+      cursorStyle: 'line',
+      parameterHints: true
+    };
     return (
       <div className="formStudent">
       <h1 className="title">Problema: {this.state.problemTitle}</h1>
       <h4 className="title">Lenguaje: {this.state.language}</h4>
       <h5 className="description">{this.state.description}</h5>
-
       <form>
         <br />
-        <ControlLabel>Solución al problema:</ControlLabel>
-        <FormControl  name="algoritmo"
-        componentClass="textarea"
-        placeholder="Desarrolla tu algoritmo aquí..."
-        value={this.state.algoritmo}
-        onChange={e => this.change(e)}/>
 
+        <MonacoEditor
+        width="800"
+        height="600"
+        language="java"
+        theme="vs-dark"
+        value={code}
+        options={options}
+        onChange={this.onChange}
+        editorDidMount={this.editorDidMount}
+      />
         <br />
         <Button onClick={e => this.onSubmit(e)} type="submit">Evaluar</Button>
         <br />

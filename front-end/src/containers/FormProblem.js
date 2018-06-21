@@ -3,7 +3,16 @@ import {Row, Col} from "react-bootstrap";
 import {Button, FormGroup, ControlLabel, FormControl, HelpBlock} from "react-bootstrap";
 import {CustomInput} from "reactstrap";
 
+const examples = problem => {
+  const newInputs = problem.inputs.map((input, i) => {
+    console.log(input);
+    return {'type': input.type, 'value': input.input}
+  });
+  console.log(newInputs);
+}
+
 const addProblem = problem => {
+  examples(problem);
   console.log(problem.title);
   fetch('http://165.227.48.161:8082/problems', {
       method: 'POST',
@@ -241,13 +250,22 @@ class FormProblem extends Component {
         </Row>
 
         <br />
-        <ControlLabel>Descripción</ControlLabel>
-        <FormControl  name="description"
-        componentClass="textarea"
-        placeholder="Descripción del problema..."
-        value={this.state.description}
-        onChange={e => this.Change(e)}/>
-
+        <FormGroup
+            controlId="formBasicText"
+            validationState={this.getValidationState()}
+          >
+            <ControlLabel>Descripción del problema:</ControlLabel>
+            <FormControl
+              componentClass="textarea"
+              name = "description"
+              type="text"
+              value={this.state.description}
+              placeholder="Descripcion del problema..."
+              onChange={e => this.Change(e)}
+            />
+            <FormControl.Feedback />
+            <HelpBlock>Una descripcion coherente</HelpBlock>
+          </FormGroup>
         <br />
         <Button type="submit">Guardar</Button>
       </form>
