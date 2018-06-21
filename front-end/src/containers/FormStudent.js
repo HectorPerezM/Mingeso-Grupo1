@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import axios from 'axios';
-import {Button, ControlLabel, FormControl} from "react-bootstrap";
+import {Button} from "react-bootstrap";
 import MonacoEditor from 'react-monaco-editor';
-import { MonacoDiffEditor } from 'react-monaco-editor';
 
 class Form extends Component {
 

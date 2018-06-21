@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import {Row, Col} from "react-bootstrap";
+import axios from 'axios';
 import {Button, FormGroup, ControlLabel, FormControl, HelpBlock} from "react-bootstrap";
 
 const examples = problem => {
@@ -65,7 +66,7 @@ const addProblem = problem => {
      });
   }
 
-class FormProblem extends Component {
+class EditProblem extends Component {
   constructor() {
     super();
     this.state = {
@@ -74,9 +75,22 @@ class FormProblem extends Component {
       typeOutput: 'str',
       description: '',
       inputs: [{ input: '', type: 'str' }],
-      language: 'Python',
+      language: 'Java',
     };
   }
+
+  componentDidMount() {
+    axios.get('http://165.227.48.161:8082/problems/'+this.props.match.params.id)
+      .then(res => {
+        const problem = res.data;
+        console.log(problem.language);
+        this.setState({
+          title: problem.problemTitle,
+          description: problem.problemStatement,
+          language: problem.language,
+        });
+      })
+  };
 
   getValidationState() {
     const length = this.state.title.length;
@@ -273,4 +287,4 @@ class FormProblem extends Component {
   }
 }
 
-export default FormProblem;
+export default EditProblem;

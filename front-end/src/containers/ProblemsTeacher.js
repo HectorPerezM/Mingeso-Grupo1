@@ -4,7 +4,7 @@ import {NavLink} from 'react-router-dom';
 import {ButtonToolbar, Button, Modal} from "react-bootstrap";
 
 
-class ProblemsStudent extends Component {
+class ProblemsTeacher extends Component {
   constructor(props) {
       super(props);
 
@@ -23,6 +23,10 @@ class ProblemsStudent extends Component {
         return { ...problem, show: true,  };
       });
       this.setState({ problems: newProblems });
+    }
+
+    handleRemove = (id) => (e) => {
+      console.log(id);
     }
 
     handleHide = (i) => (e) => {
@@ -52,8 +56,8 @@ class ProblemsStudent extends Component {
   return (
     <div className="card">
       <div className="header text-center">
-        <h4 className="title">Problemas a resolver</h4>
-        <p className="category">Tabla que contiene todos los problemas</p>
+        <h4 className="title">Problemas propuestos</h4>
+        <p className="category">Tabla que contiene todos los problemas propuestos por el profesor Juan</p>
         <br />
       </div>
       <div className="content table-responsive table-full-width">
@@ -109,7 +113,10 @@ class ProblemsStudent extends Component {
                 </td>
                 <td className="td-actions">
                 <NavLink className="btn btn-primary btn-sm"
-                                         to={'/solve/' + item.problemId}>Resolver Problema</NavLink>
+                                         to={'/edit/' + item.problemId}>Editar Problema</NavLink>
+                </td>
+                <td className="td-actions">
+                <Button bsStyle="danger" bsSize="small" onClick={this.handleRemove(item.problemId)} >Eliminar</Button>
                 </td>
               </tr>
             ))}
@@ -122,4 +129,4 @@ class ProblemsStudent extends Component {
     );
   }
   }
-  export default ProblemsStudent;
+  export default ProblemsTeacher;
