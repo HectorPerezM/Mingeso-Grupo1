@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import {NavLink} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 
 // Material
 import AppBar from '@material-ui/core/AppBar';
@@ -13,6 +13,12 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import Drawer from '@material-ui/core/Drawer';
 import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
+import HomeIcon from '@material-ui/icons/Home';
+import InboxIcon from '@material-ui/icons/Inbox';
+import DraftsIcon from '@material-ui/icons/Drafts';
 import Divider from '@material-ui/core/Divider';
 import Assignment from '@material-ui/icons/Assignment';
 import Home from '@material-ui/icons/Home';
@@ -54,13 +60,33 @@ class MenuAppBar extends Component {
             </IconButton>
 
             <Drawer open={this.state.drawer} onClose={this.toggleDrawer}>
-              <div className="list">
-                <List><NavLink to="/"><Home/>Página principal</NavLink></List>
-                <Divider />
-                <List><NavLink to="/Problemas"><Assignment />Problemas</NavLink></List>
-                <Divider />
-                <List><NavLink to="/Estudiante">Estudiante</NavLink></List>
-              </div>
+              <List component="nav" className="list">
+              <Link to="/">
+                  <ListItem button>
+                    <ListItemIcon>
+                      <HomeIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="Página Principal" />
+                  </ListItem>
+                </Link>
+                
+                <Link to="/Estudiante">
+                  <ListItem button>
+                    <ListItemIcon>
+                      <InboxIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="Estudiante" />
+                  </ListItem>
+                </Link>
+                <Link to="/Profesor">
+                  <ListItem button>
+                    <ListItemIcon>
+                      <DraftsIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="Profesores" />
+                  </ListItem>
+                </Link>
+              </List>
             </Drawer>
 
             <Typography variant="title" color="inherit" className="flex">
