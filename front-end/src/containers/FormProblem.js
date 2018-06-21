@@ -23,7 +23,7 @@ const addProblem = problem => {
             "value": problem.output
           }
         },
-        "language": "Python",
+        "language": problem.language,
         "user":{
           "userId": 1
         }
@@ -66,9 +66,9 @@ class FormProblem extends Component {
       typeOutput: 'str',
       description: '',
       inputs: [{ input: '', type: 'str' }],
+      language: 'Python',
     };
   }
-
 
   getValidationState() {
     const length = this.state.title.length;
@@ -102,7 +102,7 @@ class FormProblem extends Component {
     evt.preventDefault();
     const { title, inputs } = this.state;
     alert(`Incorporated: ${title} with ${inputs.length} inputs`);
-    //addUser(this.state);
+    addUser(this.state);
     addProblem(this.state);
     console.log(this.state);
   }
@@ -125,21 +125,39 @@ class FormProblem extends Component {
       </h5>
 
       <form onSubmit={this.handleSubmit}>
-      <FormGroup
-          controlId="formBasicText"
-          validationState={this.getValidationState()}
-        >
-          <ControlLabel>Título del problema:</ControlLabel>
+      <Row className="show-grid">
+        <Col xs={10} md={10}>
+        <FormGroup
+            controlId="formBasicText"
+            validationState={this.getValidationState()}
+          >
+            <ControlLabel>Título del problema:</ControlLabel>
+            <FormControl
+              name = "title"
+              type="text"
+              value={this.state.title}
+              placeholder="Escribe el titulo del problema..."
+              onChange={e => this.Change(e)}
+            />
+            <FormControl.Feedback />
+            <HelpBlock>Un nombre coherente plis :D</HelpBlock>
+          </FormGroup>
+        </Col>
+        <Col xs={10} md={2}>
+          <ControlLabel>Lenguaje:</ControlLabel>
           <FormControl
-            name = "title"
-            type="text"
-            value={this.state.title}
-            placeholder="Escribe el titulo del problema..."
-            onChange={e => this.Change(e)}
-          />
-          <FormControl.Feedback />
-          <HelpBlock>Un nombre coherente plis :D</HelpBlock>
-        </FormGroup>
+          componentClass="select"
+          placeholder="select"
+          name="language"
+          value={this.state.lenguage}
+          onChange={e => this.Change(e)}>
+            <option value="Python">Python</option>
+            <option value="C">C</option>
+            <option value="Java">Java</option>
+          </FormControl>
+        </Col>
+      </Row>
+
 
         <Row className="show-grid">
           <Col xs={10} md={4}>
