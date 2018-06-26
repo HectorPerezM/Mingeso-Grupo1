@@ -12,7 +12,6 @@ const examples = problem => {
 }
 
 const addProblem = problem => {
-  examples(problem);
   console.log(problem.title);
   fetch('http://165.227.48.161:8082/problems', {
       method: 'POST',
@@ -74,7 +73,7 @@ class EditProblem extends Component {
       output: '',
       typeOutput: 'str',
       description: '',
-      inputs: [{ input: '', type: 'str' }],
+      inputs: [],
       language: 'Java',
     };
   }
@@ -83,12 +82,15 @@ class EditProblem extends Component {
     axios.get('http://165.227.48.161:8082/problems/'+this.props.match.params.id)
       .then(res => {
         const problem = res.data;
-        console.log(problem.language);
         this.setState({
           title: problem.problemTitle,
           description: problem.problemStatement,
           language: problem.language,
         });
+        problem.problemExamples[0].exampleInputs.map((input, id)=> {
+          this.setState({ inputs: this.state.inputs.concat([{ input: input.inputValue, type: input.inputType }]) });
+        });
+
       })
   };
 
@@ -130,7 +132,7 @@ class EditProblem extends Component {
   }
 
   handleAddShareholder = () => {
-    this.setState({ inputs: this.state.inputs.concat([{ input: '', type: 'str' }]) });
+    this.setState({ inputs: this.state.inputs.concat([{ input: '', type: 'String' }]) });
   }
 
   handleRemoveShareholder = (idx) => () => {
@@ -171,7 +173,7 @@ class EditProblem extends Component {
           componentClass="select"
           placeholder="select"
           name="language"
-          value={this.state.lenguage}
+          value={this.state.language}
           onChange={e => this.Change(e)}>
             <option value="Python">Python</option>
             <option value="C">C</option>
@@ -201,7 +203,7 @@ class EditProblem extends Component {
             <FormControl
               name = "input"
               type= "text"
-              value={shareholder.name}
+              value={shareholder.input}
               placeholder={`Entrada #${idx + 1}`}
               onChange={this.handleShareholderNameChange(idx)}
             />
@@ -214,8 +216,8 @@ class EditProblem extends Component {
                name="type"
                value={shareholder.type}
                onChange={this.handleShareholderTypeChange(idx)}>
-                 <option value="str">String</option>
-                 <option value="int">Entero</option>
+                 <option value="String">String</option>
+                 <option value="Integer">Entero</option>
                </FormControl>
             </Col>
             <Col xs={6} md={2}>
@@ -256,8 +258,8 @@ class EditProblem extends Component {
               name="typeOutput"
               value={this.state.typeOutput}
               onChange={e => this.Change(e)}>
-                <option value="str">String</option>
-                <option value="int">Entero</option>
+                <option value="String">String</option>
+                <option value="Integer">Entero</option>
               </FormControl>
           </Col>
         </Row>

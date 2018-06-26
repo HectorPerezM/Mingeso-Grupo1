@@ -6,6 +6,8 @@ import ProblemsTeacher from './containers/ProblemsTeacher.js'
 import FormStudent from './containers/FormStudent.js'
 import FormProblem from './containers/FormProblem.js'
 import EditProblem from './containers/EditProblem.js'
+import Header from "./components/Header/Header.jsx";
+
 // Assets
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles/App.css';
@@ -15,7 +17,7 @@ const App = () => {
         <Router>
             <div className="App">
                 <div className="App-header">
-                    <h1>...</h1>
+                  <Header {...this.props} />
                 </div>
                 <div id="sidebar" className="sidebar">
                 <nav className="side-nav">

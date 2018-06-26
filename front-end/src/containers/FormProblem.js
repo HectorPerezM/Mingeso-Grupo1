@@ -4,15 +4,14 @@ import {Button, FormGroup, ControlLabel, FormControl, HelpBlock} from "react-boo
 
 const examples = problem => {
   const newInputs = problem.inputs.map((input, i) => {
-    console.log(input);
-    return {'type': input.type, 'value': input.input}
+    return {'inputType': input.inputType, 'inputValue': input.inputValue}
   });
-  console.log(newInputs);
+  return newInputs;
 }
 
 const addProblem = problem => {
-  examples(problem);
-  console.log(problem.title);
+  const inputs = examples(problem);
+  console.log(inputs);
   fetch('http://165.227.48.161:8082/problems', {
       method: 'POST',
       headers: {
@@ -21,16 +20,16 @@ const addProblem = problem => {
       body: JSON.stringify({
         "problemTitle": problem.title,
         "problemStatement": problem.description,
-        "example": {
-          "input":{
-            "type": problem.inputs[0].type,
-            "value": problem.inputs[0].value
-          },
-          "result":{
-            "type": problem.typeOutput,
-            "value": problem.output
+        "problemExamples": [
+          {
+            "exampleTitle": problem.title,
+            "result":{
+              "resultType": problem.output,
+              "resultValue": problem.typeOutput
+            },
+            "exampleInputs": problem.inputs
           }
-        },
+        ],
         "language": problem.language,
         "user":{
           "userId": 1
@@ -71,9 +70,9 @@ class FormProblem extends Component {
     this.state = {
       title: '',
       output: '',
-      typeOutput: 'str',
+      typeOutput: 'String',
       description: '',
-      inputs: [{ input: '', type: 'str' }],
+      inputs: [{ inputValue: '', inputType: 'String' }],
       language: 'Python',
     };
   }
@@ -116,7 +115,7 @@ class FormProblem extends Component {
   }
 
   handleAddShareholder = () => {
-    this.setState({ inputs: this.state.inputs.concat([{ input: '', type: 'str' }]) });
+    this.setState({ inputs: this.state.inputs.concat([{ inputValue: '', inputType: 'String' }]) });
   }
 
   handleRemoveShareholder = (idx) => () => {
@@ -185,7 +184,7 @@ class FormProblem extends Component {
           <Row className="show-grid">
             <Col xs={6} md={4}>
             <FormControl
-              name = "input"
+              name = "inputValue"
               type= "text"
               value={shareholder.name}
               placeholder={`Entrada #${idx + 1}`}
@@ -197,11 +196,11 @@ class FormProblem extends Component {
                <FormControl
                componentClass="select"
                placeholder="select"
-               name="type"
+               name="inputType"
                value={shareholder.type}
                onChange={this.handleShareholderTypeChange(idx)}>
-                 <option value="str">String</option>
-                 <option value="int">Entero</option>
+                 <option value="String">String</option>
+                 <option value="Integer">Entero</option>
                </FormControl>
             </Col>
             <Col xs={6} md={2}>
@@ -242,8 +241,8 @@ class FormProblem extends Component {
               name="typeOutput"
               value={this.state.typeOutput}
               onChange={e => this.Change(e)}>
-                <option value="str">String</option>
-                <option value="int">Entero</option>
+                <option value="String">String</option>
+                <option value="Integer">Entero</option>
               </FormControl>
           </Col>
         </Row>
