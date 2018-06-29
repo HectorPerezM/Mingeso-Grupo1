@@ -1,40 +1,20 @@
+import ProblemsStudent from '../containers/ProblemsStudent.js'
+import ProblemsTeacher from '../containers/ProblemsTeacher.js'
 
 
 const dashboardRoutes = [
   {
-    path: "/dashboard",
-    name: "Dashboard",
-    icon: "pe-7s-graph"
+    path: "/problems/student",
+    name: "Problemas",
+    icon: "pe-7s-graph",
+    component: ProblemsStudent
   },
   {
-    path: "/user",
-    name: "User Profile",
-    icon: "pe-7s-user"
-  },
-  {
-    path: "/table",
-    name: "Table List",
-    icon: "pe-7s-note2"
-  },
-  {
-    path: "/typography",
-    name: "Typography",
-    icon: "pe-7s-news-paper"
-  },
-  { path: "/icons", name: "Icons", icon: "pe-7s-science" },
-  { path: "/maps", name: "Maps", icon: "pe-7s-map-marker" },
-  {
-    path: "/notifications",
-    name: "Notifications",
-    icon: "pe-7s-bell"
-  },
-  {
-    upgrade: true,
-    path: "/upgrade",
-    name: "Upgrade to PRO",
-    icon: "pe-7s-rocket"
-  },
-  { redirect: true, path: "/", to: "/dashboard", name: "Dashboard" }
+    path: "/problems/teacher",
+    name: "Problemas definidos",
+    icon: "pe-7s-user",
+    component: ProblemsTeacher
+  }
 ];
 
 export default dashboardRoutes;

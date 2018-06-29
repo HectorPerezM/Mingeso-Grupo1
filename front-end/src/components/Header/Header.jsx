@@ -29,6 +29,7 @@ class Header extends Component {
     };
     document.body.appendChild(node);
   }
+  
   getBrand() {
     var name;
     dashboardRoutes.map((prop, key) => {
@@ -41,9 +42,6 @@ class Header extends Component {
     return (
       <Navbar fluid>
         <Navbar.Header>
-          <Navbar.Brand>
-            <a href="#pablo">{this.getBrand()}</a>
-          </Navbar.Brand>
           <Navbar.Toggle onClick={this.mobileSidebarToggle} />
         </Navbar.Header>
         <Navbar.Collapse>

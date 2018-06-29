@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import {Row, Col} from "react-bootstrap";
 import {Button, FormGroup, ControlLabel, FormControl, HelpBlock} from "react-bootstrap";
+import Cancel from "../images/cancel-button.png";
 
 const examples = problem => {
   const newInputs = problem.inputs.map((input, i) => {
@@ -125,13 +126,11 @@ class FormProblem extends Component {
   render() {
     return (
 
-      <div className="formStudent">
-      <h1 className="title">Añadir un problema a la plataforma</h1>
-      <h5 className="description">Aquí puedes añadir un nuevo problema
-      a la plataforma......................................
-      </h5>
+      <div className="problem">
+      <h1 className="problem-title">Añadir Problema</h1>
 
-      <form onSubmit={this.handleSubmit}>
+
+      <form className="problem-form" onSubmit={this.handleSubmit}>
       <Row className="show-grid">
         <Col xs={10} md={10}>
         <FormGroup
@@ -147,7 +146,7 @@ class FormProblem extends Component {
               onChange={e => this.Change(e)}
             />
             <FormControl.Feedback />
-            <HelpBlock>Un nombre coherente plis :D</HelpBlock>
+            <HelpBlock>Campo obligatorio.</HelpBlock>
           </FormGroup>
         </Col>
         <Col xs={10} md={2}>
@@ -166,23 +165,20 @@ class FormProblem extends Component {
       </Row>
 
 
-        <Row className="show-grid">
-          <Col xs={10} md={4}>
+        <Row className="row-btn-add">
+          <Col xs={10} md={6}>
             <ControlLabel>Entradas del problema:</ControlLabel>
           </Col>
           <Col xs={10} md={4}>
             <ControlLabel>Tipo:</ControlLabel>
-          </Col>
-          <Col xs={10} md={4}>
-            <Button bsStyle="success" bsSize="xsmall" onClick={this.handleAddShareholder}>Agregar</Button>
           </Col>
         </Row>
 
 
         {this.state.inputs.map((shareholder, idx) => (
           <div className="shareholder">
-          <Row className="show-grid">
-            <Col xs={6} md={4}>
+          <Row className="problem-row-inputs">
+            <Col xs={6} md={6}>
             <FormControl
               name = "inputValue"
               type= "text"
@@ -192,7 +188,7 @@ class FormProblem extends Component {
             />
             <FormControl.Feedback />
             </Col>
-            <Col xs={6} md={2}>
+            <Col xs={6} md={4}>
                <FormControl
                componentClass="select"
                placeholder="select"
@@ -205,16 +201,22 @@ class FormProblem extends Component {
             </Col>
             <Col xs={6} md={2}>
             </Col>
-            <Col xsHidden md={4}>
-            <Button bsStyle="danger" bsSize="xsmall" onClick={this.handleRemoveShareholder(idx)} >Eliminar</Button>
+            <Col className="btn-delete" xsHidden md={2}>
+            <Button className="btn-icon-delete"  onClick={this.handleRemoveShareholder(1)} ></Button>
             </Col>
           </Row>
           </div>
         ))}
         <br />
-
+        <Row className="row-btn-add">
+        <Col xs={10} md={10}>
+        </Col>
+        <Col className="col-btn-add" xs={10} md={1}>
+          <Button className="btn-add" onClick={this.handleAddShareholder}></Button>
+        </Col>
+        </Row>
         <Row className="show-grid">
-          <Col xs={6} md={4}>
+          <Col xs={6} md={6}>
           <ControlLabel>Salida del problema:</ControlLabel>
           </Col>
           <Col xs={6} md={6}>
@@ -223,7 +225,7 @@ class FormProblem extends Component {
         </Row>
 
         <Row className="show-grid">
-          <Col xs={6} md={4}>
+          <Col xs={6} md={6}>
             <FormControl
               name ="output"
               type="text"
@@ -232,9 +234,9 @@ class FormProblem extends Component {
               onChange={e => this.Change(e)}
             />
             <FormControl.Feedback />
-            <HelpBlock>Una salida coherente plis :D</HelpBlock>
+            <HelpBlock>Campo obligatorio.</HelpBlock>
           </Col>
-          <Col xs={6} md={2}>
+          <Col xs={6} md={4}>
               <FormControl
               componentClass="select"
               placeholder="select"
@@ -262,7 +264,7 @@ class FormProblem extends Component {
               onChange={e => this.Change(e)}
             />
             <FormControl.Feedback />
-            <HelpBlock>Una descripcion coherente</HelpBlock>
+            <HelpBlock>Campo obligatorio.</HelpBlock>
           </FormGroup>
         <br />
         <Button type="submit">Guardar</Button>

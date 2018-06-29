@@ -57,13 +57,14 @@ class ProblemsStudent extends Component {
         <br />
       </div>
       <div className="content table-responsive table-full-width">
-        <table className="table table-bigboy">
+        <table className="table">
           <thead>
             <tr>
               <th className= "number">ID</th>
               <th className="th-description">Título</th>
               <th className="th-description">Descripción</th>
               <th className="th-description">Lenguaje</th>
+              <th className="th-description">Resolver</th>
             </tr>
           </thead>
           <tbody>
@@ -77,9 +78,8 @@ class ProblemsStudent extends Component {
                   {item.problemTitle}
                 </td>
                 <td>
-                  <ButtonToolbar>
-                  <Button bsStyle="primary" onClick={this.handleShow(i)}>
-                    Ver
+                  <ButtonToolbar className="td-btn-view">
+                  <Button className="btn-view" onClick={this.handleShow(i)}>
                   </Button>
                   <Modal
                     show={this.state.problems[i].show}
@@ -108,8 +108,9 @@ class ProblemsStudent extends Component {
                   {item.language}
                 </td>
                 <td className="td-actions">
-                <NavLink className="btn btn-primary btn-sm"
-                                         to={'/solve/' + item.problemId}>Resolver Problema</NavLink>
+                  <div className="td-btn-solve">
+                    <NavLink className="btn-solve" to={'/solve/' + item.problemId}>._._.</NavLink>
+                  </div>
                 </td>
               </tr>
             ))}

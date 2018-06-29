@@ -3,35 +3,29 @@
 
 }
 
-*{
-  box-sizing: border-box;
-}
 
-.App-logo {
-    animation: App-logo-appearance 1.6s ease-in;
-    height: 80px;
-    background: white;
-    padding: 15px 0;
-    border-radius: 3px;
-}
 .App-header {
-    font-style: oblique;
-    background-color: #933;
-    color: black;
-    text-align: center;
+    margin: 0;
+    padding: 0;
+
 }
 
-
+.div {
+  font-family: "Helvetica";
+  font-style: normal;
+}
 .sidebar {
   position: fixed;
   width: 200px;
   height: 100%;
-  background: #777;
+  background: #254A5D;
+  border-radius: 3px;
 }
+
 .sidebar ul li {
   color:rgba(230, 230, 230, 0.9);
   padding:20px 10px;
-  border-bottom: 1px solid #333
+  border-bottom: 1px solid #B1B1B1;
 }
 .sidebar ul {
   list-style: none;
@@ -43,7 +37,86 @@
   text-decoration: none;
 }
 
+.logo-fing {
+  width: 200px;
+  border-bottom: 1px solid #B1B1B1;
+}
+
 
 .container {
-  padding-left: 200px;
+  padding-left: 150px;
+}
+
+.table
+{
+  border: 1px solid #B1B1B1;
+}
+
+.views{
+  border: 1px solid #B1B1B1;
+  padding: 20px;
+
+}
+
+.problem-form{
+
+}
+
+/*FormProblem*/
+.col-btn-add
+{
+  padding-left: 20px;
+}
+.btn-add
+{
+  background-image: url("../images/add-button.png");
+  width: 24px;
+  height: 24px;
+  border-radius: 1px;
+  border: unset;
+}
+
+.btn-delete
+{
+  padding-left: 22px;
+  padding-top: 2.5px;
+}
+.btn-icon-delete
+{
+  background-image: url("../images/delete.png");
+  width: 24px;
+  height: 24px;
+  border-radius: 1px;
+  border: unset;
+}
+
+.problem-row-inputs{
+  padding-top: 2.5px;
+  padding-bottom: 2.5px;
+}
+
+/*Problem Student */
+.td-btn-view{
+  padding-left: 25px;
+}
+
+.btn-view{
+  background-image: url("../images/data-viewer.svg");
+  background-size: 26px 26px;
+  width: 26px;
+  height: 26px;
+  border: unset;
+
+}
+
+.td-btn-solve
+{
+  padding-left: 19px;
+}
+.btn-solve{
+  background-image: url("../images/programmer.svg");
+  background-size: 26px 24px;
+  width: 32px;
+  height: 32px;
+  border: unset;
 }

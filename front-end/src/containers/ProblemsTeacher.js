@@ -68,6 +68,8 @@ class ProblemsTeacher extends Component {
               <th className="th-description">Título</th>
               <th className="th-description">Descripción</th>
               <th className="th-description">Lenguaje</th>
+              <th className="th-description">Editar</th>
+              <th className="th-description">Eliminar</th>
             </tr>
           </thead>
           <tbody>

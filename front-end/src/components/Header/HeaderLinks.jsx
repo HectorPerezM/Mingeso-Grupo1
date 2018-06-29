@@ -7,24 +7,19 @@ class HeaderLinks extends Component {
       <div>
         <i className="fa fa-globe" />
         <b className="caret" />
-        <span className="notification">5</span>
-        <p className="hidden-lg hidden-md">Notification</p>
+        <span className="notification">Universidad de Santiago</span>
       </div>
     );
     return (
-      <div>
+      <div className>
         <Nav>
-          <NavItem eventKey={1} href="#">
-            <i className="fa fa-dashboard" />
-            <p className="hidden-lg hidden-md">Dashboard</p>
-          </NavItem>
           <NavDropdown
             eventKey={2}
             title={notification}
             noCaret
             id="basic-nav-dropdown"
           >
-            <MenuItem eventKey={2.1}>Notification 1</MenuItem>
+            <MenuItem  href="https://www.youtube.com/watch?v=LYEzNBXytaE" eventKey={2.1}>Viajo sin ver</MenuItem>
             <MenuItem eventKey={2.2}>Notification 2</MenuItem>
             <MenuItem eventKey={2.3}>Notification 3</MenuItem>
             <MenuItem eventKey={2.4}>Notification 4</MenuItem>
@@ -36,12 +31,12 @@ class HeaderLinks extends Component {
           </NavItem>
         </Nav>
         <Nav pullRight>
-          <NavItem eventKey={1} href="#">
-            Account
+          <NavItem eventKey={1} >
+            Profesor: Alcides Quispe
           </NavItem>
           <NavDropdown
             eventKey={2}
-            title="Dropdown"
+            title="Opciones"
             id="basic-nav-dropdown-right"
           >
             <MenuItem eventKey={2.1}>Action</MenuItem>
@@ -53,7 +48,7 @@ class HeaderLinks extends Component {
             <MenuItem eventKey={2.5}>Separated link</MenuItem>
           </NavDropdown>
           <NavItem eventKey={3} href="#">
-            Log out
+            Salir
           </NavItem>
         </Nav>
       </div>

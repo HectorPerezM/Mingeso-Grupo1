@@ -7,6 +7,8 @@ import FormStudent from './containers/FormStudent.js'
 import FormProblem from './containers/FormProblem.js'
 import EditProblem from './containers/EditProblem.js'
 import Header from "./components/Header/Header.jsx";
+import fing from "./images/fing.png";
+import Home from "./components/Home/Home.js";
 
 // Assets
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -16,32 +18,39 @@ const App = () => {
     return (
         <Router>
             <div className="App">
-                <div className="App-header">
-                  <Header {...this.props} />
-                </div>
                 <div id="sidebar" className="sidebar">
-                <nav className="side-nav">
-                    <ul>
-                        <li>
-                        <span></span>
-                        <NavLink to="/problems/student">Lista de Problemas Estudiante</NavLink>
-                        </li>
-                        <li>
-                        <NavLink to="/add">Añadir Problema </NavLink>
-                        </li>
-                        <li>
-                        <NavLink to="/problems/teacher">Lista de Problemas Profesor </NavLink>
-                        </li>
-                    </ul>
-                </nav>
+                  <div className="logo-img">
+                    <img src={fing} alt="logo_image" className="logo-fing"/>
+                  </div>
+                  <nav className="side-nav">
+                      <ul>
+                          <li>
+                          <NavLink to="/home">Inicio</NavLink>
+                          </li>
+                          <li>
+                          <NavLink to="/problems/student">Problemas Estudiante</NavLink>
+                          </li>
+                          <li>
+                          <NavLink to="/problems/teacher">Problemas Profesor </NavLink>
+                          </li>
+                          <li>
+                          <NavLink to="/add">Añadir Problema </NavLink>
+                          </li>
+                      </ul>
+                  </nav>
                 </div>
                 <div className="container">
-                    <Route path="/problems/student" component={ProblemsStudent}/>
-                    <Route path="/problems/teacher" component={ProblemsTeacher}/>
-                    <Route path="/add" component={FormProblem}/>
-                    <Route path="/solve/:id" component={FormStudent}/>
-                    <Route path="/edit/:id" component={EditProblem}/>
-
+                    <div className="App-header">
+                      <Header {...this.props} />
+                    </div>
+                    <div className="views">
+                      <Route path="/problems/student" component={ProblemsStudent}/>
+                      <Route path="/problems/teacher" component={ProblemsTeacher}/>
+                      <Route path="/add" component={FormProblem}/>
+                      <Route path="/solve/:id" component={FormStudent}/>
+                      <Route path="/edit/:id" component={EditProblem}/>
+                      <Route path="/home" component={Home}/>
+                    </div>
                 </div>
             </div>
         </Router>
