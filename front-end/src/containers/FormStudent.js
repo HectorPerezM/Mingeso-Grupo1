@@ -33,7 +33,7 @@ class Form extends Component {
 
   onSubmit = e => {
     e.preventDefault();
-    alert("el algoritmo que será evaluado es: "+this.state.code);
+    alert("el algoritmo que será evaluado es: \n"+this.state.code.toString());
   };
 
 
@@ -63,27 +63,30 @@ class Form extends Component {
       parameterHints: true
     };
     return (
-      <div className="formStudent">
-      <h1 className="title">Problema: {this.state.problemTitle}</h1>
-      <h4 className="title">Lenguaje: {this.state.language}</h4>
-      <h5 className="description">{this.state.description}</h5>
-      <form>
-        <br />
-
-        <MonacoEditor
-        width="800"
-        height="600"
-        language="java"
-        theme="vs-dark"
-        value={code}
-        options={options}
-        onChange={this.onChange}
-        editorDidMount={this.editorDidMount}
-      />
-        <br />
-        <Button onClick={e => this.onSubmit(e)} type="submit">Evaluar</Button>
-        <br />
-      </form>
+      <div className="form-student">
+        <h2 className="form-student-title"><small>RESOLVER PROBLEMA</small></h2>
+        <h3 className="form-student-problem-title"><small>PROBLEMA: {this.state.problemTitle}</small></h3>
+        <h4 className="form-student-problem-language"><small>LENGUAJE: {this.state.language}</small></h4>
+        <h5 className="form-student-problem-description"><small>{this.state.description}</small></h5>
+        <form>
+          <br />
+          <div className="form-student-monaco">
+          <MonacoEditor
+          className="form-student-monaco-editor"
+          width="100%"
+          height="600"
+          language="java"
+          theme="vs-dark"
+          value={code}
+          options={options}
+          onChange={this.onChange}
+          editorDidMount={this.editorDidMount}
+          />
+          </div>
+          <br />
+          <Button onClick={e => this.onSubmit(e)} type="submit">Evaluar</Button>
+          <br />
+        </form>
       </div>
     );
   }

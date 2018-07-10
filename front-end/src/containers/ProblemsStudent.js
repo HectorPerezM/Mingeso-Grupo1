@@ -50,12 +50,8 @@ class ProblemsStudent extends Component {
       }
   render() {
   return (
-    <div className="card">
-      <div className="header text-center">
-        <h4 className="title">Problemas a resolver</h4>
-        <p className="category">Tabla que contiene todos los problemas</p>
-        <br />
-      </div>
+    <div className="problem-student">
+      <h2 className="problem-student-title"><small>PROBLEMAS</small></h2>
       <div className="content table-responsive table-full-width">
         <table className="table">
           <thead>

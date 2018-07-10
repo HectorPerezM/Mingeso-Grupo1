@@ -54,14 +54,10 @@ class ProblemsTeacher extends Component {
       }
   render() {
   return (
-    <div className="card">
-      <div className="header text-center">
-        <h4 className="title">Problemas propuestos</h4>
-        <p className="category">Tabla que contiene todos los problemas propuestos por el profesor Juan</p>
-        <br />
-      </div>
+    <div className="problem-teacher">
+      <h2 className="problem-student-title"><small>PROBLEMAS</small></h2>
       <div className="content table-responsive table-full-width">
-        <table className="table table-bigboy">
+        <table className="table">
           <thead>
             <tr>
               <th className= "number">ID</th>

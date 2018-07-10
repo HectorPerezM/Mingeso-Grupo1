@@ -127,9 +127,7 @@ class FormProblem extends Component {
     return (
 
       <div className="problem">
-      <h1 className="problem-title">Añadir Problema</h1>
-
-
+      <h2 className="problem-title"><small>AÑADIR PROBLEMA</small></h2>
       <form className="problem-form" onSubmit={this.handleSubmit}>
       <Row className="show-grid">
         <Col xs={10} md={10}>
@@ -137,7 +135,7 @@ class FormProblem extends Component {
             controlId="formBasicText"
             validationState={this.getValidationState()}
           >
-            <ControlLabel>Título del problema:</ControlLabel>
+            <h4><small>TITULO DEL PROBLEMA</small></h4>
             <FormControl
               name = "title"
               type="text"
@@ -150,7 +148,7 @@ class FormProblem extends Component {
           </FormGroup>
         </Col>
         <Col xs={10} md={2}>
-          <ControlLabel>Lenguaje:</ControlLabel>
+          <h4><small>LENGUAJE</small></h4>
           <FormControl
           componentClass="select"
           placeholder="select"
@@ -166,75 +164,85 @@ class FormProblem extends Component {
 
 
         <Row className="row-btn-add">
-          <Col xs={10} md={6}>
-            <ControlLabel>Entradas del problema:</ControlLabel>
+          <Col xs={6} md={4}>
+            <h4><small>ENTRADAS DEL PROBLEMA</small></h4>
           </Col>
-          <Col xs={10} md={4}>
-            <ControlLabel>Tipo:</ControlLabel>
+          <Col xs={2} md={4}>
+          <h4><small>TIPO</small></h4>
           </Col>
+
         </Row>
 
-
-        {this.state.inputs.map((shareholder, idx) => (
-          <div className="shareholder">
-          <Row className="problem-row-inputs">
-            <Col xs={6} md={6}>
-            <FormControl
-              name = "inputValue"
-              type= "text"
-              value={shareholder.name}
-              placeholder={`Entrada #${idx + 1}`}
-              onChange={this.handleShareholderNameChange(idx)}
-            />
-            <FormControl.Feedback />
-            </Col>
-            <Col xs={6} md={4}>
-               <FormControl
-               componentClass="select"
-               placeholder="select"
-               name="inputType"
-               value={shareholder.type}
-               onChange={this.handleShareholderTypeChange(idx)}>
-                 <option value="String">String</option>
-                 <option value="Integer">Entero</option>
-               </FormControl>
-            </Col>
-            <Col xs={6} md={2}>
-            </Col>
-            <Col className="btn-delete" xsHidden md={2}>
+        <Row className="problem-inputs">
+          <Col xs={8} md={8}>
+            {this.state.inputs.map((shareholder, idx) => (
+              <div className="shareholder">
+              <Row className="problem-row-inputs">
+                <Col xs={6} md={8}>
+                <FormGroup
+                    controlId="formBasicText"
+                    validationState={this.getValidationState()}
+                  >
+                  <FormControl
+                    name = "inputValue"
+                    type= "text"
+                    value={shareholder.name}
+                    placeholder={`Entrada #${idx + 1}`}
+                    onChange={this.handleShareholderNameChange(idx)}
+                  />
+                  <FormControl.Feedback />
+                  <HelpBlock>Campo obligatorio.</HelpBlock>
+                </FormGroup>
+                </Col>
+                <Col xs={6} md={4}>
+                   <FormControl
+                   componentClass="select"
+                   placeholder="select"
+                   name="inputType"
+                   value={shareholder.type}
+                   onChange={this.handleShareholderTypeChange(idx)}>
+                     <option value="String">String</option>
+                     <option value="Integer">Entero</option>
+                   </FormControl>
+                </Col>
+                <Col xs={6} md={2}>
+                </Col>
+              </Row>
+              </div>
+            ))}
+          </Col>
+          <Col xs={2} md={1}>
+            <Button className="btn-add" onClick={this.handleAddShareholder}></Button>
             <Button className="btn-icon-delete"  onClick={this.handleRemoveShareholder(1)} ></Button>
-            </Col>
-          </Row>
-          </div>
-        ))}
-        <br />
-        <Row className="row-btn-add">
-        <Col xs={10} md={10}>
-        </Col>
-        <Col className="col-btn-add" xs={10} md={1}>
-          <Button className="btn-add" onClick={this.handleAddShareholder}></Button>
-        </Col>
-        </Row>
-        <Row className="show-grid">
-          <Col xs={6} md={6}>
-          <ControlLabel>Salida del problema:</ControlLabel>
-          </Col>
-          <Col xs={6} md={6}>
-          <ControlLabel>Tipo:</ControlLabel>
           </Col>
         </Row>
 
+        <br />
         <Row className="show-grid">
           <Col xs={6} md={6}>
-            <FormControl
-              name ="output"
-              type="text"
-              value={this.state.output}
-              placeholder="Escribe la salida del problema..."
-              onChange={e => this.Change(e)}
-            />
-            <FormControl.Feedback />
-            <HelpBlock>Campo obligatorio.</HelpBlock>
+          <h4><small>SALIDA DEL PROBLEMA</small></h4>
+          </Col>
+          <Col xs={6} md={6}>
+          <h4><small>TIPO</small></h4>
+          </Col>
+        </Row>
+
+        <Row className="show-grid2adas">
+          <Col xs={6} md={6}>
+          <FormGroup
+              controlId="formBasicText"
+              validationState={this.getValidationState()}
+            >
+              <FormControl
+                name ="output"
+                type="text"
+                value={this.state.output}
+                placeholder="Escribe la salida del problema..."
+                onChange={e => this.Change(e)}
+              />
+              <FormControl.Feedback />
+              <HelpBlock>Campo obligatorio.</HelpBlock>
+            </FormGroup>
           </Col>
           <Col xs={6} md={4}>
               <FormControl
@@ -254,7 +262,7 @@ class FormProblem extends Component {
             controlId="formBasicText"
             validationState={this.getValidationState()}
           >
-            <ControlLabel>Descripción del problema:</ControlLabel>
+            <h4><small>DESCRIPCIÓN DEL PROBLEMA</small></h4>
             <FormControl
               componentClass="textarea"
               name = "description"

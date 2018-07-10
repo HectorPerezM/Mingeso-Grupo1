@@ -1,30 +1,40 @@
 import React, { Component } from "react";
+import { Chart } from 'react-google-charts';
 
 export class Card extends Component {
-  render() {
-    return (
-      <div className={"card" + (this.props.plain ? " card-plain" : "")}>
-        <div className={"header" + (this.props.hCenter ? " text-center" : "")}>
-          <h4 className="title">{this.props.title}</h4>
-          <p className="category">{this.props.category}</p>
-        </div>
-        <div
-          className={
-            "content" +
-            (this.props.ctAllIcons ? " all-icons" : "") +
-            (this.props.ctTableFullWidth ? " table-full-width" : "") +
-            (this.props.ctTableResponsive ? " table-responsive" : "") +
-            (this.props.ctTableUpgrade ? " table-upgrade" : "")
-          }
-        >
-          {this.props.content}
 
+  render() {
+
+    var data = [
+      ["Task","Hours per Day"],
+      ["Python",11],
+      ["C",5],
+      ["Java",2]
+    ]
+
+    var options = {
+      title:"Lenguaje utilizado",
+      is3D:true,
+    }
+
+
+    return (
+      <div className="card">
+        <div className={"card-header"}>
+            <h3 className="card-header-title"><small>Rendimiento del Alumno</small></h3>
+        </div>
+        <div className="card-body">
+          <div id="chartPreferences" className="pieChart">
+            <Chart
+                      chartType="PieChart"
+                      data={data}
+                      options={options}
+                      graph_id="card-pieChart"
+                      height="400px"
+                      width="400px"
+                      />
+          </div>
           <div className="footer">
-            {this.props.legend}
-            {this.props.stats != null ? <hr /> : ""}
-            <div className="stats">
-              <i className={this.props.statsIcon} /> {this.props.stats}
-            </div>
           </div>
         </div>
       </div>

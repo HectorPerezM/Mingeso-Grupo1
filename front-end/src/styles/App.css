@@ -1,13 +1,14 @@
 .App {
-    padding-bottom: 3em;
-
+    padding-bottom: 100px;
+    min-height: 100%;
+    width: 100%;
+    border-radius: 3px;
 }
 
 
 .App-header {
     margin: 0;
     padding: 0;
-
 }
 
 .div {
@@ -16,16 +17,15 @@
 }
 .sidebar {
   position: fixed;
-  width: 200px;
+  width: 10%;
   height: 100%;
-  background: #254A5D;
+  background: rgb(37, 74, 93, 0.9);
   border-radius: 3px;
 }
 
 .sidebar ul li {
   color:rgba(230, 230, 230, 0.9);
-  padding:20px 10px;
-  border-bottom: 1px solid #B1B1B1;
+  padding:5px 5px;
 }
 .sidebar ul {
   list-style: none;
@@ -35,45 +35,88 @@
 .sidebar ul li a {
   color: #fff;
   text-decoration: none;
+  padding:15px 5px;
+  display: block;
+  border-radius: 3px;
+
 }
 
-.logo-fing {
-  width: 200px;
+.sidebar li a.active {
+  background-color: rgb(177, 177, 177, 0.4);
+}
+
+.sidebar li a:hover:not(.active) {
+    background-color: rgb(177, 177, 177, 0.2);
+}
+
+.logo-udes {
+  width: 100%;
   border-bottom: 1px solid #B1B1B1;
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+.logo-fing {
+  width: 100%;
+  border-top: 1px solid #B1B1B1;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  margin-top: 100%;
 }
 
+.div-logo-fing{
+  margin-top: 100%;
+}
 
 .container {
-  padding-left: 150px;
+  background: white;
+  width: 90%;
+  padding-bottom: 20px;
+  border-radius: 3px;
+  margin-left:10%;
 }
 
-.table
-{
-  border: 1px solid #B1B1B1;
+.table{
+  border: 1px solid #e8ecf2;
 }
 
 .views{
-  border: 1px solid #B1B1B1;
+  border: 1px solid #e8ecf2;
   padding: 20px;
+  border-radius: 3px;
+  width: 80%;
+  margin-left:10%;
+  margin-right:10%;
+
+}
+
+
+
+/*FormProblem*/
+.problem{
+  margin-top: -20px;
+  width:
+}
+
+.problem-title{
 
 }
 
 .problem-form{
-
+  padding: 20px;
 }
 
-/*FormProblem*/
 .col-btn-add
 {
-  padding-left: 20px;
 }
 .btn-add
 {
   background-image: url("../images/add-button.png");
-  width: 24px;
+  width: 24%;
   height: 24px;
   border-radius: 1px;
   border: unset;
+  margin-bottom: 0%;
+  margin-left: 0%;
 }
 
 .btn-delete
@@ -84,16 +127,14 @@
 .btn-icon-delete
 {
   background-image: url("../images/delete.png");
-  width: 24px;
+  width: 24%;
   height: 24px;
   border-radius: 1px;
   border: unset;
+  margin-bottom: 0%;
+  margin-left: 0%;
 }
 
-.problem-row-inputs{
-  padding-top: 2.5px;
-  padding-bottom: 2.5px;
-}
 
 /*Problem Student */
 .td-btn-view{
@@ -119,4 +160,35 @@
   width: 32px;
   height: 32px;
   border: unset;
+}
+
+/* Form Student */
+.form-student{
+}
+
+.form-student-monaco{
+  width: 70%;
+  height: 80%;
+  margin-left:15%;
+  margin-right:10%;
+
+}
+
+/*HOME */
+
+.pieChart{
+  width: 402px;
+  height: 402px;
+}
+
+.col-pieChart{
+  padding-left: 50px;
+}
+
+/* Component-Card */
+
+.card{
+  border: 1px solid #e8ecf2;
+
+
 }
