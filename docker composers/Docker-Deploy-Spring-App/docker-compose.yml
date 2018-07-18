@@ -1,0 +1,28 @@
+version: '2'
+
+services:
+  database:
+    image: mariadb:latest
+    environment: 
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=plataformaactiva
+      - MYSQL_USER=username
+      - MYSQL_PASSWORD=password 
+    ports:
+      - "3306:3306" 
+    restart: always
+
+  spring-boot:
+    build:
+      context: .
+      dockerfile: Dockerfile 
+      args:
+        - url=https://${GIT_USER}:${GIT_PASSWORD}@github.com/HectorPerezM/Mingeso-Grupo1
+        - branch=feature/Backend 
+        - project_folder=backend
+        - artifactid=MINGESO
+        - version=1.0-SNAPSHOT
+    ports:
+      - "8282:8082" 
+    links:
+      - database
