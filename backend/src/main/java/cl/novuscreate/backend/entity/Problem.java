@@ -1,5 +1,8 @@
 package cl.novuscreate.backend.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 
 import java.util.ArrayList;
@@ -18,13 +21,9 @@ public class Problem {
     private String problemStatement;
     private String Language;
     private User user;
-//
-//    @OneToMany(
-//            mappedBy = "problem",
-//            cascade = CascadeType.ALL,
-//            orphanRemoval = true
-//    )
     private Set<UserProblem> userProblems = new HashSet<UserProblem>();
+
+    private Set<Example> problemExamples = new HashSet();
 
 
 
@@ -67,6 +66,7 @@ public class Problem {
         this.user = user;
     }
 
+    @JsonIgnore
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "problem", orphanRemoval=true)
     public Set<UserProblem> getUserProblems() {
         return userProblems;
@@ -82,5 +82,18 @@ public class Problem {
 
     public void setLanguage(String language) {
         Language = language;
+    }
+
+
+
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "problem", orphanRemoval=true)
+    @JsonManagedReference
+    public Set<Example> getProblemExamples() {
+        return problemExamples;
+    }
+
+
+    public void setProblemExamples(Set<Example> problemExamples) {
+        this.problemExamples = problemExamples;
     }
 }

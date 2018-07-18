@@ -25,6 +25,7 @@ public class User {
     @JsonIgnore
     private Set<Problem> problems = new HashSet<Problem>(0);;
 
+    @JsonIgnore
     @OneToMany(
             mappedBy = "user",
             cascade = CascadeType.ALL,

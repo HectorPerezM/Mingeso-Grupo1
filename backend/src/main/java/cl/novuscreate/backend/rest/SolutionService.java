@@ -28,6 +28,16 @@ public class SolutionService {
     @ResponseBody
     public Solution findOne(@PathVariable("id") Integer id) {
 
+        Solution solution = solutionRepository.findOne(id);
+//        solution.execPythonScript("def factorial(n):\n" +
+//                "    if n == 0:\n" +
+//                "        return 1\n" +
+//                "    else:\n" +
+//                "        return n * factorial(n-1)\n" +
+//                "number3 = factorial(number1)");
+        solution.execPythonScript(solution.getSolutionCode());
+
+
         return solutionRepository.findOne(id);
 
     }
@@ -50,4 +60,6 @@ public class SolutionService {
 
         return ResponseEntity.ok().build();
     }
+
+
 }

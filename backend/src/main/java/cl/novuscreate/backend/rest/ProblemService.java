@@ -2,12 +2,8 @@ package cl.novuscreate.backend.rest;
 
 //import cl.novuscreate.backend.entity.User;
 //import cl.novuscreate.backend.repository.UserRepository;
-import cl.novuscreate.backend.entity.Problem;
-import cl.novuscreate.backend.entity.User;
-import cl.novuscreate.backend.entity.UserProblem;
-import cl.novuscreate.backend.repository.ProblemRepository;
-import cl.novuscreate.backend.repository.UserProblemRepository;
-import cl.novuscreate.backend.repository.UserRepository;
+import cl.novuscreate.backend.entity.*;
+import cl.novuscreate.backend.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -30,6 +26,14 @@ public class ProblemService {
     @Autowired
     private UserProblemRepository userProblemRepository;
 
+    @Autowired
+    private ExampleRepository exampleRepository;
+
+    @Autowired
+    private ResultRepository resultRepository;
+
+    @Autowired
+    private InputRepository inputRepository;
 
 
 
@@ -53,7 +57,30 @@ public class ProblemService {
     @ResponseBody
     public Problem create(@RequestBody Problem resource) {
         System.out.println(resource);
-        return problemRepository.save(resource);
+
+        problemRepository.save(resource);
+
+        if ( !resource.getProblemExamples().isEmpty()  ){
+            for (Example example : resource.getProblemExamples()) {
+                System.out.println(example.getExampleTitle());
+
+                exampleRepository.save(example);
+
+                if ( example.getResult() != null ){
+//                    System.out.println("El id es"+);
+                    resultRepository.save(example.getResult());
+                }
+
+                if (example.getExampleInputs() != null){
+                    for (Input input : example.getExampleInputs()){
+                        inputRepository.save(input);
+                    }
+                }
+
+            }
+        }
+
+        return resource;
     }
 
 
