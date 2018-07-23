@@ -130,7 +130,7 @@ class FormProblem extends Component {
       <h2 className="problem-title"><small>AÑADIR PROBLEMA</small></h2>
       <form className="problem-form" onSubmit={this.handleSubmit}>
       <Row className="show-grid">
-        <Col xs={10} md={10}>
+        <Col xs={12} md={10}>
         <FormGroup
             controlId="formBasicText"
             validationState={this.getValidationState()}
@@ -147,7 +147,7 @@ class FormProblem extends Component {
             <HelpBlock>Campo obligatorio.</HelpBlock>
           </FormGroup>
         </Col>
-        <Col xs={10} md={2}>
+        <Col xs={12} md={2}>
           <h4><small>LENGUAJE</small></h4>
           <FormControl
           componentClass="select"
@@ -164,21 +164,17 @@ class FormProblem extends Component {
 
 
         <Row className="row-btn-add">
-          <Col xs={6} md={4}>
+          <Col xs={8} md={8}>
             <h4><small>ENTRADAS DEL PROBLEMA</small></h4>
           </Col>
-          <Col xs={2} md={4}>
-          <h4><small>TIPO</small></h4>
-          </Col>
-
         </Row>
 
         <Row className="problem-inputs">
-          <Col xs={8} md={8}>
+          <Col xs={12} md={12}>
             {this.state.inputs.map((shareholder, idx) => (
               <div className="shareholder">
               <Row className="problem-row-inputs">
-                <Col xs={6} md={8}>
+                <Col xs={9} md={8}>
                 <FormGroup
                     controlId="formBasicText"
                     validationState={this.getValidationState()}
@@ -194,7 +190,7 @@ class FormProblem extends Component {
                   <HelpBlock>Campo obligatorio.</HelpBlock>
                 </FormGroup>
                 </Col>
-                <Col xs={6} md={4}>
+                <Col xs={2} md={2}>
                    <FormControl
                    componentClass="select"
                    placeholder="select"
@@ -205,30 +201,25 @@ class FormProblem extends Component {
                      <option value="Integer">Entero</option>
                    </FormControl>
                 </Col>
-                <Col xs={6} md={2}>
-                </Col>
+                {idx === 0 ? <Col xs={2} md={2}>
+                          <Button className="btn-add" onClick={this.handleAddShareholder}><span><i className="icon-add" class="fa fa-plus"></i></span></Button>
+                          <Button className="btn-icon-delete"  onClick={this.handleRemoveShareholder(1)}> <i class="fas fa-times"></i></Button>
+                          </Col> : null}
               </Row>
               </div>
             ))}
-          </Col>
-          <Col xs={2} md={1}>
-            <Button className="btn-add" onClick={this.handleAddShareholder}></Button>
-            <Button className="btn-icon-delete"  onClick={this.handleRemoveShareholder(1)} ></Button>
           </Col>
         </Row>
 
         <br />
         <Row className="show-grid">
-          <Col xs={6} md={6}>
+          <Col xs={8} md={8}>
           <h4><small>SALIDA DEL PROBLEMA</small></h4>
-          </Col>
-          <Col xs={6} md={6}>
-          <h4><small>TIPO</small></h4>
           </Col>
         </Row>
 
         <Row className="show-grid2adas">
-          <Col xs={6} md={6}>
+          <Col xs={8} md={8}>
           <FormGroup
               controlId="formBasicText"
               validationState={this.getValidationState()}
@@ -244,7 +235,7 @@ class FormProblem extends Component {
               <HelpBlock>Campo obligatorio.</HelpBlock>
             </FormGroup>
           </Col>
-          <Col xs={6} md={4}>
+          <Col xs={2} md={2}>
               <FormControl
               componentClass="select"
               placeholder="select"

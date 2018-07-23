@@ -1,3 +1,4 @@
+body{background-color: #ededed; }
 .App {
     padding-bottom: 100px;
     min-height: 100%;
@@ -73,6 +74,8 @@
   padding-bottom: 20px;
   border-radius: 3px;
   margin-left:10%;
+  background-color: #ededed;
+
 }
 
 .table{
@@ -86,6 +89,7 @@
   width: 80%;
   margin-left:10%;
   margin-right:10%;
+  background-color: white;
 
 }
 
@@ -110,29 +114,20 @@
 }
 .btn-add
 {
-  background-image: url("../images/add-button.png");
-  width: 24%;
-  height: 24px;
-  border-radius: 1px;
-  border: unset;
-  margin-bottom: 0%;
-  margin-left: 0%;
+  background-color: #31ad0c;
+  border-radius: unset;
+  margin-left:-15%;
 }
 
 .btn-delete
 {
-  padding-left: 22px;
-  padding-top: 2.5px;
 }
 .btn-icon-delete
 {
-  background-image: url("../images/delete.png");
-  width: 24%;
-  height: 24px;
-  border-radius: 1px;
-  border: unset;
-  margin-bottom: 0%;
-  margin-left: 0%;
+  background-color: #b21810;
+  border-top-left-radius: unset;
+  border-bottom-left-radius: unset;
+  padding-left: -10%;
 }
 
 
@@ -189,6 +184,14 @@
 
 .card{
   border: 1px solid #e8ecf2;
+  border-radius: 5px;
+}
+.card-header{
+  margin-left: 5%;
+  margin-right: 5%;
+  border-bottom: 1px solid #e8ecf2;
+}
 
-
+.pieChart{
+  margin-left: 10%;
 }

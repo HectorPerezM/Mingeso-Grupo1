@@ -27,19 +27,35 @@ const App = () => {
                   <nav className="side-nav">
                       <ul>
                           <li>
-                          <NavLink to="/home">Inicio</NavLink>
+                          <NavLink to="/home">
+                            <span><i class="fa fa-pie-chart"> </i></span>
+                            <span> Inicio</span>
+                          </NavLink>
                           </li>
                           <li>
-                          <NavLink to="/problems/student">Problemas Estudiante</NavLink>
+                          <NavLink to="/problems/student">
+                            <span><i class="fas fa-columns"> </i></span>
+                            <span> Problemas Es</span>
+                          </NavLink>
                           </li>
                           <li>
-                          <NavLink to="/problems/teacher">Problemas Profesor </NavLink>
+                          <NavLink to="/problems/teacher">
+                            <span><i class="fas fa-columns"> </i></span>
+                            <span> Problemas Profesor</span>
+
+                          </NavLink>
                           </li>
                           <li>
-                          <NavLink to="/add">Añadir Problema </NavLink>
+                          <NavLink to="/add">
+                            <span><i class="far fa-calendar-plus"> </i></span>
+                            <span> Añadir Problema</span>
+                          </NavLink>
                           </li>
                           <li>
-                          <NavLink to="/solve/1">Resolver Problemas </NavLink>
+                          <NavLink to="/solve/1">
+                          <span><i class="fa fa-keyboard"> </i></span>
+                          <span> Resolver Problemas</span>
+                          </NavLink>
                           </li>
                       </ul>
                   </nav>
