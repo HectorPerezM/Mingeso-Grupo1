@@ -1,4 +1,4 @@
-version: '2.1'
+version: '3'
 
 services: 
   database:
@@ -12,21 +12,15 @@ services:
       - "3306:3306" 
     restart: always 
 
-  spring-boot:
-    build:
-      context: ./Docker
-      dockerfile: Dockerfile 
-      args:
-        - URL=https://${GIT_USER}:${GIT_PASSWORD}@github.com/HectorPerezM/Mingeso-Grupo1
-        - BRANCH=CIPlatform
-        - PROJECT_FOLDER=backend
-        - ARTIFACT_ID=MINGESO
-        - VERSION=1.0-SNAPSHOT
-        - DATABASE_HOST=database
-        - DATABASE_USER=username
-        - DATABASE_PASSWORD=password
-        - DATABASE_NAME=plataformaactiva
-        - DATABASE_PORT=3306 
+  springboot:
+    build: 
+      context: .
+      args: 
+        URL: https://${GIT_USER}:${GIT_PASSWORD}@github.com/HectorPerezM/Mingeso-Grupo1
+        BRANCH: CIPlatform
+        PROJECT_FOLDER: backend
+        ARTIFACT_ID: MINGESO
+        VERSION: 1.0-SNAPSHOT
     links:
       - database
     ports:
