@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import {Row, Col} from "react-bootstrap";
-import {Button, FormGroup, ControlLabel, FormControl, HelpBlock} from "react-bootstrap";
+import {ButtonToolbar,Button, FormGroup, ControlLabel, FormControl, HelpBlock} from "react-bootstrap";
 import Cancel from "../images/cancel-button.png";
 
 const examples = problem => {
@@ -130,12 +130,14 @@ class FormProblem extends Component {
       <h2 className="problem-title"><small>AÑADIR PROBLEMA</small></h2>
       <form className="problem-form" onSubmit={this.handleSubmit}>
       <Row className="show-grid">
-        <Col xs={12} md={10}>
+      <Col xs={12} md={12}>
+        <h4><small>TITULO DEL PROBLEMA</small></h4>
+      </Col>
+        <Col xs={12} md={12}>
         <FormGroup
             controlId="formBasicText"
             validationState={this.getValidationState()}
           >
-            <h4><small>TITULO DEL PROBLEMA</small></h4>
             <FormControl
               name = "title"
               type="text"
@@ -146,19 +148,6 @@ class FormProblem extends Component {
             <FormControl.Feedback />
             <HelpBlock>Campo obligatorio.</HelpBlock>
           </FormGroup>
-        </Col>
-        <Col xs={12} md={2}>
-          <h4><small>LENGUAJE</small></h4>
-          <FormControl
-          componentClass="select"
-          placeholder="select"
-          name="language"
-          value={this.state.lenguage}
-          onChange={e => this.Change(e)}>
-            <option value="Python">Python</option>
-            <option value="C">C</option>
-            <option value="Java">Java</option>
-          </FormControl>
         </Col>
       </Row>
 
@@ -247,13 +236,15 @@ class FormProblem extends Component {
               </FormControl>
           </Col>
         </Row>
-
-        <br />
+        <Row>
+        <Col xs={12} md={12}>
+          <h4><small>DESCRIPCIÓN DEL PROBLEMA</small></h4>
+        </Col>
+        <Col xs={12} md={12}>
         <FormGroup
             controlId="formBasicText"
             validationState={this.getValidationState()}
           >
-            <h4><small>DESCRIPCIÓN DEL PROBLEMA</small></h4>
             <FormControl
               componentClass="textarea"
               name = "description"
@@ -265,8 +256,19 @@ class FormProblem extends Component {
             <FormControl.Feedback />
             <HelpBlock>Campo obligatorio.</HelpBlock>
           </FormGroup>
-        <br />
-        <Button type="submit">Guardar</Button>
+          </Col>
+        <br /><Row className="form-student-solve">
+          <Col xs={0} md={4}>
+          </Col>
+          <Col xs={12} md={4}>
+          <ButtonToolbar>
+            <Button onClick={e => this.handleSubmit(e)} bsStyle="success">Guardar</Button>
+          </ButtonToolbar>
+          </Col>
+          <Col xs={0} md={4}>
+          </Col>
+        </Row>
+        </Row>
       </form>
     </div>
     )
