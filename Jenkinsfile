@@ -1,10 +1,16 @@
 pipeline {
-    agent {docker { image 'maven:3.5.4' } }
+    agent any
     stages {
         stage('Build') {
             steps {
-                sh 'mvn --version'
-            }
+                dir('backend')
+                {
+                    withMaven(maven : 'maven')
+                    {
+                        sh 'mvn clean compile'
+                    }
+                }
+		    }
         }
         stage('Test') {
             steps {
