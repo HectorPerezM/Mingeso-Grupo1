@@ -1,0 +1,22 @@
+#This file overwrite the default configuration of application.properties file 
+#for a docker connection instead. Please dont erase aplication.properties file 
+spring: 
+  datasource: 
+    url: jdbc:mysql://localhost:3306/plataformaactiva 
+    username: username 
+    password: password 
+    platform: mysql 
+    #true for default connection, false for docker activation 
+    initialize: true 
+  jpa: 
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect 
+    #database-platform: org.hibernate.dialect.MySQLDialect 
+--- 
+spring: 
+  profiles: container 
+  datasource: 
+    url: jdbc:mysql://${DATABASE_HOST}:${DATABASE_PORT}/${DATABASE_NAME} 
+    username: ${DATABASE_USER} 
+    password: ${DATABASE_PASSWORD} 
+    #false for default connection, true for docker activation 
+    initialize: false
