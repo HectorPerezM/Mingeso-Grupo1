@@ -3,11 +3,11 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                dir('backend')
-                {
+                // dir('backend')
+                // {
                     // sh 'mvn clean compile'
                     sh 'mvn --version'
-                }
+                // }
 		    }
         }
         stage('Test') {
