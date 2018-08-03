@@ -15,7 +15,7 @@ pipeline {
                 // sh 'cd backend && mvn sonar:sonar \
                 //     -Dsonar.host.url=http://localhost:9000 \
                 //     -Dsonar.login=000742e847d18dc752d5581789982fa4a6e3fa5c'
-                echo 'Inicio Sonarqube'
+                bin/echo 'Inicio Sonarqube'
             }
         }
     }
