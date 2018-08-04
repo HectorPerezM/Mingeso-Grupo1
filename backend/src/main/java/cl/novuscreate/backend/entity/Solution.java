@@ -15,6 +15,7 @@ public class Solution {
     private int solutionId;
     private String solutionCode;
     private UserProblem userProblem;
+    private String theSolution;
 
     @Id
     @GeneratedValue(strategy = IDENTITY)
@@ -47,8 +48,14 @@ public class Solution {
         this.userProblem = userProblem;
     }
 
+    @Column(name = "user_solution", nullable = false)
+    public String getTheSolution() {
+        return theSolution;
+    }
 
-
+    public void setTheSolution(String theSolution) {
+        this.theSolution = theSolution;
+    }
 
     public void execPythonScript(String code){
         PythonInterpreter python = new PythonInterpreter();
