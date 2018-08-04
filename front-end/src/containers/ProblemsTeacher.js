@@ -39,7 +39,7 @@ class ProblemsTeacher extends Component {
 
 
       componentDidMount() {
-        axios.get('http://165.227.48.161:8082/problems')
+        axios.get('http://localhost:8082/problems')
           .then(res => {
             const problems = res.data;
             this.setState({problems});

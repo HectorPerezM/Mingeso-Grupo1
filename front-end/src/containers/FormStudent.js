@@ -62,7 +62,7 @@ class Form extends Component {
 
 
   componentDidMount() {
-    axios.get('http://165.227.48.161:8082/problems/'+this.props.match.params.id)
+    axios.get('http://localhost:8082/problems/'+this.props.match.params.id)
       .then(res => {
         const problem = res.data;
         console.log(problem);

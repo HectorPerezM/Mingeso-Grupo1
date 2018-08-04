@@ -13,7 +13,7 @@ const examples = problem => {
 const addProblem = problem => {
   const inputs = examples(problem);
   console.log(inputs);
-  fetch('http://165.227.48.161:8082/problems', {
+  fetch('http://localhost:8082/problems', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -46,7 +46,7 @@ const addProblem = problem => {
  }
 
  const addUser = user => {
-   fetch('http://165.227.48.161:8082/users', {
+   fetch('http://localhost:8082/users', {
        method: 'POST',
        headers: {
          'Content-Type': 'application/json'
@@ -110,7 +110,7 @@ class FormProblem extends Component {
     evt.preventDefault();
     const { title, inputs } = this.state;
     alert(`Incorporated: ${title} with ${inputs.length} inputs`);
-    addUser(this.state);
+    // addUser(this.state);
     addProblem(this.state);
     console.log(this.state);
   }

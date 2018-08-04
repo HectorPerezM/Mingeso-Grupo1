@@ -68,7 +68,7 @@ public class ProblemService {
 
                 if ( example.getResult() != null ){
 //                    System.out.println("El id es"+);
-//                    example.getResult().setExample(example);
+                    example.getResult().setExample(example);
                     resultRepository.save(example.getResult());
                 }
 

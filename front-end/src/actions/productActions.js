@@ -3,7 +3,7 @@ import { push } from 'react-router-redux';
 
 export function addProducts(product) {
     return dispatch =>{
-    axios.post('http://165.227.48.161:8082/products', { product })
+    axios.post('http://localhost:8082/products', { product })
     .then(res => {
       console.log(res);
       console.log(res.data);
@@ -15,7 +15,7 @@ export function addProducts2(product){
   return dispatch => {
     console.log(product);
     console.log(product.productCode);
-    fetch('http://165.227.48.161:8082/products', {
+    fetch('http://localhost:8082/products', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -40,7 +40,7 @@ export function addProducts2(product){
 
 export function editProducts(product) {
   return dispatch => {
-    fetch('http://165.227.48.161:8082/products/'+product.productId, {
+    fetch('http://localhost:8082/products/'+product.productId, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json'
@@ -67,7 +67,7 @@ export function editProducts(product) {
 
 export function deleteProducts(id) {
   return dispatch => {
-      axios.delete('http://165.227.48.161:8082/products/'+id)
+      axios.delete('http://localhost:8082/products/'+id)
           .then(response => {
 
           })
@@ -80,7 +80,7 @@ export function deleteProducts(id) {
 
 export function getProducts() {
     return dispatch => {
-        axios.get('http://165.227.48.161:8082/products')
+        axios.get('http://localhost:8082/products')
             .then(response => {
             })
             .catch(error => {

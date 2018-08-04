@@ -1,6 +1,8 @@
 package cl.novuscreate.backend.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 import static javax.persistence.GenerationType.IDENTITY;
@@ -12,6 +14,7 @@ public class Result {
     private int resultId;
     private String resultType;
     private String resultValue;
+    @JsonIgnore
     private Example example;
 
 
