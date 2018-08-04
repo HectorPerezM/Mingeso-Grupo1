@@ -127,11 +127,11 @@ class FormProblem extends Component {
     return (
 
       <div className="problem">
-      <h2 className="problem-title"><small>AÑADIR PROBLEMA</small></h2>
+      <h2 className="problem-title">Añadir problema</h2>
       <form className="problem-form" onSubmit={this.handleSubmit}>
       <Row className="show-grid">
       <Col xs={12} md={12}>
-        <h4><small>TITULO DEL PROBLEMA</small></h4>
+        <h4>Titulo del problema</h4>
       </Col>
         <Col xs={12} md={12}>
         <FormGroup
@@ -154,7 +154,7 @@ class FormProblem extends Component {
 
         <Row className="row-btn-add">
           <Col xs={8} md={8}>
-            <h4><small>ENTRADAS DEL PROBLEMA</small></h4>
+            <h4>Entradas del problema</h4>
           </Col>
         </Row>
 
@@ -191,8 +191,8 @@ class FormProblem extends Component {
                    </FormControl>
                 </Col>
                 {idx === 0 ? <Col xs={2} md={2}>
-                          <Button className="btn-add" onClick={this.handleAddShareholder}><span><i className="icon-add" class="fa fa-plus"></i></span></Button>
-                          <Button className="btn-icon-delete"  onClick={this.handleRemoveShareholder(1)}> <i class="fas fa-times"></i></Button>
+                          <Button className="btn-add" onClick={this.handleAddShareholder}><span>Agregar</span></Button>
+                          <Button className="btn-icon-delete"  onClick={this.handleRemoveShareholder(1)}>  Eliminar</Button>
                           </Col> : null}
               </Row>
               </div>
@@ -203,7 +203,7 @@ class FormProblem extends Component {
         <br />
         <Row className="show-grid">
           <Col xs={8} md={8}>
-          <h4><small>SALIDA DEL PROBLEMA</small></h4>
+          <h4>Salida del problema</h4>
           </Col>
         </Row>
 
@@ -238,7 +238,7 @@ class FormProblem extends Component {
         </Row>
         <Row>
         <Col xs={12} md={12}>
-          <h4><small>DESCRIPCIÓN DEL PROBLEMA</small></h4>
+          <h4>Descripcion del problema</h4>
         </Col>
         <Col xs={12} md={12}>
         <FormGroup
@@ -257,17 +257,11 @@ class FormProblem extends Component {
             <HelpBlock>Campo obligatorio.</HelpBlock>
           </FormGroup>
           </Col>
-        <br /><Row className="form-student-solve">
-          <Col xs={0} md={4}>
-          </Col>
-          <Col xs={12} md={4}>
-          <ButtonToolbar>
-            <Button onClick={e => this.handleSubmit(e)} bsStyle="success">Guardar</Button>
+        <br />
+
+          <ButtonToolbar n>
+            <Button  onClick={e => this.handleSubmit(e)} bsStyle="success">Guardar</Button>
           </ButtonToolbar>
-          </Col>
-          <Col xs={0} md={4}>
-          </Col>
-        </Row>
         </Row>
       </form>
     </div>

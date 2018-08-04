@@ -29,7 +29,7 @@ class Header extends Component {
     };
     document.body.appendChild(node);
   }
-  
+
   getBrand() {
     var name;
     dashboardRoutes.map((prop, key) => {
@@ -40,7 +40,7 @@ class Header extends Component {
   }
   render() {
     return (
-      <Navbar fluid>
+      <Navbar className="Navbar" fluid>
         <Navbar.Header>
           <Navbar.Toggle onClick={this.mobileSidebarToggle} />
         </Navbar.Header>

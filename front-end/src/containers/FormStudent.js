@@ -94,19 +94,13 @@ class Form extends Component {
       parameterHints: true
     };
     return (
+      <div className="student-form">
+      <h2 className="form-student-title">Resolver problema</h2>
       <div className="form-student">
-      <Row>
-        <Col xs={0} md={1}>
-        </Col>
-        <Col className="form-student-title-col" xs={12} md={10}>
-          <h2 className="form-student-title"><small>Resolver problema</small></h2>
-        </Col>
-        <Col xs={0} md={1}>
-        </Col>
-      </Row>
+
       <Row className="form-student-row-problem">
         <Col xs={12} md={12}>
-        <h4 className="form-student-problem-title">Problema: <small>Leer el problema en latín.</small></h4>
+        <h3 className="form-student-problem-title">Problema: <small>Leer el problema en latín.</small></h3>
         </Col>
       </Row>
       <Row className="form-student-row-description">
@@ -121,14 +115,6 @@ class Form extends Component {
         Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
 
         Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.
-
-        Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.
-
-        Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
-
-        Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.
-
-        Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.
         </small></h4>
         </Col>
       </Row>
@@ -237,6 +223,7 @@ class Form extends Component {
 
 
         </form>
+      </div>
       </div>
     );
   }

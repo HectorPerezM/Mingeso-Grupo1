@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import {NavLink} from 'react-router-dom';
-import {ButtonToolbar, Button, Modal} from "react-bootstrap";
+import {ButtonToolbar, Button, Modal, Row, Col} from "react-bootstrap";
 
 
 class ProblemsStudent extends Component {
@@ -51,8 +51,8 @@ class ProblemsStudent extends Component {
   render() {
   return (
     <div className="problem-student">
-      <h2 className="problem-student-title"><small>PROBLEMAS</small></h2>
-      <div className="content table-responsive table-full-width">
+      <h2 className="problem-student-title">Problemas</h2>
+      <div className="table-student">
         <table className="table">
           <thead>
             <tr>
@@ -115,6 +115,7 @@ class ProblemsStudent extends Component {
           </tbody>
         </table>
       </div>
+
     </div>
     );
   }

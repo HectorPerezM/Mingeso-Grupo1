@@ -23,6 +23,8 @@ const Home = () => {
   }
 
     return(
+      <div>
+      <h2 className="problem-title">Dashboard</h2>
       <Row className="show-grid">
         <Col className="col-pieChart" xs={10} md={6}>
           <div id="chartPreferences" className="pieChart">
@@ -42,6 +44,7 @@ const Home = () => {
         </div>
         </Col>
       </Row>
+      </div>
     );
 };
 

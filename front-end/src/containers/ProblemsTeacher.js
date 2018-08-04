@@ -55,8 +55,8 @@ class ProblemsTeacher extends Component {
   render() {
   return (
     <div className="problem-teacher">
-      <h2 className="problem-student-title"><small>PROBLEMAS</small></h2>
-      <div className="content table-responsive table-full-width">
+      <h2 className="problem-student-title">Problemas</h2>
+      <div className="table-student">
         <table className="table">
           <thead>
             <tr>

@@ -59,9 +59,7 @@ const App = () => {
                           </li>
                       </ul>
                   </nav>
-                  <div className="div-logo-fing">
                     <img src={fing} alt="logo_image" className="logo-fing"/>
-                  </div>
                 </div>
                 <div className="container">
                       <Header {...this.props} />
