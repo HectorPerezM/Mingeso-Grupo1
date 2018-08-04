@@ -68,11 +68,13 @@ public class ProblemService {
 
                 if ( example.getResult() != null ){
 //                    System.out.println("El id es"+);
+//                    example.getResult().setExample(example);
                     resultRepository.save(example.getResult());
                 }
 
                 if (example.getExampleInputs() != null){
                     for (Input input : example.getExampleInputs()){
+//                        input.setExample(example);
                         inputRepository.save(input);
                     }
                 }

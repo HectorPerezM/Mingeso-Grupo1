@@ -20,7 +20,7 @@ public class User {
     private int userId;
     private String userEmail;
     private String userPassword;
-    private int userType;
+    private int userType = -1;
 
     @JsonIgnore
     private Set<Problem> problems = new HashSet<Problem>(0);;
@@ -96,6 +96,16 @@ public class User {
 ////        userProblems.add(userProblem);
 ////        problem.getUsers().add(userProblem);
 ////    }
+
+    public boolean verificateUser(){
+        if(getUserEmail() == null)
+            return false;
+        if (getUserType() < 0)
+            return false;
+
+        return true;
+
+    }
 
 
 }
