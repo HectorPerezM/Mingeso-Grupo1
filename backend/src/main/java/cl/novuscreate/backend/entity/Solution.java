@@ -82,7 +82,7 @@ public class Solution {
         String[] codeWords = code.split("([#])|([“][”][”][”])|\\n");
         String[] codeWordsInLine;
 
-        currentLineCode = 1;
+        int currentLineCode = 1;
 
         //Check for presence of inputs, process and output of function
         boolean hasInputComment = false;
@@ -95,7 +95,7 @@ public class Solution {
         boolean isTrueComentary = false;
 
         //For all line of code in codewords
-        for (i = 0; i < codeWords.length; i++) {
+        for (int i = 0; i < codeWords.length; i++) {
             if (codeWords[i].contains("\n")) {
                 currentLineCode++;
             }
@@ -302,7 +302,7 @@ public class Solution {
                     if (palabra.length() == 1 && palabra.charAt(0)<'i') {
                         System.out.println("Buenas prácticas: Nombre no representativo en línea : "+currentLineCode);
                     }
-                    else if (palabra.length() != 0 && palabra.length() < 4 &&  && !palabra.contains("if")) {
+                    else if (palabra.length() != 0 && palabra.length() < 4 && !palabra.contains("if")) {
                         System.out.println("Buenas prácticas: Nombre demasiado corto en línea : "+currentLineCode);
                     }
                 }
@@ -323,7 +323,7 @@ public class Solution {
         return;
     }
 
-    public void staticCodeAnalysisInC(String code) {
+    public void staticCodeAnalysisInJava(String code) {
         //Because Java and C have similar good practices and for no abuse from self-copy code
         staticCodeAnalysisInC(code);
         return;
