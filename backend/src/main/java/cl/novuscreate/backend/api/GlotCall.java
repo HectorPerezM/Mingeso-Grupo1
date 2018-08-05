@@ -32,6 +32,11 @@ public class GlotCall {
         this.code = code;
     }
 
+    public GlotCall(String language, String code) {
+        this.language = language;
+        this.code = code;
+    }
+
     public String runCode(){
         try {
             URL url = new URL("https://run.glot.io/languages/"+getLanguage()+"/latest");

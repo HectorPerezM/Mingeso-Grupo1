@@ -16,6 +16,7 @@ public class Solution {
     private String solutionCode;
     private UserProblem userProblem;
     private String theSolution;
+    private String language;
 
     @Id
     @GeneratedValue(strategy = IDENTITY)
@@ -51,6 +52,15 @@ public class Solution {
     @Column(name = "user_solution", nullable = false)
     public String getTheSolution() {
         return theSolution;
+    }
+
+    @Column(name = "language_solution", nullable = false)
+    public String getLanguage() {
+        return language;
+    }
+
+    public void setLanguage(String language) {
+        this.language = language;
     }
 
     public void setTheSolution(String theSolution) {

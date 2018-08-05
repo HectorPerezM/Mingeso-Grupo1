@@ -1,14 +1,21 @@
 package cl.novuscreate.backend.rest;
 
 
+import cl.novuscreate.backend.api.GlotCall;
+import cl.novuscreate.backend.entity.Example;
+import cl.novuscreate.backend.entity.Problem;
 import cl.novuscreate.backend.entity.Solution;
+import cl.novuscreate.backend.entity.UserProblem;
 import cl.novuscreate.backend.repository.ProblemRepository;
 import cl.novuscreate.backend.repository.SolutionRepository;
+import cl.novuscreate.backend.repository.UserProblemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Set;
 
 @CrossOrigin
 @RestController
@@ -17,6 +24,10 @@ public class SolutionService {
 
     @Autowired
     private SolutionRepository solutionRepository;
+    @Autowired
+    private UserProblemRepository userProblemRepository;
+    @Autowired
+    private ProblemRepository problemRepository;
 
     @GetMapping
     public Iterable<Solution> getAllSolutions() {
@@ -48,7 +59,57 @@ public class SolutionService {
     @ResponseBody
     public Solution create(@RequestBody Solution resource) {
         System.out.println(resource);
-        return solutionRepository.save(resource);
+        GlotCall glotCall = new GlotCall(resource.getLanguage(),resource.getSolutionCode());
+        resource.setTheSolution(glotCall.runCode());
+
+//        solutionRepository.save(resource);
+
+        Problem problem = solutionRepository.save(resource).getUserProblem().getProblem();
+        System.out.println(problem);
+        Problem problem2 = problemRepository.findOne(problem.getProblemId());
+        System.out.println("*****///");
+        Set<Example> examples = problem2.getProblemExamples();
+        System.out.println(problem2.getProblemTitle());
+//        Example example = examples. ;
+        Boolean works = false;
+        System.out.println(examples.size());
+        for (Example example : examples){
+            String tipo = example.getResult().getResultType();
+//            Integer comparate;
+//            if (tipo == "Entero") {
+//                comparate = Integer.parseInt(resource.getTheSolution());
+//                if(comparate == example.getResult().getResultValue() );
+//            }
+            System.out.println(example.getExampleTitle());
+            System.out.println("********");
+            System.out.println(example.getResult().getResultValue());
+            System.out.println(resource.getTheSolution());
+
+            System.out.println(example.getResult().getResultValue().getClass());
+            System.out.println(resource.getTheSolution().getClass());
+            System.out.println("********");
+
+//            if(example.getResult().getResultValue() === resource.getTheSolution()){
+              if ( example.getResult().getResultValue().equals(resource.getTheSolution()) ){
+                System.out.println("********2");
+                System.out.println(example.getResult().getResultValue());
+                System.out.println(resource.getTheSolution());
+                System.out.println("********2");
+
+                works = true;
+            }
+        }
+
+//        if (works){
+//            UserProblem userProblem =resource.getUserProblem();
+//            userProblem.setStatusComplete(1);
+//            userProblem.setSolution(resource);
+//            userProblemRepository.save(userProblem);
+//
+////            resource.getUserProblem().setCreatedOn();
+//        }
+
+        return resource;
     }
 
 
