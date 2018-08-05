@@ -17,5 +17,10 @@ pipeline {
                     -Dsonar.login=000742e847d18dc752d5581789982fa4a6e3fa5c'   
             }
         }
+        stage('Desploy') {
+            steps {
+                sh 'mvn clean deploy'
+            }
+        }
     }
 }
