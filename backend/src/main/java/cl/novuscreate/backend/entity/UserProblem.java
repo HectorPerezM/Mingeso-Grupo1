@@ -2,6 +2,7 @@ package cl.novuscreate.backend.entity;
 
 
 import cl.novuscreate.backend.CompositePK.UserProblemId;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
@@ -94,6 +95,7 @@ public class UserProblem {
         this.statusComplete = statusComplete;
     }
 
+    @JsonIgnore
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "SOLUTION_ID")
     public Solution getSolution() {

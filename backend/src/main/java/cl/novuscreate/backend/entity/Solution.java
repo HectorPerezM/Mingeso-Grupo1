@@ -1,5 +1,6 @@
 package cl.novuscreate.backend.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.python.core.PyInteger;
 import org.python.core.PyObject;
 import org.python.util.PythonInterpreter;
@@ -37,6 +38,7 @@ public class Solution {
     public void setSolutionCode(String solutionCode) {
         this.solutionCode = solutionCode;
     }
+
 
     @OneToOne(fetch = FetchType.LAZY,
             cascade =  CascadeType.ALL,

@@ -63,8 +63,8 @@ public class SolutionService {
         resource.setTheSolution(glotCall.runCode());
 
 //        solutionRepository.save(resource);
-
-        Problem problem = solutionRepository.save(resource).getUserProblem().getProblem();
+        Solution solution = solutionRepository.save(resource);
+        Problem problem = solution.getUserProblem().getProblem();
         System.out.println(problem);
         Problem problem2 = problemRepository.findOne(problem.getProblemId());
         System.out.println("*****///");
@@ -100,14 +100,14 @@ public class SolutionService {
             }
         }
 
-//        if (works){
-//            UserProblem userProblem =resource.getUserProblem();
-//            userProblem.setStatusComplete(1);
-//            userProblem.setSolution(resource);
-//            userProblemRepository.save(userProblem);
-//
-////            resource.getUserProblem().setCreatedOn();
-//        }
+        if (works){
+            UserProblem userProblem =resource.getUserProblem();
+            userProblem.setStatusComplete(1);
+            userProblem.setSolution(solution);
+            userProblemRepository.save(userProblem);
+
+//            resource.getUserProblem().setCreatedOn();
+        }
 
         return resource;
     }
