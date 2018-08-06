@@ -7,7 +7,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'cd backend && mvn validate && mvn clean compile'
+                sh 'cd backend && mvn validate && mvn compile'
 		    }
         }
         stage('Test') {
