@@ -91,8 +91,17 @@ class Form extends Component {
 
 
       response.json().then(function(result) {
+        console.log(result);
+        var estado =result.userProblem.statusComplete;
+        var estadoStr ="";
 
-         alert("Ejecución exitosa\n. Resultado obtenido:"+result.theSolution) //will log results.
+        if (estado == 1) {
+          estadoStr = "Completado"
+        }else {
+          estadoStr = "Incorrecto"
+        }
+
+         alert("Ejecución exitosa\n. Resultado obtenido:"+result.theSolution+"\nEstado problema"+estadoStr) //will log results.
 
       })
 
