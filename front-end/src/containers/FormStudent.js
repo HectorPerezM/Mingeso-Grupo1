@@ -57,6 +57,56 @@ class Form extends Component {
     this.setState({
       disabled: false
     });
+
+
+    fetch('http://localhost:8082/solutions', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        "solutionCode": this.state.code.toString(),
+        "language": "python",
+        "userProblem":{
+          "user":{
+            "userId": 1
+          },
+          "problem":{
+            "problemId": this.props.match.params.id
+          },
+          "statusComplete": 0
+        }
+      })
+    })
+    .then(response => {
+      console.log("********");
+      // var a = response.json();\
+      // sleep(1000);
+      console.log(response);
+      // console.log(response.json());
+
+      // console.log(response.json().PromiseValue );
+      // console.log(response.json().PromiseValue() );
+
+
+
+      response.json().then(function(result) {
+
+         alert("Ejecución exitosa\n. Resultado obtenido:"+result.theSolution) //will log results.
+
+      })
+
+      // console.log(response.json().promise_value );
+      console.log("********");
+      // alert(response.JSON);
+    })
+    .catch(error => {
+      console.error(error);
+    });
+
+
+
+
     alert("el algoritmo que será evaluado es: \n"+this.state.code.toString());
   };
 
