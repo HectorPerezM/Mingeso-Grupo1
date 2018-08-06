@@ -92,4 +92,259 @@ public class Solution {
         System.out.println("val : "+number3.toString());
     }
 
+    public void staticCodeAnalysisInPython(String code) {
+        //check commentary quality in code word by word
+        //Check Regular expressions online:
+        // http://www.beansoftware.com/Test-Net-Regular-Expressions/Split-String.aspx
+
+        //Make split from any commentary in code
+        String[] codeWords = code.split("([#])|([“][”][”][”])|\\n");
+        String[] codeWordsInLine;
+
+        int currentLineCode = 1;
+
+        //Check for presence of inputs, process and output of function
+        boolean hasInputComment = false;
+        boolean hasProcessComment = false;
+        boolean hasOutputComment = false;
+
+        //Check for comentaries in format:  //comentary
+        boolean isHalfComentary = false;
+        //Check for comentaries in format:  /*comentary*/
+        boolean isTrueComentary = false;
+
+        //For all line of code in codewords
+        for (int i = 0; i < codeWords.length; i++) {
+            if (codeWords[i].contains("\n")) {
+                currentLineCode++;
+            }
+
+            //if the string is the start or end of a commentary
+            if (codeWords[i].contains("\"\"\"\"")) {
+                isTrueComentary = true;
+            }
+            else if (isTrueComentary == true && codeWords[i].contains("\"\"\"\"")) {
+                isTrueComentary = false;
+            }
+            else if (codeWords[i].contains("#")) {
+                isHalfComentary = true;
+            }
+            else if (isHalfComentary == true || isTrueComentary == true) {
+                isHalfComentary = false;
+                if (codeWords[i].toLowerCase().contains("entrada")) {
+                    hasInputComment = true;
+                }
+                else if (codeWords[i].toLowerCase().contains("proces")) {
+                    hasProcessComment = true;
+                }
+                else if (codeWords[i].toLowerCase().contains("salida")) {
+                    hasOutputComment = true;
+                }
+            }
+            else
+            {
+                codeWordsInLine = codeWords[i].split("[^a-zA-Z][^a-zA-Z,0-9]*");
+                for (String palabra:codeWordsInLine) {
+                    if (palabra.length() == 1 && palabra.charAt(0)<'i') {
+                        System.out.println("Buenas prácticas: Nombre no representativo en línea : "+currentLineCode);
+                    }
+                    else if (palabra.length() != 0 && palabra.length() < 4 && !palabra.contains("if")) {
+                        System.out.println("Buenas prácticas: Nombre demasiado corto en línea : "+currentLineCode);
+                    }
+                }
+            }
+        }
+
+        if (hasInputComment == false)
+        {
+            System.out.println("Buenas prácticas: Comentario de entrada no encontrado");
+        }
+        if (hasOutputComment == false) {
+            System.out.println("Buenas prácticas: Comentario de salida no encontrado");
+        }
+        if (hasProcessComment == false) {
+            System.out.println("Buenas prácticas: Comentario de procesamiento no encontrado");
+        }
+
+        return;
+    }
+
+    public void staticCodeAnalysisInC(String code) {
+        int expectedIdentation = 0, currentIdentation = 0;
+        int currentLineCode = 1;
+
+        //Check for comentaries in format:  //comentary
+        boolean isHalfComentary = false;
+        //Check for comentaries in format:  /*comentary*/
+        boolean isTrueComentary = false;
+
+        //Check code structuration and identation letter for letter
+        int i = 0;
+        int currentState = 1;
+        int codeLenght = code.length();
+        char currentLetter = code.charAt(0);
+        /*DEBUG*/System.out.println("Code Lenght: "+codeLenght);
+        while (i<codeLenght) {
+
+            if (currentLetter == '\t') {
+                currentIdentation++;
+            }
+            else if (currentLetter == '\n') {
+                if (currentIdentation < expectedIdentation) {
+                    System.out.println("Buenas prácticas: Se esperaba identación en línea: "+currentLineCode);System.out.println("Code Lenght: "+codeLenght);
+                }
+                currentLineCode++;
+                currentIdentation = 0;
+                isHalfComentary = false;
+                /*DEBUG*/System.out.println("New line: "+currentLineCode);
+            }
+
+            //check for half and complete comentaries
+            if (i+1<codeLenght && code.charAt(i) == '/' && code.charAt(i+1) == '/') {
+                isHalfComentary = true;
+            }
+            else if (i+1<codeLenght && code.charAt(i) == '/' && code.charAt(i+1) == '*') {
+                isTrueComentary = true;
+            }
+            else if (i+1<codeLenght && code.charAt(i) == '*' && code.charAt(i+1) == '/') {
+                isTrueComentary = false;
+            }
+
+            //if a object in the code is not commented
+            if (isHalfComentary == false && isTrueComentary == false){
+                switch (code.charAt(i)) {
+                    case 1:
+                        if (currentLetter == '(') {
+                            currentState = 2;
+                        }
+                        else if (currentLetter == '\t') {
+                            System.out.println("Buenas prácticas: No es necesario generar identación en línea: "+currentLineCode);
+                        }
+                        break;
+                    case 2:
+                        if (currentLetter == ')') {
+                            currentState = 3;
+                        }
+                        else if (!(currentLetter == ' ' || currentLetter == '\t' || currentLetter == '\n'))
+                        {
+                            currentState = 1;
+                        }
+                        break;
+                    case 3:
+                        if (currentLetter == '{') {
+                            currentState = 4;
+                            expectedIdentation++;
+                        }
+                        break;
+                    case 4:
+                        if (currentLetter == '\n') {
+                            currentState = 5;
+                        }
+                        else if (currentLetter == '}') {
+                            expectedIdentation--;
+                        }
+                        else if (currentLetter == '{') {
+                            expectedIdentation++;
+                            System.out.println("Buenas prácticas: Se esperaba nueva línea en línea : "+currentLineCode);
+                        }
+                        break;
+                    case 5:
+                        if (currentLetter == '{') {
+                            currentState = 4;
+                            expectedIdentation++;
+                        }
+                        else if (currentLetter == ';') {
+                            currentState = 4;
+                        }
+                        break;
+                    default:
+                        currentState = 1;
+                        break;
+                }
+            }
+            i++;
+            currentLetter = code.charAt(i);
+        }
+
+        //check commentary quality in code word by word
+        //Check Regular expressions online:
+        // http://www.beansoftware.com/Test-Net-Regular-Expressions/Split-String.aspx
+
+        //Make split from any commentary in code
+        String[] codeWords = code.split("([/][/])|([/][*])|([*][/])|\\n");
+        String[] codeWordsInLine;
+
+        currentLineCode = 1;
+
+        //Check for presence of inputs, process and output of function
+        boolean hasInputComment = false;
+        boolean hasProcessComment = false;
+        boolean hasOutputComment = false;
+
+        //Check for comentaries in format:  //comentary
+        isHalfComentary = false;
+        //Check for comentaries in format:  /*comentary*/
+        isTrueComentary = false;
+
+        //For all line of code in codewords
+        for (i = 0; i < codeWords.length; i++) {
+            if (codeWords[i].contains("\n")) {
+                currentLineCode++;
+            }
+
+            //if the string is the start or end of a commentary
+            if (codeWords[i].contains("/*")) {
+                isTrueComentary = true;
+            }
+            else if (codeWords[i].contains("*/")) {
+                isTrueComentary = false;
+            }
+            else if (codeWords[i].contains("//")) {
+                isHalfComentary = true;
+            }
+            else if (isHalfComentary == true || isTrueComentary == true) {
+                isHalfComentary = false;
+                if (codeWords[i].toLowerCase().contains("entrada")) {
+                    hasInputComment = true;
+                }
+                else if (codeWords[i].toLowerCase().contains("proces")) {
+                    hasProcessComment = true;
+                }
+                else if (codeWords[i].toLowerCase().contains("salida")) {
+                    hasOutputComment = true;
+                }
+            }
+            else
+            {
+                codeWordsInLine = codeWords[i].split("[^a-zA-Z][^a-zA-Z,0-9]*");
+                for (String palabra:codeWordsInLine) {
+                    if (palabra.length() == 1 && palabra.charAt(0)<'i') {
+                        System.out.println("Buenas prácticas: Nombre no representativo en línea : "+currentLineCode);
+                    }
+                    else if (palabra.length() != 0 && palabra.length() < 4 && !palabra.contains("if")) {
+                        System.out.println("Buenas prácticas: Nombre demasiado corto en línea : "+currentLineCode);
+                    }
+                }
+            }
+        }
+
+        if (hasInputComment == false)
+        {
+            System.out.println("Buenas prácticas: Comentario de entrada no encontrado");
+        }
+        if (hasOutputComment == false) {
+            System.out.println("Buenas prácticas: Comentario de salida no encontrado");
+        }
+        if (hasProcessComment == false) {
+            System.out.println("Buenas prácticas: Comentario de procesamiento no encontrado");
+        }
+
+        return;
+    }
+
+    public void staticCodeAnalysisInJava(String code) {
+        //Because Java and C have similar good practices and for no abuse from self-copy code
+        staticCodeAnalysisInC(code);
+        return;
+    }
 }
