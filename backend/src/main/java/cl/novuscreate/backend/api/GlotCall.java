@@ -79,14 +79,26 @@ public class GlotCall {
                     (connection.getInputStream())));
 
             String output;
+            String err;
             String salida ="";
             System.out.println("Output from Glot .... \n");
             String[] splitted;
+            String[] splittedAux;
+
             while ((output = bufferedReader.readLine()) != null) {
                 System.out.println(output);
                 splitted = output.split(",");
                 System.out.println(splitted[0]);
+                splittedAux = splitted[1].split(":");
                 splitted = splitted[0].split(":");
+
+                System.out.println("******///");
+                System.out.println(splittedAux[1]);
+                if(splittedAux[1].length() > 3){
+                    return splittedAux[1];
+                }
+                System.out.println("******///");
+
                 System.out.println(splitted[1]);
                 splitted = (splitted[1]).split("\\\\n");
                 System.out.println(splitted[0]);

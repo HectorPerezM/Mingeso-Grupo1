@@ -34,6 +34,9 @@ public class UserProblem {
 
     private UserProblem() {}
 
+
+    private String feedback;
+
     public UserProblem(User user, Problem problem, Integer statusComplete) {
         this.user = user;
         this.problem = problem;
@@ -93,6 +96,15 @@ public class UserProblem {
 
     public void setStatusComplete(Integer statusComplete) {
         this.statusComplete = statusComplete;
+    }
+
+    @Column(name = "feedback",columnDefinition = "TEXT")
+    public String getFeedback() {
+        return feedback;
+    }
+
+    public void setFeedback(String feedback) {
+        this.feedback = feedback;
     }
 
     @JsonIgnore

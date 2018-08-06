@@ -92,11 +92,11 @@ public class Solution {
         System.out.println("val : "+number3.toString());
     }
 
-    public void staticCodeAnalysisInPython(String code) {
+    public String staticCodeAnalysisInPython(String code) {
         //check commentary quality in code word by word
         //Check Regular expressions online:
         // http://www.beansoftware.com/Test-Net-Regular-Expressions/Split-String.aspx
-
+        String Output="";
         //Make split from any commentary in code
         String[] codeWords = code.split("([#])|([“][”][”][”])|\\n");
         String[] codeWordsInLine;
@@ -147,9 +147,11 @@ public class Solution {
                 for (String palabra:codeWordsInLine) {
                     if (palabra.length() == 1 && palabra.charAt(0)<'i') {
                         System.out.println("Buenas prácticas: Nombre no representativo en línea : "+currentLineCode);
+                        Output += "Buenas prácticas: Nombre no representativo en línea : "+currentLineCode+"\n";
                     }
                     else if (palabra.length() != 0 && palabra.length() < 4 && !palabra.contains("if")) {
                         System.out.println("Buenas prácticas: Nombre demasiado corto en línea : "+currentLineCode);
+                        Output += "Buenas prácticas: Nombre demasiado corto en línea : "+currentLineCode+"\n";
                     }
                 }
             }
@@ -158,21 +160,25 @@ public class Solution {
         if (hasInputComment == false)
         {
             System.out.println("Buenas prácticas: Comentario de entrada no encontrado");
+            Output += "Buenas prácticas: Comentario de entrada no encontrado\n";
         }
         if (hasOutputComment == false) {
             System.out.println("Buenas prácticas: Comentario de salida no encontrado");
+            Output += "Buenas prácticas: Comentario de salida no encontrado\n";
         }
         if (hasProcessComment == false) {
             System.out.println("Buenas prácticas: Comentario de procesamiento no encontrado");
+            Output+= "Buenas prácticas: Comentario de procesamiento no encontrado\n";
         }
 
-        return;
+        return Output;
     }
 
-    public void staticCodeAnalysisInC(String code) {
+    public String staticCodeAnalysisInC(String code) {
         int expectedIdentation = 0, currentIdentation = 0;
         int currentLineCode = 1;
 
+        String Output="";
         //Check for comentaries in format:  //comentary
         boolean isHalfComentary = false;
         //Check for comentaries in format:  /*comentary*/
@@ -192,6 +198,8 @@ public class Solution {
             else if (currentLetter == '\n') {
                 if (currentIdentation < expectedIdentation) {
                     System.out.println("Buenas prácticas: Se esperaba identación en línea: "+currentLineCode);System.out.println("Code Lenght: "+codeLenght);
+                    Output+= "Buenas prácticas: Se esperaba identación en línea: "+currentLineCode+"\n";
+
                 }
                 currentLineCode++;
                 currentIdentation = 0;
@@ -219,6 +227,7 @@ public class Solution {
                         }
                         else if (currentLetter == '\t') {
                             System.out.println("Buenas prácticas: No es necesario generar identación en línea: "+currentLineCode);
+                            Output+="Buenas prácticas: No es necesario generar identación en línea: "+currentLineCode+"\n";
                         }
                         break;
                     case 2:
@@ -246,6 +255,7 @@ public class Solution {
                         else if (currentLetter == '{') {
                             expectedIdentation++;
                             System.out.println("Buenas prácticas: Se esperaba nueva línea en línea : "+currentLineCode);
+                            Output+= "Buenas prácticas: Se esperaba nueva línea en línea : "+currentLineCode+"\n";
                         }
                         break;
                     case 5:
@@ -320,9 +330,11 @@ public class Solution {
                 for (String palabra:codeWordsInLine) {
                     if (palabra.length() == 1 && palabra.charAt(0)<'i') {
                         System.out.println("Buenas prácticas: Nombre no representativo en línea : "+currentLineCode);
+                        Output+="Buenas prácticas: Nombre no representativo en línea : "+currentLineCode+"\n";
                     }
                     else if (palabra.length() != 0 && palabra.length() < 4 && !palabra.contains("if")) {
                         System.out.println("Buenas prácticas: Nombre demasiado corto en línea : "+currentLineCode);
+                        Output+= "Buenas prácticas: Nombre demasiado corto en línea : "+currentLineCode+"\n";
                     }
                 }
             }
@@ -331,15 +343,18 @@ public class Solution {
         if (hasInputComment == false)
         {
             System.out.println("Buenas prácticas: Comentario de entrada no encontrado");
+            Output+= "Buenas prácticas: Comentario de entrada no encontrado\n";
         }
         if (hasOutputComment == false) {
             System.out.println("Buenas prácticas: Comentario de salida no encontrado");
+            Output+="Buenas prácticas: Comentario de salida no encontrado\n";
         }
         if (hasProcessComment == false) {
             System.out.println("Buenas prácticas: Comentario de procesamiento no encontrado");
+            Output+="Buenas prácticas: Comentario de procesamiento no encontrado\n";
         }
 
-        return;
+        return Output;
     }
 
     public void staticCodeAnalysisInJava(String code) {

@@ -104,6 +104,14 @@ public class SolutionService {
             UserProblem userProblem =resource.getUserProblem();
             userProblem.setStatusComplete(1);
             userProblem.setSolution(solution);
+
+            if (solution.getLanguage().equals("Python") || solution.getLanguage().equals("python") ){
+                userProblem.setFeedback( solution.staticCodeAnalysisInPython(userProblem.getSolution().getSolutionCode()) );
+            }
+            else if (solution.getLanguage().equals("C") || solution.getLanguage().equals("c") ){
+                userProblem.setFeedback( solution.staticCodeAnalysisInC( userProblem.getSolution().getSolutionCode()) );
+
+            }
             userProblemRepository.save(userProblem);
 
 //            resource.getUserProblem().setCreatedOn();
