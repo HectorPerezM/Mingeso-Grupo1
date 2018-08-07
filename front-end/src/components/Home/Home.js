@@ -4,6 +4,7 @@ import ReactSvgPieChart from "react-svg-piechart";
 import {Row, Col} from "react-bootstrap";
 import { Chart } from 'react-google-charts';
 import {Card} from '../Card/Card.jsx';
+import {CardStudent} from '../CardStudent/CardStudent.jsx';
 
 
 const Home = () => {
@@ -40,7 +41,7 @@ const Home = () => {
         </Col>
         <Col className="col-pieChart2" xs={10} md={6}>
         <div id="chartPreference2s" className="piasdeChart">
-          <Card {...this.props}/>
+          <CardStudent {...this.props}/>
         </div>
         </Col>
       </Row>

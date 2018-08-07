@@ -42,6 +42,7 @@
         "react-error-overlay": "^1.0.10",
         "react-google-charts": "^1.6.6",
         "react-googlecharts": "^1.4.0",
+        "react-loading": "^2.0.3",
         "react-monaco-editor": "^0.17.2",
         "react-redux": "^5.0.6",
         "react-router-dom": "^4.2.2",
