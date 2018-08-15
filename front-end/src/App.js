@@ -6,8 +6,6 @@ import ProblemsTeacher from './containers/ProblemsTeacher.js'
 import FormStudent from './containers/FormStudent.js'
 import FormProblem from './containers/FormProblem.js'
 import EditProblem from './containers/EditProblem.js'
-import Header from "./components/Header/Header.jsx";
-import Header2 from "./components/Header/Header2.jsx";
 import fing from "./images/fing.png";
 import udes from "./images/udes.png";
 import Home from "./components/Home/Home.js";
@@ -62,7 +60,6 @@ const App = () => {
                     <img src={fing} alt="logo_image" className="logo-fing"/>
                 </div>
                 <div className="container">
-                      <Header {...this.props} />
                     <div className="views">
                       <Route path="/problems/student" component={ProblemsStudent}/>
                       <Route path="/problems/teacher" component={ProblemsTeacher}/>
