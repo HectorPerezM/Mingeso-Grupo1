@@ -1,5 +1,5 @@
-import React from 'react';
-import {BrowserRouter as Router, Route, NavLink} from 'react-router-dom';
+import React, {Component} from 'react';
+import {BrowserRouter as Router, Route, NavLink, Redirect} from 'react-router-dom';
 
 import ProblemsStudent from './containers/ProblemsStudent.js'
 import ProblemsTeacher from './containers/ProblemsTeacher.js'
@@ -9,37 +9,23 @@ import EditProblem from './containers/EditProblem.js'
 import fing from "./images/fing.png";
 import udes from "./images/udes.png";
 import Home from "./components/Home/Home.js";
-
+import Login from './components/Login/Login.js';
+import Dashboard from './components/Dashboard/Dashboard.js';
+import PrivateRoute from './components/Auth/PrivateRoute.js';
 // Assets
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles/App.css';
 
-const App = () => {
-    return (
-        <Router>
-            <div className="App">
-                <div id="sidebar" className="sidebar">
-                  <div className="div-logo-udes">
-                    <img src={udes} alt="logo_image" className="logo-udes"/>
-                  </div>
-                  <nav className="side-nav">
-                      <ul>
-                          <li>
-                          <NavLink to="/home">
-                            <span><i class="fa fa-pie-chart"> </i></span>
-                            <span> Inicio</span>
-                          </NavLink>
-                          </li>
-                          <li>
-                          <NavLink to="/problems/student">
-                            <span><i class="fas fa-columns"> </i></span>
-                            <span> Problemas Es</span>
-                          </NavLink>
-                          </li>
-                          <li>
-                          <NavLink to="/problems/teacher">
-                            <span><i class="fas fa-columns"> </i></span>
-                            <span> Problemas Profesor</span>
+export const AuthService = {
+    isAuthenticated: false,
+    auth(){
+        this.isAuthenticated = true
+        console.log("Despues: "+this.isAuthenticated)
+    },
+    logout(){
+        return this.isAuthenticated = false
+    }
+}
 
                           </NavLink>
                           </li>
@@ -70,8 +56,9 @@ const App = () => {
                     </div>
                 </div>
             </div>
-        </Router>
-    );
-};
+            
+        );
+    }
+}
 
 export default App;

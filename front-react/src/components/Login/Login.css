@@ -1,0 +1,46 @@
+.login-informacion{
+    background-color: white;
+}
+
+.login-informacion-titulo{
+    text-align: center;
+}
+
+.login{
+    background-color: #ededed;
+}
+
+.login-form{
+    box-shadow: 5px 5px #6e6e6e81;
+    border-radius: 10px;
+    margin: 3% 0%;
+    padding-bottom: 15px;
+    background-color: rgb(31, 32, 33, 0.95);
+}
+
+.login-label{
+    font-size: 17px;
+    color: white;
+}
+
+.login-form h1{
+    margin-bottom: 50px;
+    color: white;
+    text-align: center;
+    font-size: 25px;
+}
+
+.logo-udes {
+    height: 100%;
+    width: 100%;
+    border-bottom: 1px solid #B1B1B1;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    margin-bottom:  30px;
+}
+
+.input-email{
+    display: block;
+    width: 80%;
+}
+

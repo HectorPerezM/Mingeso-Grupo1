@@ -107,5 +107,8 @@
     "eslintConfig": {
         "extends": "react-app"
     },
-    "homepage": "https://sohrabtaee.github.io/auto1-react/"
+    "homepage": "https://sohrabtaee.github.io/auto1-react/",
+    "devDependencies": {
+        "exports-loader": "^0.7.0"
+    }
 }

@@ -1,16 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import 'typeface-roboto';
-
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import App from './App';
+import 'typeface-roboto';
 import 'font-awesome/css/font-awesome.min.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-
-
-// Load product list from API as soon as application initiates
-
 ReactDOM.render(
-        <App />,
+    <Router>
+        <App />
+    </Router>,
     document.getElementById('root')
 );

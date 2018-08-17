@@ -1,20 +1,15 @@
 import React from 'react';
 import {Switch, Route} from 'react-router-dom';
-
-import HomePage from './components/Home/HomePage';
-import HomeStudent from './components/Student/Home';
-import ShowExercises from './containers/ShowExercises/ShowExercises';
-
+import Login from './components/Login/Login';
+import Dashboard from './components/Dashboard/Dashboard';
+import Problem from './components/Teacher/Problem';
 
 const IndexRoutes = () => {
     return(
-        <div>
-            <Switch>
-                <Route path="/" exact component={HomePage} />
-                <Route path="/Estudiante" exact component={HomeStudent} />
-                <Route path="/Estudiante/Ejercicios" exact component={ShowExercises} />
-            </Switch>
-        </div>
+        <Switch>
+            <Route path="/login" exact component={Login} />
+            <Route path="/" component={Dashboard} />
+        </Switch>
     );
 };
 
