@@ -1,13 +1,18 @@
 .dashboard{
-    padding-bottom: 100px;
-    height: 100%;
-    position: absolute;
+    /* padding-bottom: 100px; */
+    /* height: 100%; */
+    /* position: absolute; */
+}
+
+.dashboard-row{
+    width: 100%;
+    margin: 0 -5px;
 }
 
 .dashboard-content{
-    width: 90%;
+    /* display: inline-block;
+    width: 75%;
     padding-bottom: 20px;
     border-radius: 3px;
-    margin-left:10%;
-    background-color: #ededed;
+    background-color: #ededed; */
 }

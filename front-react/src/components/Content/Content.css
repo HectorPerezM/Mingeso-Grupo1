@@ -1,8 +1,9 @@
 .content{
-    background: white;
-    width: 90%;
+    position: absolute;
+    width: 98%;
     padding-bottom: 20px;
     border-radius: 3px;
-    margin-left:60%;
-    background-color: #ededed;
+    background-color: #ffffff;
+    margin-top: 10px;
+    height: 100%;
 }

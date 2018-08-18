@@ -7,7 +7,8 @@
 }
 
 .sidebar ul li {
-    color:rgba(230, 230, 230, 0.9);
+    color:rgba(230, 230, 230, 0);
+    font-size: 18px;
 }
 
 .sidebar ul {
@@ -62,4 +63,8 @@
   
 .div-logo-fing{
     /* margin-top: 100%; */
+}
+
+.icon-name{
+    margin: 0 10px;
 }

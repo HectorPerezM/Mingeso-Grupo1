@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {Redirect, Switch, Route} from 'react-router-dom';
+import {Grid, Row, Col} from 'react-bootstrap';
 import Sidebar from '../../layout/Sidebar';
 import Content from '../Content/Content';
 
@@ -49,20 +50,22 @@ class Dashboard extends Component {
 
         console.log("dashboard: email: " + this.state.email+ " | typePerson: " + this.state.typePerson);
 
-        if(this.state.typePerson === 0){
-            return(
-                <div className="dashboard">
-                    <Sidebar />
-                    <Content />
-                </div>
-            );
-        } else {
-            return(
-                <div>
-                    <h1>usuario no identificado</h1>
-                </div>
-            );
-        }
+        return(
+            // <div className="dashboard">
+            <Grid fluid bsClass="dashboard">
+                <Row bsClass="dashboard-row">
+                    <Col xs={2}>
+                        <Sidebar />
+                    </Col>
+                    <Col xs={10}>
+                        <Content />
+                    </Col>
+                </Row>
+            </Grid>
+                // <div className="dashboard-content">
+                // </div>
+            // </div>
+        );
     }
 
 }
