@@ -1,9 +1,11 @@
 
 .student-form{
-    border-left: 1px solid #d0d0d0;
-    border-right: 1px solid #d0d0d0;
-    border-bottom: 1px solid #d0d0d0;
-  }
+  background-color: white;
+  border-left: 1px solid #d0d0d0;
+  border-right: 1px solid #d0d0d0;
+  border-bottom: 1px solid #d0d0d0;
+  margin: 1% 5%;
+}
   
   .form-student{
     margin-top: 3%;
@@ -21,17 +23,26 @@
   
   .form-student-title{
     color: white;
-    margin:0;
     padding-top: 2%;
     padding-bottom: 2%;
     padding-left: 5%;
     padding-right: 5%;
     background-color: rgba(222, 124, 0, 0.9);
-    border-bottom: 1px solid #d0d0d0;
-    border-top: 1px solid #d0d0d0;
+    /* text-align: center; */
   
   }
-  
+
+  .form-student-timer{
+    margin-right: 15%;
+    text-align: right;
+  }
+
+  .form-student-btn{
+    color: black;
+    margin: 15% 0;
+    text-align: center;
+  }
+
   .form-student-row-description{
   
     border-bottom: 1px solid #B1B1B1;

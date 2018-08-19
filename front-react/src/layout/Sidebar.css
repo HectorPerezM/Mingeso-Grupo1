@@ -7,7 +7,7 @@
 }
 
 .sidebar ul li {
-    color:rgba(230, 230, 230, 0);
+    color: #B1B1B1;
     font-size: 18px;
 }
 
@@ -43,22 +43,18 @@
 .logo-fing {
     width: 100%;
     border-top: 1px solid #B1B1B1;
-    border-bottom: 1px solid #B1B1B1;
     margin-top: 15px;
-    margin-bottom: 15px;
     position: absolute;
     left: 0px;
-    bottom: 15px;
+    bottom: 0px;
 }
 
 .logout{
-    color: white;
-    position: absolute;
-    border: 0px #1f2021f2;
-    background: #1f2021f2;
-    height: 30px;
-    width: 100%;
-    bottom: 0;
+    bottom: 95px;
+}
+
+.side-logout{
+
 }
   
 .div-logo-fing{

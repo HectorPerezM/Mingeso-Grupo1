@@ -14,10 +14,18 @@ class Exercises extends Component{
   
         this.state = {
             problems: [{
-                problemTitle: "Hola!",
-                problemStatement: "descripcion?",
+                problemId: 0,
+                problemTitle: "Hola Mundo",
+                problemStatement: "Un clásico de clásicos, imprimir por pantalla el mensaje 'Hola Mundo'.",
                 language: "Java"
-            }]
+            },
+            {
+                problemId: 1,
+                problemTitle: "Suma",
+                problemStatement: "Mediante el operador +, debes sumar dos números que den como resultado 10 e imprimir el resultado por pantalla.",
+                language: "Python"
+            },
+        ]
         };
     }
 
@@ -59,14 +67,14 @@ class Exercises extends Component{
         return(
             <Grid bsClass="exercises">
                 <Row>
-                    <Col xs={4} xsPush={4}>
+                    <Col xs={12}>
                         <div className="exercises-title">
                             <h1>Ejercicios propuestos</h1>
                         </div>
                     </Col>
                 </Row>
                 <Row>
-                    <Col xs={12}>
+                    <Col xs={8} xsPush={2}>
                         <table className="table">
                             <thead>
                                 <tr>
@@ -99,7 +107,7 @@ class Exercises extends Component{
                                             dialogClassName="custom-modal"
                                         >
                                             <Modal.Header closeButton>
-                                                Problema número {i+1}
+                                                Problema Nº {i+1}
                                                 <Modal.Title id="contained-modal-title-lg">
                                                     {this.problemTitle}
                                                 </Modal.Title>
@@ -113,7 +121,7 @@ class Exercises extends Component{
                                             </Modal.Body>
                                             
                                             <Modal.Footer>
-                                                <Button onClick={this.handleHide(i)}>Close</Button>
+                                                <Button onClick={this.handleHide(i)}>Cerrar</Button>
                                             </Modal.Footer>
                                         </Modal>
                                     </ButtonToolbar>

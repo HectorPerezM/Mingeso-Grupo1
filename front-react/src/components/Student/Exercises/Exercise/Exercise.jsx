@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
-import Analisis from './Analisis';
+import Analisis from '../../Analisis/Analisis';
 import axios from 'axios';
 import AceEditor from 'react-ace';
 import ReactLoading from 'react-loading';
-import brace from 'brace';
+import {Redirect} from 'react-router-dom';
 import { Row, Col, Popover, Tooltip, FormControl, Modal, Button, ButtonToolbar} from 'react-bootstrap';
 
 import 'brace/mode/java';
@@ -16,6 +16,7 @@ class Exercise extends Component{
 
         this.handleShow = this.handleShow.bind(this);
         this.handleClose = this.handleClose.bind(this);
+        this.volver = this.volver.bind(this);
 
         this.state = {
             problemName: "",
@@ -63,6 +64,10 @@ class Exercise extends Component{
         this.setState({ show: true });
         //alert("el algoritmo que será evaluado es: \n"+this.state.code.toString());
     };
+
+    volver(){
+        <Redirect to="/exercises" />
+    }
     
     
     componentDidMount() {
@@ -101,12 +106,27 @@ class Exercise extends Component{
         
         return (
             <div className="student-form">
-                <h2 className="form-student-title">Resolver problema</h2>
+                <div className="form-student-title">
+                    <Row>
+                        <Col xs={2}>
+                            <div className="form-student-btn">
+                                <Button onClick={this.volver}>Volver</Button>                    
+                            </div>
+                        </Col>
+                        <Col xs={10}>
+                            <div className="form-student-timer">
+                                <h2>Llevas 1hr 10min</h2>
+                            </div>
+                        </Col>
+                    </Row>
+                </div>
+                
+                
 
                 <div className="form-student">
                     <Row className="form-student-row-problem">
                         <Col xs={12} md={12}>
-                            <h3 className="form-student-problem-title">Problema: <small>Leer el problema en latín.</small></h3>
+                            <h3 className="form-student-problem-title">Título: </h3>
                         </Col>
                     </Row>
                     

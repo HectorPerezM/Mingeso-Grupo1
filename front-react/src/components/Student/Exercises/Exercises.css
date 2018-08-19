@@ -1,11 +1,16 @@
 .exercises{
-    margin-top: 1%;
+    margin: 1% 5%;
     background-color: white;
     border-radius: 3px;
 }
 
 .exercises-title{
-    margin: 10px 0;
+    padding: 5% 0;
+    text-align: center;
+}
+
+.col-table{
+    padding: 15% 0;
 }
 
 .table{
@@ -24,7 +29,7 @@
 }
 
 .btn-view{
-    background-image: url("../../assets/img/data-viewer.svg");
+    background-image: url("../../../assets/img/data-viewer.svg");
     background-size: 26px 26px;
     width: 26px;
     height: 26px;
@@ -35,7 +40,7 @@
     padding-left: 19px;
 }
 .btn-solve{
-    background-image: url("../../assets/img/programmer.svg");
+    background-image: url("../../../assets/img/programmer.svg");
     background-size: 26px 24px;
     width: 32px;
     height: 32px;
