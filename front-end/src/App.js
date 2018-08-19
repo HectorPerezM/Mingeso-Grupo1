@@ -6,6 +6,7 @@ import ProblemsTeacher from './containers/ProblemsTeacher.js'
 import FormStudent from './containers/FormStudent.js'
 import FormProblem from './containers/FormProblem.js'
 import EditProblem from './containers/EditProblem.js'
+import GraphStudent from './components/GraphStudent/GraphStudent.jsx'
 import fing from "./images/fing.png";
 import udes from "./images/udes.png";
 import Home from "./components/Home/Home.js";
@@ -67,6 +68,7 @@ const App = () => {
                       <Route path="/solve/:id" component={FormStudent}/>
                       <Route path="/edit/:id" component={EditProblem}/>
                       <Route path="/home" component={Home}/>
+                      <Route path="/estadisticas/:id" component={GraphStudent}/>
                     </div>
                 </div>
             </div>

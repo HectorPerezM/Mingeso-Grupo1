@@ -299,8 +299,9 @@ background-color: rgba(222, 124, 0, 0.9);
 /*HOME */
 
 .pieChart{
-  width: 402px;
-  height: 402px;
+  border-right: 1px solid #e8ecf2;
+
+
 }
 
 .col-pieChart{
