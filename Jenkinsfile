@@ -7,7 +7,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'cd backend && mvn validate && mvn compile'
+                sh 'cd backend && mvn package -DskipTests'
 		    }
         }
         stage('Test') {
@@ -17,7 +17,7 @@ pipeline {
         }
         stage('Desploy') {
             steps {
-                sh 'cd backend && mvn clean deploy -DskipTests'
+                sh 'cd backend && mvn clean deploy'
             }
         }
     }
