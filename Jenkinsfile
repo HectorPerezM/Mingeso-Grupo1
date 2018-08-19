@@ -17,7 +17,7 @@ pipeline {
         }
         stage('Desploy') {
             steps {
-                sh 'cd backend && mvn clean deploy'
+                sh 'cd backend && mvn clean deploy -DskipTests'
             }
         }
     }
