@@ -50,6 +50,7 @@
 }
 
 .logout{
+    position: absolute;
     bottom: 95px;
 }
 

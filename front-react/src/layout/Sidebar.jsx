@@ -111,15 +111,16 @@ class Sidebar extends Component {
                                 </NavLink>
                             </li>
                             <li>
-                                <NavLink to="/problems/teacher">
-                                    <span><i class="fas fa-sign-out-alt"></i></span>
-                                    <span className="icon-name">Salir</span>
-                                </NavLink>
+                                <div className="logout">
+                                    <NavLink to={"/login"} onClick={this.logout}>
+                                        <span><i class="fas fa-sign-out-alt"></i></span>
+                                        <span className="icon-name">Salir</span>
+                                    </NavLink>
+                                </div>
                             </li>
                         </ul>
                     </nav>
 
-                    <input type="submit" name="logout" value="Salir" onClick={this.logout} className="logout" />
                     <img src={fing} alt="logo_image" className="logo-fing"/>
                 </div>
             );
@@ -144,10 +145,17 @@ class Sidebar extends Component {
                                     <span className="icon-name">Inscribir</span>
                                 </NavLink>
                             </li>
+                            <li>
+                                <div className="logout">
+                                    <NavLink to={"/login"} onClick={this.logout}>
+                                        <span><i class="fas fa-sign-out-alt"></i></span>
+                                        <span className="icon-name">Salir</span>
+                                    </NavLink>
+                                </div>
+                            </li>
                         </ul>
                     </nav>
 
-                    <input type="submit" name="logout" value="Salir" onClick={this.logout} className="logout" />
                     <img src={fing} alt="logo_image" className="logo-fing"/>
                 </div>
             );
