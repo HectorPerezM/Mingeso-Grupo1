@@ -65,20 +65,18 @@ class Exercises extends Component{
     
     render(){
         return(
-            <Grid bsClass="exercises">
+            <div className="container">
+                
+                <h1 className="title">Ejercicios propuestos</h1>
+                
+                <div className="body">
+
                 <Row>
                     <Col xs={12}>
-                        <div className="exercises-title">
-                            <h1>Ejercicios propuestos</h1>
-                        </div>
-                    </Col>
-                </Row>
-                <Row>
-                    <Col xs={8} xsPush={2}>
                         <table className="table">
                             <thead>
                                 <tr>
-                                <th className= "number">Id</th>
+                                <th className= "number">Nº</th>
                                 <th className="th-description">Título</th>
                                 <th className="th-description">Descripción</th>
                                 <th className="th-description">Resolver</th>
@@ -88,7 +86,7 @@ class Exercises extends Component{
                                 {this.state.problems.map((item,i) => (
                                 <tr>
                                     <td className="td-name">
-                                        {i}
+                                        {i+1}
                                     </td>
                                     
                                     <td>
@@ -136,7 +134,8 @@ class Exercises extends Component{
                         </table>
                     </Col>
                 </Row>    
-            </Grid>
+                </div>
+            </div>
         );
     }
 }

@@ -135,13 +135,13 @@ class Sidebar extends Component {
                         <ul>
                             <li>
                                 <NavLink to="/home">
-                                    <span><i class="fa fa-pie-chart"> </i></span>
+                                    <span><i class="fas fa-home"> </i></span>
                                     <span className="icon-name">Inicio</span>
                                 </NavLink>
                             </li>
                             <li>
-                                <NavLink to="/problem">
-                                    <span><i className="fas fa-columns"> </i></span>
+                                <NavLink to="/addSection">
+                                    <span><i class="fas fa-pen"></i></span>
                                     <span className="icon-name">Inscribir</span>
                                 </NavLink>
                             </li>

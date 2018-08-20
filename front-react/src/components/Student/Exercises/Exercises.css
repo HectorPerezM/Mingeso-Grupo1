@@ -1,16 +1,16 @@
 .exercises{
-    margin: 1% 5%;
+    /* margin: 1% 5%; */
     background-color: white;
     border-radius: 3px;
 }
 
 .exercises-title{
-    padding: 5% 0;
+    /* padding: 5% 0; */
     text-align: center;
 }
 
 .col-table{
-    padding: 15% 0;
+    /* padding: 15% 0; */
 }
 
 .table{
