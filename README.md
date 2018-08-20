@@ -44,6 +44,7 @@ $ java -jar target/MINGESO-1.0-SNAPSHOT.jar
 Para levantar el frontend
 
 ```sh
+$ cd front-end/src
 $ npm install --production
-$ NODE_ENV=production node app
+$ npm start
 ```
