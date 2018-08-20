@@ -6,7 +6,7 @@ import { StudentStats } from '../Student/Stats/StudentStats';
 class Home extends Component{
     constructor(props){
         super(props);
-        
+
         this.state = {
             userId: 1,
             typePerson: -1
@@ -28,22 +28,27 @@ class Home extends Component{
                         </Col>
                     </Row>
                     <div className="body">
-                        <Row>
-                            <Col xs={12}>
-                                <h4>En esta plataforma podrás ejercitar para Fundamentos de Programación y Computación, resolviendo ejercicios en C, Java y Python.</h4>
-                            </Col>
-                        </Row>
+                    <div className="card">
+                        <h3 className="card-title">Home</h3>
+                          <div className="card-body">
+                            <Row>
+                                <Col xs={12}>
+                                    <h4>En esta plataforma podrás ejercitar para Fundamentos de Programación y Computación, resolviendo ejercicios en C, Java y Python.</h4>
+                                </Col>
+                            </Row>
 
-                        <Row>
-                            <Col xs={12}>
-                                <h1>Noticias</h1>
-                            </Col>
-                        </Row>
-                        <Row>
-                            <Col xs={12}>
-                                <h1>Calendario de peps</h1>
-                            </Col>
-                        </Row>
+                            <Row>
+                                <Col xs={12}>
+                                    <h1>Noticias</h1>
+                                </Col>
+                            </Row>
+                            <Row>
+                                <Col xs={12}>
+                                    <h1>Calendario de peps</h1>
+                                </Col>
+                            </Row>
+                          </div>
+                        </div>
                     </div>
                 </div>
             );
@@ -56,22 +61,27 @@ class Home extends Component{
                         </Col>
                     </Row>
                     <div className="body">
-                        <Row>
-                            <Col xs={12}>
-                                <h4>En esta plataforma podrás ejercitar para Fundamentos de Programación y Computación, resolviendo ejercicios en C, Java y Python.</h4>
-                            </Col>
-                        </Row>
+                    <div className="card">
+                        <h3 className="card-title">Home</h3>
+                          <div className="card-body">
+                            <Row>
+                                <Col xs={12}>
+                                    <h4>En esta plataforma podrás ejercitar para Fundamentos de Programación y Computación, resolviendo ejercicios en C, Java y Python.</h4>
+                                </Col>
+                            </Row>
 
-                        <Row>
-                            <Col xs={12}>
-                                <h1>Noticias</h1>
-                            </Col>
-                        </Row>
-                        <Row>
-                            <Col xs={12}>
-                                <h1>Calendario de peps</h1>
-                            </Col>
-                        </Row>
+                            <Row>
+                                <Col xs={12}>
+                                    <h1>Noticias</h1>
+                                </Col>
+                            </Row>
+                            <Row>
+                                <Col xs={12}>
+                                    <h1>Calendario de peps</h1>
+                                </Col>
+                            </Row>
+                          </div>
+                        </div>
                     </div>
                 </div>
             );
@@ -84,22 +94,27 @@ class Home extends Component{
                         </Col>
                     </Row>
                     <div className="body">
-                        <Row>
-                            <Col xs={12}>
-                                <h4>En esta plataforma podrás ejercitar para Fundamentos de Programación y Computación, resolviendo ejercicios en C, Java y Python.</h4>
-                            </Col>
-                        </Row>
+                    <div className="card">
+                        <h3 className="card-title">Home</h3>
+                          <div className="card-body">
+                            <Row>
+                                <Col xs={12}>
+                                    <h4>En esta plataforma podrás ejercitar para Fundamentos de Programación y Computación, resolviendo ejercicios en C, Java y Python.</h4>
+                                </Col>
+                            </Row>
 
-                        <Row>
-                            <Col xs={12}>
-                                <h1>Noticias</h1>
-                            </Col>
-                        </Row>
-                        <Row>
-                            <Col xs={12}>
-                                <h1>Calendario de peps</h1>
-                            </Col>
-                        </Row>
+                            <Row>
+                                <Col xs={12}>
+                                    <h1>Noticias</h1>
+                                </Col>
+                            </Row>
+                            <Row>
+                                <Col xs={12}>
+                                    <h1>Calendario de peps</h1>
+                                </Col>
+                            </Row>
+                          </div>
+                        </div>
                     </div>
                 </div>
             );
