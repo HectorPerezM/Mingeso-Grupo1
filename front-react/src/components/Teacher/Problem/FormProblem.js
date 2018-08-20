@@ -133,140 +133,142 @@ class FormProblem extends Component {
       <div className="container">
       <h2 className="title">Añadir problema</h2>
       <form className="body" onSubmit={this.handleSubmit}>
-      <Row className="show-grid">
-      <Col xs={12} md={12}>
-        <h4>Titulo del problema</h4>
-      </Col>
-        <Col xs={12} md={12}>
-        <FormGroup
-            controlId="formBasicText"
-            validationState={this.getValidationState()}
-          >
-            <FormControl
-              name = "title"
-              type="text"
-              value={this.state.title}
-              placeholder="Escribe el titulo del problema..."
-              onChange={e => this.Change(e)}
-            />
-            <FormControl.Feedback />
-            <HelpBlock>Campo obligatorio.</HelpBlock>
-          </FormGroup>
-        </Col>
-      </Row>
+        <div className="card">
+            <h3 className="card-title">Formulario</h3>
+              <div className="card-body">
+                <Row className="show-grid">
+                <Col xs={12} md={12}>
+                  <h4>Titulo del problema</h4>
+                </Col>
+                  <Col xs={12} md={12}>
+                  <FormGroup
+                      controlId="formBasicText"
+                      validationState={this.getValidationState()}
+                    >
+                      <FormControl
+                        name = "title"
+                        type="text"
+                        value={this.state.title}
+                        placeholder="Escribe el titulo del problema..."
+                        onChange={e => this.Change(e)}
+                      />
+                      <FormControl.Feedback />
+                      <HelpBlock>Campo obligatorio.</HelpBlock>
+                    </FormGroup>
+                  </Col>
+                </Row>
+                <Row className="row-btn-add">
+                  <Col xs={8} md={8}>
+                    <h4>Entradas del problema</h4>
+                  </Col>
+                </Row>
+                <Row className="problem-inputs">
+                  <Col xs={12} md={12}>
+                    {this.state.inputs.map((shareholder, idx) => (
+                      <div className="shareholder">
+                      <Row className="problem-row-inputs">
+                        <Col xs={9} md={8}>
+                        <FormGroup
+                            controlId="formBasicText"
+                            validationState={this.getValidationState()}
+                          >
+                          <FormControl
+                            name = "inputValue"
+                            type= "text"
+                            value={shareholder.name}
+                            placeholder={`Entrada #${idx + 1}`}
+                            onChange={this.handleShareholderNameChange(idx)}
+                          />
+                          <FormControl.Feedback />
+                          <HelpBlock>Campo obligatorio.</HelpBlock>
+                        </FormGroup>
+                        </Col>
+                        <Col xs={2} md={2}>
+                           <FormControl
+                           componentClass="select"
+                           placeholder="select"
+                           name="inputType"
+                           value={shareholder.type}
+                           onChange={this.handleShareholderTypeChange(idx)}>
+                             <option value="String">String</option>
+                             <option value="Integer">Entero</option>
+                           </FormControl>
+                        </Col>
+                        {idx === 0 ? <Col xs={2} md={2}>
+                                  <Button className="btn-add" color="primary" onClick={this.handleAddShareholder}><span>Agregar</span></Button>
+                                  <Button className="btn-del" color="secondary" onClick={this.handleRemoveShareholder(1)}>  Eliminar</Button>
+                                  </Col> : null}
+                      </Row>
+                      </div>
+                    ))}
+                  </Col>
+                </Row>
 
+                <br />
+                <Row className="show-grid">
+                  <Col xs={8} md={8}>
+                  <h4>Salida del problema</h4>
+                  </Col>
+                </Row>
 
-        <Row className="row-btn-add">
-          <Col xs={8} md={8}>
-            <h4>Entradas del problema</h4>
-          </Col>
-        </Row>
-
-        <Row className="problem-inputs">
+                <Row className="show-grid2adas">
+                  <Col xs={8} md={8}>
+                  <FormGroup
+                      controlId="formBasicText"
+                      validationState={this.getValidationState()}
+                    >
+                      <FormControl
+                        name ="output"
+                        type="text"
+                        value={this.state.output}
+                        placeholder="Escribe la salida del problema..."
+                        onChange={e => this.Change(e)}
+                      />
+                      <FormControl.Feedback />
+                      <HelpBlock>Campo obligatorio.</HelpBlock>
+                    </FormGroup>
+                  </Col>
+                  <Col xs={2} md={2}>
+                      <FormControl
+                      componentClass="select"
+                      placeholder="select"
+                      name="typeOutput"
+                      value={this.state.typeOutput}
+                      onChange={e => this.Change(e)}>
+                        <option value="String">String</option>
+                        <option value="Integer">Entero</option>
+                      </FormControl>
+                  </Col>
+                </Row>
+          <Row>
           <Col xs={12} md={12}>
-            {this.state.inputs.map((shareholder, idx) => (
-              <div className="shareholder">
-              <Row className="problem-row-inputs">
-                <Col xs={9} md={8}>
-                <FormGroup
-                    controlId="formBasicText"
-                    validationState={this.getValidationState()}
-                  >
-                  <FormControl
-                    name = "inputValue"
-                    type= "text"
-                    value={shareholder.name}
-                    placeholder={`Entrada #${idx + 1}`}
-                    onChange={this.handleShareholderNameChange(idx)}
-                  />
-                  <FormControl.Feedback />
-                  <HelpBlock>Campo obligatorio.</HelpBlock>
-                </FormGroup>
-                </Col>
-                <Col xs={2} md={2}>
-                   <FormControl
-                   componentClass="select"
-                   placeholder="select"
-                   name="inputType"
-                   value={shareholder.type}
-                   onChange={this.handleShareholderTypeChange(idx)}>
-                     <option value="String">String</option>
-                     <option value="Integer">Entero</option>
-                   </FormControl>
-                </Col>
-                {idx === 0 ? <Col xs={2} md={2}>
-                          <Button className="btn-add" color="primary" onClick={this.handleAddShareholder}><span>Agregar</span></Button>
-                          <Button className="btn-del" color="secondary" onClick={this.handleRemoveShareholder(1)}>  Eliminar</Button>
-                          </Col> : null}
-              </Row>
-              </div>
-            ))}
+            <h4>Descripcion del problema</h4>
           </Col>
-        </Row>
-
-        <br />
-        <Row className="show-grid">
-          <Col xs={8} md={8}>
-          <h4>Salida del problema</h4>
-          </Col>
-        </Row>
-
-        <Row className="show-grid2adas">
-          <Col xs={8} md={8}>
+          <Col xs={12} md={12}>
           <FormGroup
               controlId="formBasicText"
               validationState={this.getValidationState()}
             >
               <FormControl
-                name ="output"
+                componentClass="textarea"
+                name = "description"
                 type="text"
-                value={this.state.output}
-                placeholder="Escribe la salida del problema..."
+                value={this.state.description}
+                placeholder="Descripcion del problema..."
                 onChange={e => this.Change(e)}
               />
               <FormControl.Feedback />
               <HelpBlock>Campo obligatorio.</HelpBlock>
             </FormGroup>
-          </Col>
-          <Col xs={2} md={2}>
-              <FormControl
-              componentClass="select"
-              placeholder="select"
-              name="typeOutput"
-              value={this.state.typeOutput}
-              onChange={e => this.Change(e)}>
-                <option value="String">String</option>
-                <option value="Integer">Entero</option>
-              </FormControl>
-          </Col>
-        </Row>
-        <Row>
-        <Col xs={12} md={12}>
-          <h4>Descripcion del problema</h4>
-        </Col>
-        <Col xs={12} md={12}>
-        <FormGroup
-            controlId="formBasicText"
-            validationState={this.getValidationState()}
-          >
-            <FormControl
-              componentClass="textarea"
-              name = "description"
-              type="text"
-              value={this.state.description}
-              placeholder="Descripcion del problema..."
-              onChange={e => this.Change(e)}
-            />
-            <FormControl.Feedback />
-            <HelpBlock>Campo obligatorio.</HelpBlock>
-          </FormGroup>
-          </Col>
-        <br />
-        <Button className="btn" onClick={e => this.handleSubmit(e)} variant="contained" color="seconday">
-          <Icon>send</Icon>
-          Send
-        </Button>
-        </Row>
+            </Col>
+          <br />
+          <Button className="btn" onClick={e => this.handleSubmit(e)} variant="contained" color="seconday">
+            <Icon>send</Icon>
+            Send
+          </Button>
+          </Row>
+          </div>
+        </div>
       </form>
     </div>
 

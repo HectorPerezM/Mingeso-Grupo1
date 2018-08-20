@@ -10,6 +10,7 @@ import Dashboard from '../Teacher/Dashboard/Dashboard';
 import GraphTeacher from '../Teacher/GraphTeacher/GraphTeacher';
 import FormProblem from '../Teacher/Problem/FormProblem';
 import Problems from '../Teacher/Problem/Problems';
+import EditProblem from '../Teacher/Problem/EditProblem';
 
 const Content = () => {
     return(
@@ -23,6 +24,7 @@ const Content = () => {
             <Route path="/estadisticas" component={GraphTeacher} />
             <Route path="/addProblem" component={FormProblem} />
             <Route path="/problems" component={Problems} />
+            <Route path="/edit/:id" component={EditProblem} />
         </Switch>
     );
 }

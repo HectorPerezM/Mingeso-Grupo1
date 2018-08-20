@@ -12,7 +12,20 @@ class Problems extends Component {
       this.handleHide = this.handleHide.bind(this);
 
       this.state = {
-        problems: []
+        problems: [
+          {
+              problemId: 0,
+              problemTitle: "Hola Mundo",
+              problemStatement: "Un clásico de clásicos, imprimir por pantalla el mensaje 'Hola Mundo'.",
+              language: "Java"
+          },
+          {
+              problemId: 1,
+              problemTitle: "Suma",
+              problemStatement: "Mediante el operador +, debes sumar dos números que den como resultado 10 e imprimir el resultado por pantalla.",
+              language: "Python"
+          },
+        ]
       };
     }
 
@@ -57,71 +70,72 @@ class Problems extends Component {
     <div className="container">
       <h2 className="title">Problemas</h2>
       <div className="body">
-        <table className="table">
-          <thead>
-            <tr>
-              <th className= "number">ID</th>
-              <th className="th-description">Título</th>
-              <th className="th-description">Descripción</th>
-              <th className="th-description">Lenguaje</th>
-              <th className="th-description">Editar</th>
-              <th className="th-description">Eliminar</th>
-            </tr>
-          </thead>
-          <tbody>
+      <div className="card">
+          <h3 className="card-title">Lista de problemas</h3>
+            <div className="card-body">
+            <table className="table">
+              <thead>
+                <tr>
+                  <th className= "number">ID</th>
+                  <th className="th-description">Título</th>
+                  <th className="th-description">Descripción</th>
+                  <th className="th-description">Editar</th>
+                  <th className="th-description">Eliminar</th>
+                </tr>
+              </thead>
+              <tbody>
 
-            {this.state.problems.map((item,i) => (
-              <tr>
-                <td className="td-name">
-                  {i}
-                </td>
-                <td>
-                  {item.problemTitle}
-                </td>
-                <td>
-                  <ButtonToolbar>
-                  <Button bsStyle="primary" onClick={this.handleShow(i)}>
-                    Ver
-                  </Button>
-                  <Modal
-                    show={this.state.problems[i].show}
-                    onHide={this.handleHide(i)}
-                    dialogClassName="custom-modal"
-                  >
-                    <Modal.Header closeButton>
-                      Problema número {i+1}
-                      <Modal.Title id="contained-modal-title-lg">
-                        {this.problemTitle}
-                      </Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body>
-                      <h4>Descripción</h4>
-                      <p>
-                        {item.problemStatement}
-                      </p>
-                    </Modal.Body>
-                    <Modal.Footer>
-                      <Button onClick={this.handleHide(i)}>Close</Button>
-                    </Modal.Footer>
-                  </Modal>
-                </ButtonToolbar>
-                </td>
-                <td>
-                  {item.language}
-                </td>
-                <td className="td-actions">
-                <NavLink className="btn btn-primary btn-sm"
-                                         to={'/edit/' + item.problemId}>Editar Problema</NavLink>
-                </td>
-                <td className="td-actions">
-                <Button bsStyle="danger" bsSize="small" onClick={this.handleRemove(item.problemId)} >Eliminar</Button>
-                </td>
-              </tr>
-            ))}
+                {this.state.problems.map((item,i) => (
+                  <tr>
+                    <td className="td-name">
+                      {i}
+                    </td>
+                    <td>
+                      {item.problemTitle}
+                    </td>
+                    <td>
+                      <ButtonToolbar>
+                      <Button bsStyle="primary" onClick={this.handleShow(i)}>
+                      <i class="far fa-eye"></i>
+                      </Button>
+                      <Modal
+                        show={this.state.problems[i].show}
+                        onHide={this.handleHide(i)}
+                        dialogClassName="custom-modal"
+                      >
+                        <Modal.Header closeButton>
+                          Problema número {i+1}
+                          <Modal.Title id="contained-modal-title-lg">
+                            {this.problemTitle}
+                          </Modal.Title>
+                        </Modal.Header>
+                        <Modal.Body>
+                          <h4>Descripción</h4>
+                          <p>
+                            {item.problemStatement}
+                          </p>
+                        </Modal.Body>
+                        <Modal.Footer>
+                          <Button onClick={this.handleHide(i)}>Close</Button>
+                        </Modal.Footer>
+                      </Modal>
+                    </ButtonToolbar>
+                    </td>
+                    <td>
+                    <NavLink className="btn btn-primary"
+                                             to={'/edit/' + item.problemId}><i class="fas fa-edit"></i> </NavLink>
+                    </td>
+                    <td>
+                    <Button bsStyle="danger" onClick={this.handleRemove(item.problemId)} ><i class="fas fa-trash-alt"></i> </Button>
+                    </td>
+                  </tr>
+                ))}
 
 
-          </tbody>
-        </table>
+              </tbody>
+            </table>
+          </div>
+        </div>
       </div>
     </div>
     );
