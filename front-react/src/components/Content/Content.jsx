@@ -10,7 +10,11 @@ import Dashboard from '../Teacher/Dashboard/Dashboard';
 import GraphTeacher from '../Teacher/GraphTeacher/GraphTeacher';
 import FormProblem from '../Teacher/Problem/FormProblem';
 import Problems from '../Teacher/Problem/Problems';
+<<<<<<< HEAD
 import EditProblem from '../Teacher/Problem/EditProblem';
+=======
+import FormSecciones from '../Coordinator/FormSecciones';
+>>>>>>> 3a077d3c4ebdbc9be3ab98c03086dc8a05582bb9
 
 const Content = () => {
     return(
@@ -24,7 +28,11 @@ const Content = () => {
             <Route path="/estadisticas" component={GraphTeacher} />
             <Route path="/addProblem" component={FormProblem} />
             <Route path="/problems" component={Problems} />
+<<<<<<< HEAD
             <Route path="/edit/:id" component={EditProblem} />
+=======
+            <Route path="/addSection" component={FormSecciones} />
+>>>>>>> 3a077d3c4ebdbc9be3ab98c03086dc8a05582bb9
         </Switch>
     );
 }

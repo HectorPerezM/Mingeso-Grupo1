@@ -21,34 +21,86 @@ class Home extends Component{
     render(){
         if(this.state.typePerson === 0){ //alumno
             return(
-                <Grid bsClass="home">
+                <div className="container">
                     <Row>
                         <Col xs={12}>
-                            <div className="home-title">
-                                <h1>Bienvenido</h1>
-                            </div>
+                            <h1 className="title">Bienvenido</h1>
                         </Col>
                     </Row>
-
-                    <Row>
-                        <Col xs={12}>
-                            <div className="home-subtitle">
+                    <div className="body">
+                        <Row>
+                            <Col xs={12}>
                                 <h4>En esta plataforma podrás ejercitar para Fundamentos de Programación y Computación, resolviendo ejercicios en C, Java y Python.</h4>
-                            </div>
-                        </Col>
-                    </Row>
-                </Grid>
+                            </Col>
+                        </Row>
+
+                        <Row>
+                            <Col xs={12}>
+                                <h1>Noticias</h1>
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col xs={12}>
+                                <h1>Calendario de peps</h1>
+                            </Col>
+                        </Row>
+                    </div>
+                </div>
             );
         } else if(this.state.typePerson === 1){ //profesor
             return(
-                <div className="home">
-                    <h1>home page profe</h1>
+                <div className="container">
+                    <Row>
+                        <Col xs={12}>
+                            <h1 className="title">Bienvenido</h1>
+                        </Col>
+                    </Row>
+                    <div className="body">
+                        <Row>
+                            <Col xs={12}>
+                                <h4>En esta plataforma podrás ejercitar para Fundamentos de Programación y Computación, resolviendo ejercicios en C, Java y Python.</h4>
+                            </Col>
+                        </Row>
+
+                        <Row>
+                            <Col xs={12}>
+                                <h1>Noticias</h1>
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col xs={12}>
+                                <h1>Calendario de peps</h1>
+                            </Col>
+                        </Row>
+                    </div>
                 </div>
             );
         } else {
             return(
-                <div className="home">
-                    <h1>home page coordinador</h1>
+                <div className="container">
+                    <Row>
+                        <Col xs={12}>
+                            <h1 className="title">Bienvenido</h1>
+                        </Col>
+                    </Row>
+                    <div className="body">
+                        <Row>
+                            <Col xs={12}>
+                                <h4>En esta plataforma podrás ejercitar para Fundamentos de Programación y Computación, resolviendo ejercicios en C, Java y Python.</h4>
+                            </Col>
+                        </Row>
+
+                        <Row>
+                            <Col xs={12}>
+                                <h1>Noticias</h1>
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col xs={12}>
+                                <h1>Calendario de peps</h1>
+                            </Col>
+                        </Row>
+                    </div>
                 </div>
             );
         }
