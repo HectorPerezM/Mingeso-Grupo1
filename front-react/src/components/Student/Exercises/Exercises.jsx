@@ -81,7 +81,6 @@ class Exercises extends Component{
                                 <th className= "number">Id</th>
                                 <th className="th-description">Título</th>
                                 <th className="th-description">Descripción</th>
-                                <th className="th-description">Lenguaje</th>
                                 <th className="th-description">Resolver</th>
                                 </tr>
                             </thead>
@@ -125,9 +124,6 @@ class Exercises extends Component{
                                             </Modal.Footer>
                                         </Modal>
                                     </ButtonToolbar>
-                                    </td>
-                                    <td>
-                                        {item.language}
                                     </td>
                                     <td className="td-actions">
                                     <div className="td-btn-solve">

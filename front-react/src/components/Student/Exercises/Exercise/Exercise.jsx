@@ -3,7 +3,7 @@ import Analisis from '../../Analisis/Analisis';
 import axios from 'axios';
 import AceEditor from 'react-ace';
 import ReactLoading from 'react-loading';
-import {Redirect} from 'react-router-dom';
+import {Redirect, Link} from 'react-router-dom';
 import { Row, Col, Popover, Tooltip, FormControl, Modal, Button, ButtonToolbar} from 'react-bootstrap';
 
 import 'brace/mode/java';
@@ -17,16 +17,32 @@ class Exercise extends Component{
         this.handleShow = this.handleShow.bind(this);
         this.handleClose = this.handleClose.bind(this);
         this.volver = this.volver.bind(this);
+        
+        this.startTimer = this.startTimer.bind(this)
+        this.setLanguageIcon = this.setLanguageIcon.bind(this)
 
         this.state = {
-            problemName: "",
+            problemTitle: "",
             input: "",
             output: "",
             description: "",
             language: "",
             code: "",
             show: false,
-            disabled: true
+            disabled: true,
+            time: 0,
+            isTimerOn: false,
+            timeStart: 0,
+            isEvaluated: true   ,
+            languageIcon: 'fab fa-python',
+            languageEditor: 'python',
+            evaluacion: {
+                variables: 10,
+                erroresIdentacion: 10,
+                codigoComentado: "Mal comentado",
+                erroresFunciones: 20,
+                bloquePrincipal: "TENIS LA PURA CAGA AWEONAO    "
+            }
         };
     }
 
@@ -57,6 +73,7 @@ class Exercise extends Component{
         this.setState({
             [e.target.name]: e.target.value
         });
+        this.setLanguageIcon(e.target.value);
     };
     
     onSubmit = e => {
@@ -66,25 +83,55 @@ class Exercise extends Component{
     };
 
     volver(){
+        // console.log(this.state.time);
         <Redirect to="/exercises" />
     }
     
+    startTimer() {
+        this.setState({
+            isOn: true,
+            time: this.state.time,
+            start: Date.now() - this.state.time
+        })
+        
+        this.timer = setInterval(() => this.setState({
+            time: Date.now() - this.state.start
+        }), 500);
+    }
+
+    setLanguageIcon(value){
+        console.log("setlang: " + this.state.language)
+        if(value === "java"){
+            this.setState({languageIcon: "fab fa-java"})
+        } else if(value === "python") {
+            this.setState({languageIcon: "fab fa-python"})
+        } else {
+            this.setState({languageIcon: "fab fa-cuttlefish"})
+        }
+    }
     
-    componentDidMount() {
-        axios.get('http://165.227.48.161:8082/problems/'+this.props.match.params.id)
-            .then(res => {
-                const problem = res.data;
-                console.log(problem);
-                this.setState({
-                    problemTitle: problem.problemTitle,
-                    input: "",
-                    output: "",
-                    description: problem.problemStatement,
-                    language: problem.language,
-                    code: "",
-                    show: false
-                });
-            })
+    componentWillMount() {
+        // axios.get('http://165.227.48.161:8082/problems/'+this.props.match.params.id)
+        //     .then(res => {
+        //         const problem = res.data;
+        //         console.log(problem);
+        //         this.setState({
+        //             problemTitle: problem.problemTitle,
+        //             input: "",
+        //             output: "",
+        //             description: problem.problemStatement,
+        //             language: problem.language,
+        //             code: "",
+        //             show: false
+        //         });
+        //     });
+
+        this.setState({
+            problemTitle: "titulo generico",
+            description: "Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas 'Letraset', las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum."
+        });
+
+        this.startTimer();
     };
     
     render(){
@@ -108,72 +155,62 @@ class Exercise extends Component{
             <div className="student-form">
                 <div className="form-student-title">
                     <Row>
-                        <Col xs={2}>
-                            <div className="form-student-btn">
-                                <Button onClick={this.volver}>Volver</Button>                    
-                            </div>
-                        </Col>
-                        <Col xs={10}>
-                            <div className="form-student-timer">
-                                <h2>Llevas 1hr 10min</h2>
+                        <Col xs={12}>
+                            <Link to="/exercises">
+                                <div className="problem-title-icon">
+                                    <i class="fas fa-angle-double-left"></i>
+                                </div>
+                            </Link>
+                            <div className="problem-title">
+                                <h1>{this.state.problemTitle}</h1>
                             </div>
                         </Col>
                     </Row>
                 </div>
-                
-                
-
                 <div className="form-student">
-                    <Row className="form-student-row-problem">
-                        <Col xs={12} md={12}>
-                            <h3 className="form-student-problem-title">Título: </h3>
-                        </Col>
-                    </Row>
-                    
                     <Row className="form-student-row-description">
                         <Col xs={12} md={12}>
-                            <h3 className="form-student-problem-description">Descripción: <small>
-                                Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
-                        
-                                Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.
-                        
-                                Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.
-                        
-                                Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
-                        
-                                Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.
-                            </small></h3>
-                            <br/>
+                            <h3 className="form-student-problem-description">
+                                <small>
+                                    {this.state.description}                
+                                </small>
+                            </h3>
                         </Col>
                     </Row>
-                    
-                    <br/>
-                    <Row className="form-student-problem-row-language">
-                        <Col xs={2} md={1}>
-                            <h4 className="form-student-problem-language">Lenguaje:</h4>
+                    <Row>
+                        <Col xs={1}>
+                            <div className="form-lang">
+                                <i className={this.state.languageIcon}></i>
+                            </div>
                         </Col>
-                        
-                        <Col xs={4} md={2}>
-                            <FormControl
-                                componentClass="select"
-                                placeholder="select"
-                                name="language"
-                                value={this.state.language}
-                                onChange={e => this.Change(e)}>
-                                <option value="Python">Python</option>
-                                <option value="C">C</option>
-                                <option value="Java">Java</option>
-                            </FormControl>
+                        <Col xs={2}>
+                            <div className="form-student-select-lang">
+                                <FormControl
+                                    componentClass="select"
+                                    placeholder="select"
+                                    name="language"
+                                    value={this.state.language}
+                                    onChange={e => this.Change(e)}
+                                    >
+                                    <option value="python">Python</option>
+                                    <option value="c">C</option>
+                                    <option value="java">Java</option>
+                                </FormControl>
+                            </div>
+                        </Col>
+                        <Col xs={8} xsPush={2}>
+                            <div className="form-student-timer">
+                                <h3><i className="fas fa-clock"></i> {Math.trunc(this.state.time /60000)} min. y {(Math.trunc(this.state.time /1000) % 60)} seg.</h3>
+                            </div>
                         </Col>
                     </Row>
-                    
                     <form>
                         <br />
                         <div className="form-student-monaco">
                             <Row>
                                 <Col xs={12} md={8}>
                                     <AceEditor
-                                        mode="java"
+                                        mode={this.state.language}
                                         theme="monokai"
                                         name="ace-editor"
                                         width="100%"
@@ -185,19 +222,20 @@ class Exercise extends Component{
                                         value={code}
                                         onChange={this.onChange}
                                     />
+                                    
+                                    <Button bsClass="btn-analizar">
+                                        <i className="fab fa-telegram-plane"></i> Enviar
+                                    </Button>
                                 </Col>
                                 
                                 <Col xs={12} md={4}>
                                     <Row>
                                         <Col md={12}>
-                                            <Analisis {...this.props}/>
+                                            <Analisis evaluated={this.state.isEvaluated} evaluacion={this.state.evaluacion}/>
                                         </Col>
                                     </Row>
                                     <Row>
                                         <Col md={12}>
-                                            <ButtonToolbar className="button-toolbar">
-                                                <Button  onClick={e => this.onSubmit(e)} bsStyle="success">Evaluar</Button>
-                                            </ButtonToolbar>
                                         </Col>
                                     </Row>
                                 </Col>

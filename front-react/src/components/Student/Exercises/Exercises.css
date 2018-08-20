@@ -47,10 +47,16 @@
     border: unset;
 }
 
+
+.spinLoading{
+    margin: auto auto;
+}
+
 #modal .modal-content{
     background-color: transparent;
     border: unset;
     box-shadow: unset;
     width: 500;
-    height: 500%;
-  }
+    margin: 40% 40%;
+    position: absolute;
+}
