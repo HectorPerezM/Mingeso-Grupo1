@@ -1,0 +1,21 @@
+.home{
+    margin: 1% 5%;;
+    background-color: rgb(255, 255, 255);
+    border-radius: 3px;
+}
+
+.home-title{
+    padding-top: 5%;
+    text-align: center;
+}
+
+.home-subtitle{
+    color: #686565;
+    padding-top: 5%;
+    padding-left: 10%;
+    padding-right: 10%;
+}
+
+.home-stats{
+    padding-top: 10%;
+}

@@ -1,0 +1,56 @@
+.exercises{
+    margin: 1% 5%;
+    background-color: white;
+    border-radius: 3px;
+}
+
+.exercises-title{
+    padding: 5% 0;
+    text-align: center;
+}
+
+.col-table{
+    padding: 15% 0;
+}
+
+.table{
+    border: 1px solid #e8ecf2;
+}
+
+.table-student{
+    margin-top: 3%;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-bottom: 5%;
+}
+
+.td-btn-view{
+    padding-left: 25px;
+}
+
+.btn-view{
+    background-image: url("../../../assets/img/data-viewer.svg");
+    background-size: 26px 26px;
+    width: 26px;
+    height: 26px;
+    border: unset;
+}
+
+.td-btn-solve{
+    padding-left: 19px;
+}
+.btn-solve{
+    background-image: url("../../../assets/img/programmer.svg");
+    background-size: 26px 24px;
+    width: 32px;
+    height: 32px;
+    border: unset;
+}
+
+#modal .modal-content{
+    background-color: transparent;
+    border: unset;
+    box-shadow: unset;
+    width: 500;
+    height: 500%;
+  }
