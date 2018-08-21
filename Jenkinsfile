@@ -7,7 +7,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'cd backend && mvn package'
+                sh 'cd backend && mvn package -DskipTests'
 		    }
         }
         stage('Test') {
