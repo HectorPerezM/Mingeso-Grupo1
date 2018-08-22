@@ -29,7 +29,6 @@
 }
 
 .btn-view{
-    background-image: url("../../../assets/img/data-viewer.svg");
     background-size: 26px 26px;
     width: 26px;
     height: 26px;
@@ -40,7 +39,6 @@
     padding-left: 19px;
 }
 .btn-solve{
-    background-image: url("../../../assets/img/programmer.svg");
     background-size: 26px 24px;
     width: 32px;
     height: 32px;
@@ -59,4 +57,8 @@
     width: 500;
     margin: 40% 40%;
     position: absolute;
+}
+
+.far far-eye{
+
 }
