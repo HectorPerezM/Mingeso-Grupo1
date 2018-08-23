@@ -5,14 +5,11 @@ import {Button, FormGroup, ControlLabel, FormControl, HelpBlock} from "react-boo
 
 const examples = problem => {
   const newInputs = problem.inputs.map((input, i) => {
-    console.log(input);
     return {'type': input.type, 'value': input.input}
   });
-  console.log(newInputs);
 }
 
 const addProblem = problem => {
-  console.log(problem.title);
   fetch('http://206.189.181.197:8082/problems', {
       method: 'POST',
       headers: {
@@ -37,9 +34,6 @@ const addProblem = problem => {
         }
       })
   })
-    .then(response => {
-        alert(response);
-    })
     .catch(error => {
         console.error(error);
     });
@@ -57,9 +51,6 @@ const addProblem = problem => {
          "userType": 0
        })
    })
-     .then(response => {
-         alert(response);
-     })
      .catch(error => {
          console.error(error);
      });
@@ -77,11 +68,12 @@ class EditProblem extends Component {
     };
   }
 
-  componentWillMount() {
+  componentDidMount() {
     axios.get('http://206.189.181.197:8082/problems/'+this.props.match.params.id)
       .then(res => {
         const problem = res.data;
-        console.log(problem.problemExamples[0].result.resultType);
+        console.log(problem);
+        console.log(problem.problemExamples[0]);
         this.setState({
           output: problem.problemExamples[0].result.resultValue,
           typeOutput: problem.problemExamples[0].result.resultType,
@@ -89,10 +81,10 @@ class EditProblem extends Component {
           description: problem.problemStatement,
           language: problem.language,
         });
+
         problem.problemExamples[0].exampleInputs.map((input, id)=> {
           this.setState({ inputs: this.state.inputs.concat([{ input: input.inputValue, type: input.inputType }]) });
         });
-
       })
   };
 
@@ -127,7 +119,7 @@ class EditProblem extends Component {
   handleSubmit = (evt) => {
     evt.preventDefault();
     const { title, inputs } = this.state;
-    alert(`Incorporated: ${title} with ${inputs.length} inputs`);
+    // alert(`Incorporated: ${title} with ${inputs.length} inputs`);
     //addUser(this.state);
     addProblem(this.state);
     console.log(this.state);

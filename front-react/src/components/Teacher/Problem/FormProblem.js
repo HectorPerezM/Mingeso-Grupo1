@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import {Row, Col} from "react-bootstrap";
-import {ButtonToolbar, FormGroup, ControlLabel, FormControl, HelpBlock} from "react-bootstrap";
-import Cancel from "../../../images/cancel-button.png";
+import {FormGroup, FormControl, HelpBlock} from "react-bootstrap";
+import {Link} from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import Icon from '@material-ui/core/Icon';
 import './Css/FormProblem.css';
@@ -41,9 +41,9 @@ const addProblem = problem => {
         }
       })
   })
-    .then(response => {
-        alert(response);
-    })
+    // .then(response => {
+    //     alert(response);
+    // })
     .catch(error => {
         console.error(error);
     });
@@ -133,7 +133,7 @@ class FormProblem extends Component {
   handleSubmit = (evt) => {
     evt.preventDefault();
     const { title, inputs } = this.state;
-    alert(`Incorporated: ${title} with ${inputs.length} inputs`);
+    // alert(`Incorporated: ${title} with ${inputs.length} inputs`);
     //addUserA(this.state);
     //addUserP(this.state);
     addProblem(this.state);
@@ -283,10 +283,12 @@ class FormProblem extends Component {
             </FormGroup>
             </Col>
           <br />
-          <Button className="btn" onClick={e => this.handleSubmit(e)} variant="contained" color="seconday">
-            <Icon>send</Icon>
-            Send
-          </Button>
+          <Link to="/problems">
+            <Button className="btn" onClick={e => this.handleSubmit(e)} variant="contained" color="seconday">
+              <Icon>send</Icon>
+              Enviar
+            </Button>
+          </Link>
           </Row>
           </div>
         </div>

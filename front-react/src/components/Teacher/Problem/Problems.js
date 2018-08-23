@@ -26,7 +26,12 @@ class Problems extends Component {
     }
 
     handleRemove = (id) => (e) => {
-      console.log(id);
+      // console.log(id);
+      axios.delete('http://206.189.181.197:8082/problems/'+id);
+      // this.setState(this.state);
+
+      
+
     }
 
     handleHide = (i) => (e) => {
@@ -43,27 +48,27 @@ class Problems extends Component {
           .then(res => {
             const problems = res.data;
             this.setState({problems});
-            console.log(problems.length);
+            // console.log(problems.length);
             //const asd = {show: false};
             //for (var i = 0; i < problems.length; i++) {
             // problems[i] = {...problems[i], ...asd };
             //}
             //this.setState(problems);
-            console.log(this.state.problems);
+            // console.log(this.state.problems);
           })
       }
   render() {
   return (
     <div className="container">
-      <h2 className="title">Problemas</h2>
+      <h2 className="title">Ejercicios</h2>
       <div className="body">
       <div className="card">
-          <h3 className="card-title">Lista de problemas</h3>
+          <h3 className="card-title">Lista de ejercicios</h3>
             <div className="card-body">
             <table className="table">
               <thead>
                 <tr>
-                  <th className= "number">ID</th>
+                  <th className= "number">Nº</th>
                   <th className="th-description">Título</th>
                   <th className="th-description">Descripción</th>
                   <th className="th-description">Editar</th>
@@ -75,7 +80,7 @@ class Problems extends Component {
                 {this.state.problems.map((item,i) => (
                   <tr>
                     <td className="td-name">
-                      {i}
+                      {i+1}
                     </td>
                     <td>
                       {item.problemTitle}
@@ -91,7 +96,7 @@ class Problems extends Component {
                         dialogClassName="custom-modal"
                       >
                         <Modal.Header closeButton>
-                          Problema número {i+1}
+                          Ejercicio Nº {i+1}
                           <Modal.Title id="contained-modal-title-lg">
                             {this.problemTitle}
                           </Modal.Title>
@@ -103,7 +108,7 @@ class Problems extends Component {
                           </p>
                         </Modal.Body>
                         <Modal.Footer>
-                          <Button onClick={this.handleHide(i)}>Close</Button>
+                          <Button onClick={this.handleHide(i)}>Cerrar</Button>
                         </Modal.Footer>
                       </Modal>
                     </ButtonToolbar>

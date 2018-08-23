@@ -13,7 +13,17 @@ class Dashboard extends Component {
     this.state = {
       section: 'A1',
       degree: 'Minas',
-      students: [{name: "Juanito", rut:'19.210.563-3', studentId: 1},{name: "Lalo", rut:'19.083.793-9', studentId: 2}],
+      students: [
+        {name: "Juan De Pablo", rut:'19.210.563-3', studentId: 1},
+        {name: "Carlos Álvarez S.", rut:'19.123.793-9', studentId: 2},
+        {name: "Héctor Pérez M.", rut:'19.123.122-9', studentId: 3},
+      ],
+      studentsb2: [
+        {name: "Felipe M.", rut:'19.210.563-3', studentId: 1},
+        {name: "Carlos A.", rut:'19.123.123-9', studentId: 2},
+        {name: "Héctor P.", rut:'19.183.123-4', studentId: 3},
+        {name: "Juan D.", rut:'19.123.317-9', studentId: 4},
+      ],
       inputs: [{ inputValue: '', inputType: 'String' }],
       language: 'Python',
     };
@@ -30,7 +40,7 @@ class Dashboard extends Component {
       <Row>
       <Col xs={12}>
         <div className="container">
-        <h2 className="title">Dashboard</h2>
+        <h2 className="title">Estadísticas</h2>
           <div className="body">
             <Row>
             <Col xs={12} md={6}>

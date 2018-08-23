@@ -95,19 +95,19 @@ class Sidebar extends Component {
                             <li>
                                   <NavLink to={"/dashboard"} >
                                       <span><i class="fas fa-chart-pie"></i></span>
-                                      <span className="icon-name">Dashboard</span>
+                                      <span className="icon-name">Estadísticas</span>
                                   </NavLink>
                             </li>
                             <li>
                                 <NavLink to="/addProblem">
                                     <span><i class="fas fa-plus-circle"> </i></span>
-                                    <span className="icon-name">Añadir Problemax</span>
+                                    <span className="icon-name">Ejercicios</span>
                                 </NavLink>
                             </li>
                             <li>
                                 <NavLink to="/problems">
                                     <span><i class="fas fa-list-alt"> </i></span>
-                                    <span className="icon-name">Problemas</span>
+                                    <span className="icon-name">Ejercicios propuestos</span>
                                 </NavLink>
                             </li>
                             <li>
