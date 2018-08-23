@@ -21,6 +21,9 @@ public class User {
     private String userEmail;
     private String userPassword;
     private int userType = -1;
+    private int userCareer;
+    private int userSection;
+
 
     @JsonIgnore
     private Set<Problem> problems = new HashSet<Problem>(0);;
@@ -90,15 +93,31 @@ public class User {
         this.userProblems = userProblems;
     }
 
+    @Column(name = "USER_CAREER", nullable = true)
+    public int getUserCareer() {
+        return userCareer;
+    }
 
-//    public void addProblem(Problem problem) {
+    public void setUserCareer(int userCareer) {
+        this.userCareer = userCareer;
+    }
+
+    public int getUserSection() {
+        return userSection;
+    }
+    @Column(name = "USER_SECTION", nullable = true)
+    public void setUserSection(int userSection) {
+        this.userSection = userSection;
+    }
+
+    //    public void addProblem(Problem problem) {
 ////        UserProblem userProblem = new UserProblem(this, problem);
 ////        userProblems.add(userProblem);
 ////        problem.getUsers().add(userProblem);
 ////    }
 
     public boolean verificateUser(){
-        if(getUserEmail() == null)
+        if(getUserEmail() == null || getUserPassword() == null)
             return false;
         if (getUserType() < 0)
             return false;
