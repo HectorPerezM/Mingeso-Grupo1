@@ -13,7 +13,7 @@ const examples = problem => {
 
 const addProblem = problem => {
   console.log(problem.title);
-  fetch('http://165.227.48.161:8082/problems', {
+  fetch('http://206.189.181.197:8082/problems', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -46,7 +46,7 @@ const addProblem = problem => {
  }
 
  const addUser = user => {
-   fetch('http://165.227.48.161:8082/users', {
+   fetch('http://206.189.181.197:8082/users', {
        method: 'POST',
        headers: {
          'Content-Type': 'application/json'
@@ -71,18 +71,20 @@ class EditProblem extends Component {
     this.state = {
       title: '',
       output: '',
-      typeOutput: 'str',
+      typeOutput: '',
       description: '',
       inputs: [],
-      language: 'Java',
     };
   }
 
-  componentDidMount() {
-    axios.get('http://165.227.48.161:8082/problems/'+this.props.match.params.id)
+  componentWillMount() {
+    axios.get('http://206.189.181.197:8082/problems/'+this.props.match.params.id)
       .then(res => {
         const problem = res.data;
+        console.log(problem.problemExamples[0].result.resultType);
         this.setState({
+          output: problem.problemExamples[0].result.resultValue,
+          typeOutput: problem.problemExamples[0].result.resultType,
           title: problem.problemTitle,
           description: problem.problemStatement,
           language: problem.language,
@@ -126,7 +128,7 @@ class EditProblem extends Component {
     evt.preventDefault();
     const { title, inputs } = this.state;
     alert(`Incorporated: ${title} with ${inputs.length} inputs`);
-    addUser(this.state);
+    //addUser(this.state);
     addProblem(this.state);
     console.log(this.state);
   }
@@ -149,7 +151,7 @@ class EditProblem extends Component {
           <h3 className="card-title">Formulario</h3>
             <div className="card-body">
                 <Row className="show-grid">
-                  <Col xs={10} md={10}>
+                  <Col xs={10} md={12}>
                   <FormGroup
                       controlId="formBasicText"
                       validationState={this.getValidationState()}
@@ -163,21 +165,8 @@ class EditProblem extends Component {
                         onChange={e => this.Change(e)}
                       />
                       <FormControl.Feedback />
-                      <HelpBlock>Un nombre coherente plis :D</HelpBlock>
+                      <HelpBlock>Un nombre coherente.</HelpBlock>
                     </FormGroup>
-                  </Col>
-                  <Col xs={10} md={2}>
-                    <ControlLabel>Lenguaje:</ControlLabel>
-                    <FormControl
-                    componentClass="select"
-                    placeholder="select"
-                    name="language"
-                    value={this.state.language}
-                    onChange={e => this.Change(e)}>
-                      <option value="Python">Python</option>
-                      <option value="C">C</option>
-                      <option value="Java">Java</option>
-                    </FormControl>
                   </Col>
                 </Row>
 
@@ -281,7 +270,7 @@ class EditProblem extends Component {
                       <HelpBlock>Una descripcion coherente</HelpBlock>
                     </FormGroup>
                   <br />
-                  <Button type="submit">Guardar</Button>
+                  <Button type="submit" onClick={e => this.handleSubmit(e)}>Guardar</Button>
 
                 </div>
               </div>

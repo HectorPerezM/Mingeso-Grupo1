@@ -17,7 +17,7 @@ const examples = problem => {
 const addProblem = problem => {
   const inputs = examples(problem);
   console.log(inputs);
-  fetch('http://165.227.48.161:8082/problems', {
+  fetch('http://206.189.181.197:8082/problems', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -29,8 +29,8 @@ const addProblem = problem => {
           {
             "exampleTitle": problem.title,
             "result":{
-              "resultType": problem.output,
-              "resultValue": problem.typeOutput
+              "resultType": problem.typeOutput,
+              "resultValue": problem.output
             },
             "exampleInputs": problem.inputs
           }
@@ -49,14 +49,14 @@ const addProblem = problem => {
     });
  }
 
- const addUser = user => {
-   fetch('http://165.227.48.161:8082/users', {
+ const addUserA = user => {
+   fetch('http://206.189.181.197:8082/users', {
        method: 'POST',
        headers: {
          'Content-Type': 'application/json'
        },
        body: JSON.stringify({
-         "userEmail": "prueba@prueba.cl",
+         "userEmail": "alumno@usach.cl",
          "userPassword": "password",
          "userType": 0
        })
@@ -68,6 +68,26 @@ const addProblem = problem => {
          console.error(error);
      });
   }
+
+  const addUserP = user => {
+    fetch('http://206.189.181.197:8082/users', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          "userEmail": "profesor@usach.cl",
+          "userPassword": "password",
+          "userType": 1
+        })
+    })
+      .then(response => {
+          alert(response);
+      })
+      .catch(error => {
+          console.error(error);
+      });
+   }
 
 class FormProblem extends Component {
   constructor() {
@@ -114,7 +134,8 @@ class FormProblem extends Component {
     evt.preventDefault();
     const { title, inputs } = this.state;
     alert(`Incorporated: ${title} with ${inputs.length} inputs`);
-    addUser(this.state);
+    //addUserA(this.state);
+    //addUserP(this.state);
     addProblem(this.state);
     console.log(this.state);
   }
