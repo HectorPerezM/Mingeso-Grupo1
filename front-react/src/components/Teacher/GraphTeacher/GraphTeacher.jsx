@@ -2,24 +2,55 @@ import React, { Component } from "react";
 import { Chart } from 'react-google-charts';
 import {Row, Col} from "react-bootstrap";
 import './Css/Graph.css';
+import {Redirect, Link} from 'react-router-dom';
+
+
 
 
 
 
 export class GraphTeacher extends Component {
+  constructor() {
+    super();
+    this.state = {
+      name: "Alumno",
+       dateStart: "07-08-2018",
+      dateEnd: "27-08-2018"
+    };
+  }
 
+  componentWillMount()
+  {
+    this.setState({ name: this.props.match.params.id});
+  }
 
   render() {
+    var rand = require('random-seed').create();
+
 
     var data = [
       ["Fecha", "Juan De Pablo", "Promedio Seccion","Promedio Carrera","Todos"],
-      ["7-Ago", 10, 6 , 4, 5],
-      ["8-Ago", 2, 4 , 4, 5],
-      ["9-Ago", 1, 8 , 4, 5],
-      ["10-Ago", 4, 3 , 4, 5],
-      ["11-Ago", 6, 2 , 4, 5],
-      ["12-Ago", 5, 1 , 4, 5],
-      ["13-Ago", 7, 5 , 4, 5],
+      ["7-Ago", rand(10), rand(10) , rand(10), rand(10)],
+      ["8-Ago", rand(10), rand(10) , rand(10), rand(10)],
+      ["9-Ago", rand(10), rand(10) , rand(10), rand(10)],
+      ["10-Ago", rand(10), rand(10) , rand(10), rand(10)],
+      ["11-Ago", rand(10), rand(10) , rand(10), rand(10)],
+      ["12-Ago", rand(10), rand(10) , rand(10), rand(10)],
+      ["13-Ago", rand(10), rand(10) , rand(10), rand(10)],
+      ["14-Ago", rand(10), rand(10) , rand(10), rand(10)],
+      ["15-Ago", rand(10), rand(10) , rand(10), rand(10)],
+      ["16-Ago", rand(10), rand(10) , rand(10), rand(10)],
+      ["17-Ago", rand(10), rand(10) , rand(10), rand(10)],
+      ["18-Ago", rand(10), rand(10) , rand(10), rand(10)],
+      ["19-Ago", rand(10), rand(10) , rand(10), rand(10)],
+      ["20-Ago", rand(10), rand(10) , rand(10), rand(10)],
+      ["21-Ago", rand(10), rand(10) , rand(10), rand(10)],
+      ["22-Ago", rand(10), rand(10) , rand(10), rand(10)],
+      ["23-Ago", rand(10), rand(10) , rand(10), rand(10)],
+      ["24-Ago", rand(10), rand(10) , rand(10), rand(10)],
+      ["25-Ago", rand(10), rand(10) , rand(10), rand(10)],
+      ["26-Ago", rand(10), rand(10) , rand(10), rand(10)],
+      ["27-Ago", rand(10), rand(10) , rand(10), rand(10)],
     ];
     const options = {
       title: "N° de problemas",
@@ -29,13 +60,27 @@ export class GraphTeacher extends Component {
 
     var data2 = [
       ["Fecha", "Juan De Pablo", "Promedio Seccion","Promedio Carrera","Todos"],
-      ["7-Ago", 50, 45 , 32, 39],
-      ["8-Ago", 43, 49 , 33, 38],
-      ["9-Ago", 32, 35 , 45, 28],
-      ["10-Ago", 12, 8 , 16, 19],
-      ["11-Ago", 26, 35 , 30, 22],
-      ["12-Ago", 66, 55 , 48, 60],
-      ["13-Ago", 23, 42 , 35, 45],
+      ["7-Ago", rand(70), rand(70) , rand(70), rand(70)],
+      ["8-Ago", rand(70), rand(70) , rand(70), rand(70)],
+      ["9-Ago", rand(70), rand(70) , rand(70), rand(70)],
+      ["10-Ago", rand(70), rand(70) , rand(70), rand(70)],
+      ["11-Ago", rand(70), rand(70) , rand(70), rand(70)],
+      ["12-Ago", rand(70), rand(70) , rand(70), rand(70)],
+      ["13-Ago", rand(70), rand(70) , rand(70), rand(70)],
+      ["14-Ago", rand(70), rand(70) , rand(70), rand(70)],
+      ["15-Ago", rand(70), rand(70) , rand(70), rand(70)],
+      ["16-Ago", rand(70), rand(70) , rand(70), rand(70)],
+      ["17-Ago", rand(70), rand(70) , rand(70), rand(70)],
+      ["18-Ago", rand(70), rand(70) , rand(70), rand(70)],
+      ["19-Ago", rand(70), rand(70) , rand(70), rand(70)],
+      ["20-Ago", rand(70), rand(70) , rand(70), rand(70)],
+      ["21-Ago", rand(70), rand(70) , rand(70), rand(70)],
+      ["22-Ago", rand(70), rand(70) , rand(70), rand(70)],
+      ["23-Ago", rand(70), rand(70) , rand(70), rand(70)],
+      ["24-Ago", rand(70), rand(70) , rand(70), rand(70)],
+      ["25-Ago", rand(70), rand(70) , rand(70), rand(70)],
+      ["26-Ago", rand(70), rand(70) , rand(70), rand(70)],
+      ["27-Ago", rand(70), rand(70) , rand(70), rand(70)],
     ];
     const options2 = {
       title: "Tiempo promedio por problema",
@@ -44,10 +89,10 @@ export class GraphTeacher extends Component {
     };
 
     var data3 = [
-      ["Task","Hours per Day"],
-      ["Python",11],
-      ["C",5],
-      ["Java",2]
+      ["lenguage","count of problems"],
+      ["Python",11*rand(15)],
+      ["C",11*rand(15)],
+      ["Java",11*rand(15)]
     ]
 
     var options3 = {
@@ -59,10 +104,23 @@ export class GraphTeacher extends Component {
 
     return (
       <div className="container">
-      <h2 className="title">Dashboard</h2>
+      <div className="form-student-title">
+          <Row>
+              <Col xs={12}>
+                  <Link to="/dashboard">
+                      <div className="problem-title-icon">
+                          <i class="fas fa-angle-double-left"></i>
+                      </div>
+                  </Link>
+                  <div className="problem-title">
+                      <h2>Dashboard</h2>
+                  </div>
+              </Col>
+          </Row>
+      </div>
       <div className="body">
       <div className="card">
-          <h3 className="card-title">Rendimiento del Alumno</h3>
+          <h3 className="card-title">Rendimiento de {this.state.name}</h3>
             <div className="card-body">
             <h4>Estadisticas ultimos 7 dias .</h4>
             <Row>

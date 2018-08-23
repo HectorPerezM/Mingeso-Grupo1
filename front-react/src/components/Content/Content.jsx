@@ -12,6 +12,7 @@ import FormProblem from '../Teacher/Problem/FormProblem';
 import Problems from '../Teacher/Problem/Problems';
 import FormSecciones from '../Coordinator/FormSecciones';
 import EditProblem from '../Teacher/Problem/EditProblem';
+import GraphDegree from '../Teacher/GraphTeacher/GraphDegree';
 
 
 const Content = () => {
@@ -23,7 +24,8 @@ const Content = () => {
             <Route path="/profile" component={StudentStats} />
             <Route path="/problem" component={Problem} />
             <Route path="/dashboard" component={Dashboard} />
-            <Route path="/estadisticas" component={GraphTeacher} />
+            <Route path="/statistics/student/:id" component={GraphTeacher} />
+            <Route path="/statistics/degree/:id" component={GraphDegree} />
             <Route path="/addProblem" component={FormProblem} />
             <Route path="/problems" component={Problems} />
             <Route path="/addSection" component={FormSecciones} />

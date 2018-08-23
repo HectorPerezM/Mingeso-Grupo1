@@ -13,7 +13,8 @@ class Exercises extends Component{
         this.handleHide = this.handleHide.bind(this);
 
         this.state = {
-            problems: [{
+            problems: [],
+            problems2: [{
                 problemId: 0,
                 problemTitle: "Hola Mundo",
                 problemStatement: "Un clásico de clásicos, imprimir por pantalla el mensaje 'Hola Mundo'.",
@@ -48,7 +49,7 @@ class Exercises extends Component{
     }
 
 
-    componentDidMount() {
+    componentWillMount() {
         axios.get('http://206.189.181.197:8082/problems')
              .then(res => {
                 const problems = res.data;

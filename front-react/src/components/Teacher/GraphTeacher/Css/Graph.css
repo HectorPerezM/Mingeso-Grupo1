@@ -29,3 +29,28 @@
 .col{
   padding: 0;
 }
+
+.form-student-title{
+  color: white;
+  padding-top: 0.5%;
+  padding-bottom: 0.5%;
+  padding-left: 5%;
+  padding-right: 5%;
+  background-color: rgba(222, 124, 0, 0.9);
+  /* text-align: center; */
+}
+
+.problem-title{
+  padding-left: 30%;
+  text-align: center;
+  vertical-align: middle;
+  display: inline-block;
+}
+
+.problem-title-icon{
+  display: inline-block;
+  text-align: left;
+  vertical-align: middle;
+  margin-top: 10px;
+  color: white;
+}

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import {Redirect} from 'react-router-dom';
 import { Chart } from 'react-google-charts';
 import {Row, Col} from "react-bootstrap";
 import './Css/Dashboard.css';
@@ -11,21 +12,25 @@ class Dashboard extends Component {
   constructor() {
     super();
     this.state = {
-      section: 'A1',
-      degree: 'Minas',
-      students: [
+      section: "A1",
+      degree: '1',
+      all: "Todos los alumnos",
+      students:[
         {name: "Juan De Pablo", rut:'19.210.563-3', studentId: 1},
         {name: "Carlos Álvarez S.", rut:'19.123.793-9', studentId: 2},
         {name: "Héctor Pérez M.", rut:'19.123.122-9', studentId: 3},
       ],
-      studentsb2: [
+      studentsA1: [
+        {name: "Juan De Pablo", rut:'19.210.563-3', studentId: 1},
+        {name: "Carlos Álvarez S.", rut:'19.123.793-9', studentId: 2},
+        {name: "Héctor Pérez M.", rut:'19.123.122-9', studentId: 3},
+      ],
+      studentsB1: [
         {name: "Felipe M.", rut:'19.210.563-3', studentId: 1},
         {name: "Carlos A.", rut:'19.123.123-9', studentId: 2},
         {name: "Héctor P.", rut:'19.183.123-4', studentId: 3},
         {name: "Juan D.", rut:'19.123.317-9', studentId: 4},
-      ],
-      inputs: [{ inputValue: '', inputType: 'String' }],
-      language: 'Python',
+      ]
     };
   }
 
@@ -33,7 +38,16 @@ class Dashboard extends Component {
     this.setState({ [e.target.name]: e.target.value });
   }
 
+  Filter = (e) => {
+    this.state.section == "A1" ?
+    this.setState({ students: this.state.studentsA1 }):
+    this.setState({ students: this.state.studentsB1 })
+  }
+
+
   render() {
+
+
 
 
     return (
@@ -52,28 +66,26 @@ class Dashboard extends Component {
                   <Col xs={12} md={2}>
                   <h5>Seccion:</h5>
                   </Col>
-                  <Col xs={12} md={3}>
+                  <Col xs={6} md={3}>
                     <FormControl
                     componentClass="select"
                     placeholder="select"
                     name="section"
                     value={this.state.section}
                     onChange={e => this.Change(e)}>
-                      <option value="A-1">A-1</option>
-                      <option value="B-2">B-2</option>
+                      <option value="A1">A-1</option>
+                      <option value="B2">B-2</option>
                     </FormControl>
                   </Col>
-                  <Col xs={12} md={5}>
-                  </Col>
-                  <Col xs={12} md={2}>
-                    <Button onClick={e => this.Change(e)}>Filtrar</Button>
+                  <Col xs={6} xsPush={4} md={2} mdPush={5}>
+                    <Button onClick={e => this.Filter(e)}>Filtrar</Button>
                   </Col>
                   </Row>
                   <br/>
                   <table className="table">
                     <thead>
                       <tr>
-                        <th className= "number">ID</th>
+                        <th className= "number">N°</th>
                         <th className="th-description">Nombre</th>
                         <th className="th-description">Rut</th>
                         <th className="th-description">Ver</th>
@@ -84,7 +96,7 @@ class Dashboard extends Component {
                       {this.state.students.map((item,i) => (
                         <tr>
                           <td className="td">
-                            {i}
+                            {i+1}
                           </td>
                           <td className="td">
                             {item.name}
@@ -93,7 +105,7 @@ class Dashboard extends Component {
                             {item.rut}
                           </td>
                           <td >
-                            <Link className="ojo" to={'/estadisticas/' + item.studentId}>
+                            <Link className="ojo" to={'/statistics/student/' + item.name}>
                             <i class="far fa-eye"></i>
                             </Link>
                           </td>
@@ -112,33 +124,35 @@ class Dashboard extends Component {
                 <h3 className="card-title">Carreras</h3>
                 <div className="card-body">
               <Row>
-              <Col xs={12} md={5}>
+              <Col xs={6} md={5}>
               <FormControl
               componentClass="select"
               placeholder="select"
               name="degree"
               value={this.state.degree}
               onChange={e => this.Change(e)}>
-                <option value="1">Ingenieria civil Informatica</option>
-                <option value="2">Ingenieria civil Electrica</option>
-                <option value="3">Ingenieria civil Minas</option>
-                <option value="4">Ingenieria civil Obras civiles</option>
-                <option value="5">Ingenieria ejecucion Informatica</option>
-                <option value="6">Ingenieria ejecucion Electrica</option>
-                <option value="7">Ingenieria ejecucion Minas</option>
-                <option value="8">Ingenieria ejecucion Obras civiles</option>
+                <option value="1">Ingenieria Civil Informatica</option>
+                <option value="2">Ingenieria Civil Electrica</option>
+                <option value="3">Ingenieria Civil Minas</option>
+                <option value="4">Ingenieria Civil Obras civiles</option>
+                <option value="5">Ingenieria Ejecucion Informatica</option>
+                <option value="6">Ingenieria Ejecucion Electrica</option>
+                <option value="7">Ingenieria Ejecucion Minas</option>
+                <option value="8">Ingenieria Ejecucion Obras civiles</option>
               </FormControl>
               </Col>
-              <Col xs={12} md={3}>
-              </Col>
-              <Col xs={12} md={3}>
-                <Button onClick={e => this.Change(e)}> Ver estadisticas</Button>
+              <Col xs={6} xsPush={2} md={4} mdPush={3}>
+                <Link className="ojo" to={'/statistics/degree/' + this.state.degree}>
+                  <i class="far fa-eye"> Ver estadisticas</i>
+                </Link>
               </Col>
               </Row>
               <hr/>
               <Row>
-              <Col xs={12} md={3}>
-                <Button onClick={e => this.Change(e)}> Ver estadisticas generales</Button>
+              <Col xs={12} md={6}>
+                <Link className="ojo" to={'/statistics/degree/' + this.state.all}>
+                  <i class="far fa-eye"> Ver estadisticas generales</i>
+                </Link>
               </Col>
               </Row>
             </div>
