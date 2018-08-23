@@ -17,6 +17,9 @@ class Login extends Component{
         this.handleChange = this.handleChange.bind(this);
         this.validateForm = this.validateForm.bind(this);
         this.login = this.login.bind(this);
+        this.addUserP = this.addUserP.bind(this);
+        this.addUserA = this.addUserA.bind(this);
+
     }
 
     handleChange = (event) => {
@@ -28,27 +31,55 @@ class Login extends Component{
         return this.state.email.length > 0 && this.state.password.length > 0;
     }
 
+    addUserA = user => {
+        fetch('http://206.189.181.197:8082/users', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              "userEmail": "alumno@usach.cl",
+              "userPassword": "password",
+              "userType": 0
+            })
+        })
+          .catch(error => {
+              console.error(error);
+          });
+       }
+
+    addUserP = user => {
+         fetch('http://206.189.181.197:8082/users', {
+             method: 'POST',
+             headers: {
+               'Content-Type': 'application/json'
+             },
+             body: JSON.stringify({
+               "userEmail": "profesor@usach.cl",
+               "userPassword": "password",
+               "userType": 1
+             })
+         })
+           .catch(error => {
+               console.error(error);
+           });
+        }
+
     login = () => {
-        //si la respuesta es correcta del llamado a la api
+        this.addUserP();
+        this.addUserA();
 
-        //logica para ver asignar que tipo de persona es
-        // this.setState({typePerson: 0});
+        if(this.state.email==="profesor@usach.cl" && this.state.password==="password"){
+            sessionStorage.setItem('userEmail', this.state.email);
+            sessionStorage.setItem('userType', 1);
+            this.setState({ redirect: true });
+        }
 
-        sessionStorage.setItem('userEmail', this.state.email);
-        sessionStorage.setItem('userType', 0);
-
-        // sessionStorage.setItem('userData', {
-        //     email: this.state.email,
-        //     typePerson: this.state.typePerson
-        // });
-
-        this.setState({ redirect: true });
-
-        // if(this.state.email === "example@usach.cl" && this.state.password === "1234"){
-        //     this.setState({ redirect: true, typePerson: 0 });
-        // } else {
-        //     this.setState({ redirect: true, typePerson: -1 });
-        // }
+        if(this.state.email==="alumno@usach.cl" && this.state.password==="password"){
+            sessionStorage.setItem('userEmail', this.state.email);
+            sessionStorage.setItem('userType', 0);
+            this.setState({ redirect: true });
+        }
     }
 
     render(){
