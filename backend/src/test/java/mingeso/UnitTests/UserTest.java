@@ -1,6 +1,5 @@
 package mingeso.UnitTests;
 
-
 import cl.novuscreate.backend.Application;
 import cl.novuscreate.backend.entity.User;
 import org.junit.Test;
