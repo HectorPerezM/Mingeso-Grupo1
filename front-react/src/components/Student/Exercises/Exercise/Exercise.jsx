@@ -17,13 +17,13 @@ class Exercise extends Component{
         this.handleShow = this.handleShow.bind(this);
         this.handleClose = this.handleClose.bind(this);
         this.volver = this.volver.bind(this);
-        
+
         this.startTimer = this.startTimer.bind(this)
         this.setLanguageIcon = this.setLanguageIcon.bind(this)
 
         this.state = {
             problemTitle: "",
-            input: "",
+            input: [],
             output: "",
             description: "",
             language: "",
@@ -49,51 +49,160 @@ class Exercise extends Component{
     handleClose() {
         this.setState({ show: false });
     }
-    
+
     handleShow() {
         this.setState({ show: true });
         this.setState({
             disabled: true
         });
     }
-    
+
+    handleSubmit = (evt) => {
+      evt.preventDefault();
+      this.setState({ show: true });
+      this.setState({
+          disabled: true
+      })
+      console.log(this.state);
+    }
+
+
+    componentWillMount() {
+         axios.get('http://206.189.181.197:8082/problems/'+this.props.match.params.id)
+             .then(res => {
+                 const problem = res.data;
+                 console.log(problem);
+                 this.setState({
+                     problemTitle: problem.problemTitle,
+                     output: problem.problemExamples[0].result.resultValue,
+                     input: problem.problemExamples[0].exampleInputs,
+                     description: problem.problemStatement,
+                     code: "",
+                     show: false
+                 });
+                 console.log(this.state.input);
+
+             });
+        this.startTimer();
+    };
+
     editorDidMount(editor, monaco) {
         console.log('editorDidMount', editor);
         editor.focus();
     }
-    
+
     onChange = (newValue, e) => {
         console.log('onChange', newValue, e);
         this.setState({
             code: newValue
         });
     };
-    
+
     Change = e => {
         this.setState({
             [e.target.name]: e.target.value
         });
         this.setLanguageIcon(e.target.value);
     };
-    
+
     onSubmit = e => {
         e.preventDefault();
-        this.setState({ show: true });
-        //alert("el algoritmo que será evaluado es: \n"+this.state.code.toString());
-    };
+        this.setState({
+          show: true
+        });
+
+
+        fetch('http://206.189.181.197:8082/solutions', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            "solutionCode": this.state.code.toString(),
+            "language": this.state.language.toLowerCase(),
+            "userProblem":{
+              "user":{
+                "userId": 1
+              },
+              "problem":{
+                "problemId": this.props.match.params.id
+              },
+              "statusComplete": 0
+            }
+          })
+        })
+        .then(response => {
+          console.log("********");
+          // var a = response.json();\
+          // sleep(1000);
+          console.log(this.state.language);
+          console.log(response);
+          // console.log(response.json());
+
+          // console.log(response.json().PromiseValue );
+          // console.log(response.json().PromiseValue() );
+
+
+
+          response.json().then(function(result) {
+            console.log(result);
+            if (typeof result !== "undefined") {
+              var estado =result.userProblem.statusComplete;
+              var estadoStr ="";
+
+              if (estado == 1) {
+                estadoStr = "Completado"
+              }else {
+                estadoStr = "Incorrecto"
+              }
+              if (result.theSolution !== "\"/usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../x86_64-linux-gnu/crt1.o") {
+                alert("Ejecución exitosa.\nResultado obtenido:"+result.theSolution+"\nEstado problema: "+estadoStr) //will log results.
+                if (result.userProblem.feedback!= null) {
+                  alert(result.userProblem.feedback)
+                }
+              }else {
+                alert("Ejecución Fallida.\nError obtenido:"+result.theSolution+"\nEstado problema: "+estadoStr) //will log results.
+
+              }
+               // alert("Ejecución exitosa.\nResultado obtenido:"+result.theSolution+"\nEstado problema: "+estadoStr) //will log results.
+               // if (result.userProblem.feedback!= null) {
+               //   alert(result.userProblem.feedback)
+               // }
+            }else {
+              alert("Fallo en la compilación vuelve a intentarlo.\nEstado problema: Incompleto") //will log results.
+              // alert("Feedback n")
+            }
+
+
+          })
+
+          // console.log(response.json().promise_value );
+          console.log("********");
+          // alert(response.JSON);
+        })
+        .catch(error => {
+          console.error(error);
+        });
+
+
+
+
+        alert("el algoritmo que será evaluado es: \n"+this.state.code.toString());
+      };
+
 
     volver(){
         // console.log(this.state.time);
         <Redirect to="/exercises" />
     }
-    
+
     startTimer() {
         this.setState({
             isOn: true,
             time: this.state.time,
             start: Date.now() - this.state.time
         })
-        
+
         this.timer = setInterval(() => this.setState({
             time: Date.now() - this.state.start
         }), 500);
@@ -109,38 +218,15 @@ class Exercise extends Component{
             this.setState({languageIcon: "fab fa-cuttlefish"})
         }
     }
-    
-    componentWillMount() {
-        // axios.get('http://165.227.48.161:8082/problems/'+this.props.match.params.id)
-        //     .then(res => {
-        //         const problem = res.data;
-        //         console.log(problem);
-        //         this.setState({
-        //             problemTitle: problem.problemTitle,
-        //             input: "",
-        //             output: "",
-        //             description: problem.problemStatement,
-        //             language: problem.language,
-        //             code: "",
-        //             show: false
-        //         });
-        //     });
 
-        this.setState({
-            problemTitle: "titulo generico",
-            description: "Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas 'Letraset', las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum."
-        });
 
-        this.startTimer();
-    };
-    
     render(){
         const popover = (
             <Popover id="modal-popover" title="popover">
                 very popover. such engagement
             </Popover>
         );
-        
+
         const tooltip = <Tooltip id="modal-tooltip">wow.</Tooltip>;
         const code = this.state.code;
         const options = {
@@ -150,7 +236,11 @@ class Exercise extends Component{
             cursorStyle: 'line',
             parameterHints: true
         };
-        
+
+        const listItems = this.state.input.map((asd,i) => (
+          <a>{asd.inputValue}</a>
+        ));
+
         return (
             <div className="student-form">
                 <div className="form-student-title">
@@ -172,7 +262,7 @@ class Exercise extends Component{
                         <Col xs={12} md={12}>
                             <h3 className="form-student-problem-description">
                                 <small>
-                                    {this.state.description}                
+                                    {this.state.description}
                                 </small>
                             </h3>
                         </Col>
@@ -198,7 +288,17 @@ class Exercise extends Component{
                                 </FormControl>
                             </div>
                         </Col>
-                        <Col xs={8} xsPush={2}>
+                        <Col className="example" xs={3} xsPush={1}>
+                          <h3>Entradas:</h3>
+                            {this.state.input.map((asd,i) => (
+                              <h4 className="parrafo"> {i+1}) {asd.inputValue}</h4>
+                            ))}
+                        </Col>
+                        <Col className="example" xs={3} xsPush={1}>
+                        <h3>Salida:</h3>
+                          <h4 className="parrafo">{1}) {this.state.output}</h4>
+                        </Col>
+                        <Col xs={3}>
                             <div className="form-student-timer">
                                 <h3><i className="fas fa-clock"></i> {Math.trunc(this.state.time /60000)} min. y {(Math.trunc(this.state.time /1000) % 60)} seg.</h3>
                             </div>
@@ -222,12 +322,12 @@ class Exercise extends Component{
                                         value={code}
                                         onChange={this.onChange}
                                     />
-                                    
-                                    <Button bsClass="btn-analizar">
+
+                                    <Button bsClass="btn-analizar" onClick={e => this.handleSubmit(e)}>
                                         <i className="fab fa-telegram-plane"></i> Enviar
                                     </Button>
                                 </Col>
-                                
+
                                 <Col xs={12} md={4}>
                                     <Row>
                                         <Col md={12}>

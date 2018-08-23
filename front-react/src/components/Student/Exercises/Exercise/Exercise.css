@@ -6,7 +6,7 @@
   border-bottom: 1px solid #d0d0d0;
   margin: 1% 5%;
 }
-  
+
   .form-student{
     margin-top: 3%;
     margin-left: 5%;
@@ -17,11 +17,11 @@
     margin-top: 7%;
     margin-right: 15%;
   }
-  
+
   .form-student-title-col{
-  
+
   }
-  
+
   .form-student-title{
     color: white;
     padding-top: 2%;
@@ -63,24 +63,24 @@
     text-align: justify;
     padding-bottom: 3%;
     border-bottom: 1px solid #B1B1B1;
-  
+
   }
   .form-student-row-problem{
-  
+
   }
-  
+
   .form-student-modal{
       margin-top: 1%;
   }
-  
+
   .form-student-problem-row-language{
     margin-top: 2%;
   }
-  
+
   .form-student-monaco{
     margin-left:0;
     margin-right:0;
-  
+
   }
 
   .form-student-select-lang{
@@ -103,4 +103,11 @@
     box-shadow: none;
     border-radius: 12px;
     font-size: 20px;
+  }
+
+  .example{
+  }
+
+  .parrafo{
+    margin-left: 80px;
   }

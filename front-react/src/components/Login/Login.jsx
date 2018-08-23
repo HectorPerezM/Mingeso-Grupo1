@@ -35,7 +35,7 @@ class Login extends Component{
         // this.setState({typePerson: 0});
 
         sessionStorage.setItem('userEmail', this.state.email);
-        sessionStorage.setItem('userType', 1);
+        sessionStorage.setItem('userType', 0);
 
         // sessionStorage.setItem('userData', {
         //     email: this.state.email,
