@@ -1,11 +1,11 @@
 config:
   target: 'http://localhost:3000/'
   #Descomentar cuando se habilite el login
-#  payload:
-#    path: "users.csv" 
-#      fields:
-#        - "username"
-#        - "password"
+  payload:
+    path: "users.csv" 
+    fields:
+        - "username"
+        - "password"
   http:
     tls:
       rejectUnauthorized: false
@@ -19,12 +19,16 @@ config:
       name: "Sustained very big load" 
 scenarios:
   - flow:
-#      - log: "Make login in system"
-#        - post:
-#            url: "/auth"
-#            json:
-#              username: "{{ username }}"
-#              password: "{{ password }}"
+      - log: "Make login in system"
+      - post:
+            url: "/auth"
+            json:
+              username: "{{ username }}"
+              password: "{{ password }}"
+      - get:
+            url: "/"
+      - get:
+            url: "/problems/student"
     - get:
         url: "/"
     - get:
