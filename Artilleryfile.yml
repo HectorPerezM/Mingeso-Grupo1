@@ -29,3 +29,7 @@ scenarios:
             url: "/"
       - get:
             url: "/problems/student"
+    - get:
+        url: "/"
+    - get:
+        url: "/problems/student"

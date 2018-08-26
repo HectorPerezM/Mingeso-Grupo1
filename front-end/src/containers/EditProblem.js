@@ -13,7 +13,7 @@ const examples = problem => {
 
 const addProblem = problem => {
   console.log(problem.title);
-  fetch('http://165.227.48.161:8082/problems', {
+  fetch('http://localhost:8082/problems', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -46,7 +46,7 @@ const addProblem = problem => {
  }
 
  const addUser = user => {
-   fetch('http://165.227.48.161:8082/users', {
+   fetch('http://localhost:8082/users', {
        method: 'POST',
        headers: {
          'Content-Type': 'application/json'
@@ -79,7 +79,7 @@ class EditProblem extends Component {
   }
 
   componentDidMount() {
-    axios.get('http://165.227.48.161:8082/problems/'+this.props.match.params.id)
+    axios.get('http://localhost:8082/problems/'+this.props.match.params.id)
       .then(res => {
         const problem = res.data;
         this.setState({

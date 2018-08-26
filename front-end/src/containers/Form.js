@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 const addProblem2 = problem =>{
   console.log(problem.problemName);
-  fetch('http://165.227.48.161:8082/problems', {
+  fetch('http://localhost:8082/problems', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -25,7 +25,7 @@ const addProblem2 = problem =>{
  }
  const addProblem = problem =>{
    console.log(problem.problemName);
-   fetch('http://165.227.48.161:8082/problems', {
+   fetch('http://localhost:8082/problems', {
        method: 'POST',
        headers: {
          'Content-Type': 'application/json'

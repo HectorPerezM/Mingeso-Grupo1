@@ -56,13 +56,92 @@ class Form extends Component {
 
   onSubmit = e => {
     e.preventDefault();
-    this.setState({ show: true });
-    //alert("el algoritmo que será evaluado es: \n"+this.state.code.toString());
+    this.setState({
+      disabled: false
+    });
+
+
+    fetch('http://localhost:8082/solutions', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        "solutionCode": this.state.code.toString(),
+        "language": this.state.language.toLowerCase(),
+        "userProblem":{
+          "user":{
+            "userId": 1
+          },
+          "problem":{
+            "problemId": this.props.match.params.id
+          },
+          "statusComplete": 0
+        }
+      })
+    })
+    .then(response => {
+      console.log("********");
+      // var a = response.json();\
+      // sleep(1000);
+      console.log(this.state.language);
+      console.log(response);
+      // console.log(response.json());
+
+      // console.log(response.json().PromiseValue );
+      // console.log(response.json().PromiseValue() );
+
+
+
+      response.json().then(function(result) {
+        console.log(result);
+        if (typeof result !== "undefined") {
+          var estado =result.userProblem.statusComplete;
+          var estadoStr ="";
+
+          if (estado == 1) {
+            estadoStr = "Completado"
+          }else {
+            estadoStr = "Incorrecto"
+          }
+          if (result.theSolution !== "\"/usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../x86_64-linux-gnu/crt1.o") {
+            alert("Ejecución exitosa.\nResultado obtenido:"+result.theSolution+"\nEstado problema: "+estadoStr) //will log results.
+            if (result.userProblem.feedback!= null) {
+              alert(result.userProblem.feedback)
+            }
+          }else {
+            alert("Ejecución Fallida.\nError obtenido:"+result.theSolution+"\nEstado problema: "+estadoStr) //will log results.
+
+          }
+           // alert("Ejecución exitosa.\nResultado obtenido:"+result.theSolution+"\nEstado problema: "+estadoStr) //will log results.
+           // if (result.userProblem.feedback!= null) {
+           //   alert(result.userProblem.feedback)
+           // }
+        }else {
+          alert("Fallo en la compilación vuelve a intentarlo.\nEstado problema: Incompleto") //will log results.
+          // alert("Feedback n")
+        }
+
+
+      })
+
+      // console.log(response.json().promise_value );
+      console.log("********");
+      // alert(response.JSON);
+    })
+    .catch(error => {
+      console.error(error);
+    });
+
+
+
+
+    alert("el algoritmo que será evaluado es: \n"+this.state.code.toString());
   };
 
 
   componentDidMount() {
-    axios.get('http://165.227.48.161:8082/problems/'+this.props.match.params.id)
+    axios.get('http://localhost:8082/problems/'+this.props.match.params.id)
       .then(res => {
         const problem = res.data;
         console.log(problem);
@@ -131,8 +210,8 @@ class Form extends Component {
             name="language"
             value={this.state.language}
             onChange={e => this.Change(e)}>
-              <option value="Python">Python</option>
-              <option value="C">C</option>
+              <option value="python">python</option>
+              <option value="c">c</option>
               <option value="Java">Java</option>
             </FormControl>
         </Col>
