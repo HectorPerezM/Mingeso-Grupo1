@@ -10,7 +10,7 @@ const examples = problem => {
 }
 
 const addProblem = problem => {
-  fetch('http://206.189.181.197:8082/problems', {
+  fetch('http://localhost:8082/problems', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -40,7 +40,7 @@ const addProblem = problem => {
  }
 
  const addUser = user => {
-   fetch('http://206.189.181.197:8082/users', {
+   fetch('http://localhost:8082/users', {
        method: 'POST',
        headers: {
          'Content-Type': 'application/json'
@@ -69,7 +69,7 @@ class EditProblem extends Component {
   }
 
   componentDidMount() {
-    axios.get('http://206.189.181.197:8082/problems/'+this.props.match.params.id)
+    axios.get('http://localhost:8082/problems/'+this.props.match.params.id)
       .then(res => {
         const problem = res.data;
         console.log(problem);
@@ -121,7 +121,9 @@ class EditProblem extends Component {
     const { title, inputs } = this.state;
     // alert(`Incorporated: ${title} with ${inputs.length} inputs`);
     //addUser(this.state);
+    console.log("adding problem");
     addProblem(this.state);
+    console.log("problem added");
     console.log(this.state);
   }
 

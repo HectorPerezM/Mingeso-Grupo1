@@ -27,7 +27,7 @@ class Problems extends Component {
 
     handleRemove = (id) => (e) => {
       // console.log(id);
-      axios.delete('http://206.189.181.197:8082/problems/'+id);
+      axios.delete('http://localhost:8082/problems/'+id);
       // this.setState(this.state);
 
       
@@ -44,7 +44,7 @@ class Problems extends Component {
 
 
       componentWillMount() {
-        axios.get('http://206.189.181.197:8082/problems')
+        axios.get('http://localhost:8082/problems')
           .then(res => {
             const problems = res.data;
             this.setState({problems});

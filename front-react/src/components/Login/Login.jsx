@@ -32,7 +32,7 @@ class Login extends Component{
     }
 
     addUserA = user => {
-        fetch('http://206.189.181.197:8082/users', {
+        fetch('http://localhost:8082/users', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json'
@@ -49,7 +49,7 @@ class Login extends Component{
        }
 
     addUserP = user => {
-         fetch('http://206.189.181.197:8082/users', {
+         fetch('http://localhost:8082/users', {
              method: 'POST',
              headers: {
                'Content-Type': 'application/json'

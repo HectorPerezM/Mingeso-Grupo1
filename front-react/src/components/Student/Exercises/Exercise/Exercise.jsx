@@ -36,12 +36,13 @@ class Exercise extends Component{
             isEvaluated: true   ,
             languageIcon: 'fab fa-python',
             languageEditor: 'python',
+            statusComplete: 0,
             evaluacion: {
                 variables: 10,
                 erroresIdentacion: 10,
                 codigoComentado: "Mal comentado",
                 erroresFunciones: 20,
-                bloquePrincipal: "TENIS LA PURA CAGA AWEONAO    "
+                bloquePrincipal: "..."
             }
         };
     }
@@ -57,18 +58,105 @@ class Exercise extends Component{
         });
     }
 
-    handleSubmit = (evt) => {
-      evt.preventDefault();
-      this.setState({ show: true });
-      this.setState({
-          disabled: true
-      })
-      console.log(this.state);
+    handleSubmit = (e) => {
+      // evt.preventDefault();
+      // this.setState({ show: true });
+      // this.setState({
+      //     disabled: true
+      // })
+      // console.log("codigo1");
+      // console.log(this.state);
+
+
+          e.preventDefault();
+          this.setState({
+            show: true,
+            disabled: true
+          });
+
+
+          fetch('http://localhost:8082/solutions', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              "solutionCode": this.state.code.toString(),
+              "language": this.state.languageEditor.toLowerCase(),
+              "userProblem":{
+                "user":{
+                  "userId": 1
+                },
+                "problem":{
+                  "problemId": this.props.match.params.id
+                },
+                "statusComplete": 0
+              }
+            })
+          })
+          .then(response => {
+            console.log("********");
+            // var a = response.json();\
+            // sleep(1000);
+            console.log(this.state.language);
+            console.log(response);
+            // console.log(response.json());
+
+            // console.log(response.json().PromiseValue );
+            // console.log(response.json().PromiseValue() );
+
+
+
+            response.json().then(function(result) {
+              console.log(result);
+              if (typeof result !== "undefined") {
+                var estado =result.userProblem.statusComplete;
+                var estadoStr ="";
+
+                if (estado == 1) {
+                  estadoStr = "Completado"
+                }else {
+                  estadoStr = "Incorrecto"
+                }
+                if (result.theSolution !== "\"/usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../x86_64-linux-gnu/crt1.o") {
+                  alert("Ejecución exitosa.\nResultado obtenido:"+result.theSolution+"\nEstado problema: "+estadoStr) //will log results.
+                  if (result.userProblem.feedback!= null) {
+                    alert(result.userProblem.feedback)
+                  }
+                }else {
+                  alert("Ejecución Fallida.\nError obtenido:"+result.theSolution+"\nEstado problema: "+estadoStr) //will log results.
+
+                }
+                 // alert("Ejecución exitosa.\nResultado obtenido:"+result.theSolution+"\nEstado problema: "+estadoStr) //will log results.
+                 // if (result.userProblem.feedback!= null) {
+                 //   alert(result.userProblem.feedback)
+                 // }
+              }else {
+                alert("Fallo en la compilación vuelve a intentarlo.\nEstado problema: Incompleto") //will log results.
+                // alert("Feedback n")
+              }
+
+
+            })
+
+            // console.log(response.json().promise_value );
+            console.log("********");
+            // alert(response.JSON);
+          })
+          .catch(error => {
+            console.error(error);
+          });
+
+
+
+
+          alert("el algoritmo que será evaluado es: \n"+this.state.code.toString());
+
     }
 
 
     componentWillMount() {
-         axios.get('http://206.189.181.197:8082/problems/'+this.props.match.params.id)
+         axios.get('http://localhost:8082/problems/'+this.props.match.params.id)
              .then(res => {
                  const problem = res.data;
                  console.log(problem);
@@ -112,7 +200,7 @@ class Exercise extends Component{
         });
 
 
-        fetch('http://206.189.181.197:8082/solutions', {
+        fetch('http://localhost:8082/solutions', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
@@ -145,6 +233,7 @@ class Exercise extends Component{
 
 
           response.json().then(function(result) {
+            console.log("este es el resultado");
             console.log(result);
             if (typeof result !== "undefined") {
               var estado =result.userProblem.statusComplete;
