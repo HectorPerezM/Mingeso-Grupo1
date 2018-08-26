@@ -1,5 +1,6 @@
 package cl.novuscreate.backend.entity;
 
+
 import cl.novuscreate.backend.factory.SuperUser;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -12,24 +13,20 @@ import java.util.Set;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
-
 @Entity
 @Table(name="users", uniqueConstraints = @UniqueConstraint(columnNames = "USER_ID"))
-public class User extends SuperUser {
+public class ProfessorUser extends SuperUser {
 
 
     private int userId;
     private String userEmail;
     private String userPassword;
-    private int userType = -1;
+    private int userType = 1;
     private int userCareer;
     private int userSection;
 
-    public User() {
-    }
 
-    public User(String userEmail, String userPassword, int userType, int userCareer, int userSection) {
-
+    public ProfessorUser(String userEmail, String userPassword, int userType, int userCareer, int userSection) {
         this.userEmail = userEmail;
         this.userPassword = userPassword;
         this.userType = userType;
