@@ -37,7 +37,7 @@ Asegurarse que el archivo  */backend/src/main/resources/application.properties* 
 
 ```sh
 $ cd backend/
-$ mvn package (or mvn install -DskipTests)
+$ mvn package 
 $ java -jar target/MINGESO-1.0-SNAPSHOT.jar
 ```
 
