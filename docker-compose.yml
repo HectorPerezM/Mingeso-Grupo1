@@ -75,6 +75,17 @@ services:
       - MYSQL_USER=mantisbt
       - MYSQL_PASSWORD=mantisbt
     restart: always
+  
+  database:
+    image: mariadb:latest
+    restart: always
+    ports:
+      - '3307:3307'
+    environment:
+      - MYSQL_ROOT_PASSWORD=p4SSW0rd
+      - MYSQL_DATABASE=plataformaactiva
+      - MYSQL_USER=username
+      - MYSQL_PASSWORD=password
 
 networks:
   sonarnet:
