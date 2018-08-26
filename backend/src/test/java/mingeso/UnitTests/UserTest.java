@@ -27,4 +27,17 @@ public class UserTest {
         assertEquals("The User instance is invalid",false,user.verificateUser());
 
     }
+
+    @Test
+    public void userPasswordlMustExists() {
+        User user = new User();
+
+        user.setUserEmail("grupo1@gmail.com");
+        user.setUserType(1);
+
+        assertEquals("The User instance is invalid",false,user.verificateUser());
+
+    }
+
+
 }

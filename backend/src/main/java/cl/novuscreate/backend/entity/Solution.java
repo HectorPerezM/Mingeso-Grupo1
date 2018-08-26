@@ -1,4 +1,4 @@
-package cl.novuscreate.backend.entity;
+
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.python.core.PyInteger;
@@ -6,6 +6,10 @@ import org.python.core.PyObject;
 import org.python.util.PythonInterpreter;
 
 import javax.persistence.*;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
