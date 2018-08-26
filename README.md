@@ -10,6 +10,9 @@ Proyecto para la asignatura de Métodos y Técnicas de Ingeniería de Software. 
 ####  *Diagrama de clases*
 ![Diagrama de clases](/diagrams/ClassDiagram.jpg)
 
+####  *Diagrama de despliege*
+![Diagrama de clases](/diagrams/DeploymentDiagram.jpg)
+
 ### Tecnología utilizada
 
 ##### Tecnologías del Proyecto
