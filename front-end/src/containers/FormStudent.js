@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import axios from 'axios';
 import {FormControl,ButtonToolbar,Row,Col,Button,Popover,Tooltip,Modal,OverlayTrigger} from "react-bootstrap";
 import MonacoEditor from 'react-monaco-editor';
+import CardStudent from '../components/CardStudent/CardStudent.jsx';
+import ReactLoading from  "react-loading";
 
 class Form extends Component {
   constructor(props, context) {
@@ -182,7 +184,7 @@ class Form extends Component {
       </Row>
       <Row className="form-student-row-description">
         <Col xs={12} md={12}>
-        <h4 className="form-student-problem-description">Descripción: <small>
+        <h3 className="form-student-problem-description">Descripción: <small>
         Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
 
         Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.
@@ -192,12 +194,12 @@ class Form extends Component {
         Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
 
         Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.
-        </small></h4>
+        </small></h3>
+        <br/>
         </Col>
       </Row>
+      <br/>
       <Row className="form-student-problem-row-language">
-        <Col xs={0} md={7}>
-        </Col>
         <Col xs={2} md={1}>
           <h4 className="form-student-problem-language">Lenguaje:</h4>
         </Col>
@@ -217,6 +219,8 @@ class Form extends Component {
         <form>
           <br />
           <div className="form-student-monaco">
+          <Row>
+          <Col xs={12} md={8}>
           <MonacoEditor
           className="form-student-monaco-editor"
           width="100%"
@@ -228,6 +232,14 @@ class Form extends Component {
           onChange={this.onChange}
           editorDidMount={this.editorDidMount}
           />
+          </Col>
+          <Col xs={12} md={4}>
+            <CardStudent {...this.props}/>
+            <ButtonToolbar className="button-toolbar">
+              <Button  onClick={e => this.onSubmit(e)} bsStyle="success">Evaluar</Button>
+            </ButtonToolbar>
+          </Col>
+          </Row>
           <Row>
             <Col xs={0} md={8}>
             </Col>
@@ -235,65 +247,13 @@ class Form extends Component {
             <Row>
               <Col xs={12} md={4}>
               <div>
-                <Button disabled={this.state.disabled} bsStyle="primary"  onClick={this.handleShow}>
-                  Analisis
-                </Button>
-                  <Modal show={this.state.show} onHide={this.handleClose}>
-                    <Modal.Header closeButton>
-                      <Modal.Title>Análisis de buenas practicas de programación.</Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body>
-                      <h5>Variables.</h5>
-                      <p>
-                      <small>
-                        - Tienes 3 variables sin nombres representativos.
-                      </small>
-                      </p>
-                      <hr />
-
-                      <h5>Identación y comentarios.</h5>
-                      <p>
-                      <small>
-                        - Tienes 3 errores de identación.
-                      </small>
-                      </p>
-                      <p>
-                      <small>
-                        - Código comentado correctamente.
-                      </small>
-                      </p>
-                      <hr />
-
-                      <h5>Funciones y procedimientos.</h5>
-                      <p>
-                      <small>
-                      - Tienes 4 funciones y/o procedimientos con comentarios incompletos.
-                      </small>
-                      </p>
-
-                      <hr />
-
-                      <h5>Bloque principal.</h5>
-                      <p>
-                      <small>
-                        - El bloque principal no esta estructurado correctamente.
-                      </small>
-                      </p>
-
-                    </Modal.Body>
-                    <Modal.Footer>
-                      <Button onClick={this.handleClose}>Close</Button>
-                    </Modal.Footer>
+                  <Modal id="modal" show={this.state.show} onHide={this.handleClose}>
+                  <ReactLoading className="spinLoading" className="spinLoading" height={375} width={200} type="spin" color="#aaa" />
                   </Modal>
               </div>
               </Col>
 
             </Row>
-            </Col>
-            <Col className="form-student-solve" xs={12} md={2}>
-            <ButtonToolbar>
-              <Button  onClick={e => this.onSubmit(e)} bsStyle="success">Evaluar</Button>
-            </ButtonToolbar>
             </Col>
           </Row>
           </div>

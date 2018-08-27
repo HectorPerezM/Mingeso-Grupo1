@@ -8,6 +8,7 @@ import org.hibernate.annotations.Type;
 import javax.persistence.*;
 import java.util.Date;
 import java.util.Objects;
+import cl.novuscreate.backend.entity.Solution;
 
 import static javax.persistence.GenerationType.IDENTITY;
 

@@ -1,20 +1,32 @@
-import React from 'react';
-import {BrowserRouter as Router, Route, NavLink} from 'react-router-dom';
+import React, {Component} from 'react';
+import {BrowserRouter as Router, Route, NavLink, Redirect} from 'react-router-dom';
 
 import ProblemsStudent from './containers/ProblemsStudent.js'
 import ProblemsTeacher from './containers/ProblemsTeacher.js'
 import FormStudent from './containers/FormStudent.js'
 import FormProblem from './containers/FormProblem.js'
 import EditProblem from './containers/EditProblem.js'
-import Header from "./components/Header/Header.jsx";
-import Header2 from "./components/Header/Header2.jsx";
+import GraphStudent from './components/GraphStudent/GraphStudent.jsx'
 import fing from "./images/fing.png";
 import udes from "./images/udes.png";
 import Home from "./components/Home/Home.js";
-
+import Login from './components/Login/Login.js';
+import Dashboard from './components/Dashboard/Dashboard.js';
+import PrivateRoute from './components/Auth/PrivateRoute.js';
 // Assets
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles/App.css';
+
+export const AuthService = {
+    isAuthenticated: false,
+    auth(){
+        this.isAuthenticated = true
+        console.log("Despues: "+this.isAuthenticated)
+    },
+    logout(){
+        return this.isAuthenticated = false
+    }
+}
 
 const App = () => {
     return (
@@ -62,7 +74,6 @@ const App = () => {
                     <img src={fing} alt="logo_image" className="logo-fing"/>
                 </div>
                 <div className="container">
-                      <Header {...this.props} />
                     <div className="views">
                       <Route path="/problems/student" component={ProblemsStudent}/>
                       <Route path="/problems/teacher" component={ProblemsTeacher}/>
@@ -70,6 +81,7 @@ const App = () => {
                       <Route path="/solve/:id" component={FormStudent}/>
                       <Route path="/edit/:id" component={EditProblem}/>
                       <Route path="/home" component={Home}/>
+                      <Route path="/estadisticas/:id" component={GraphStudent}/>
                     </div>
                 </div>
             </div>

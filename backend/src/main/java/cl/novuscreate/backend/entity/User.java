@@ -1,5 +1,6 @@
 package cl.novuscreate.backend.entity;
 
+import cl.novuscreate.backend.factory.SuperUser;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
@@ -14,13 +15,29 @@ import static javax.persistence.GenerationType.IDENTITY;
 
 @Entity
 @Table(name="users", uniqueConstraints = @UniqueConstraint(columnNames = "USER_ID"))
-public class User {
+public class User extends SuperUser {
 
 
     private int userId;
     private String userEmail;
     private String userPassword;
     private int userType = -1;
+    private int userCareer;
+    private int userSection;
+
+    public User() {
+    }
+
+    public User(String userEmail, String userPassword, int userType, int userCareer, int userSection) {
+
+        this.userEmail = userEmail;
+        this.userPassword = userPassword;
+        this.userType = userType;
+        this.userCareer = userCareer;
+        this.userSection = userSection;
+    }
+
+
 
     @JsonIgnore
     private Set<Problem> problems = new HashSet<Problem>(0);;
@@ -33,6 +50,16 @@ public class User {
     )
     private Set<UserProblem> userProblems = new HashSet<UserProblem>();
 
+
+    @Override
+    public void instanceWithPermission(User u) {
+        return;
+    }
+
+    @Override
+    public boolean isNil() {
+        return false;
+    }
 
     @Id
     @GeneratedValue(strategy = IDENTITY)
@@ -90,15 +117,31 @@ public class User {
         this.userProblems = userProblems;
     }
 
+    @Column(name = "USER_CAREER", nullable = true)
+    public int getUserCareer() {
+        return userCareer;
+    }
 
-//    public void addProblem(Problem problem) {
+    public void setUserCareer(int userCareer) {
+        this.userCareer = userCareer;
+    }
+
+    public int getUserSection() {
+        return userSection;
+    }
+    @Column(name = "USER_SECTION", nullable = true)
+    public void setUserSection(int userSection) {
+        this.userSection = userSection;
+    }
+
+    //    public void addProblem(Problem problem) {
 ////        UserProblem userProblem = new UserProblem(this, problem);
 ////        userProblems.add(userProblem);
 ////        problem.getUsers().add(userProblem);
 ////    }
 
     public boolean verificateUser(){
-        if(getUserEmail() == null)
+        if(getUserEmail() == null || getUserPassword() == null)
             return false;
         if (getUserType() < 0)
             return false;

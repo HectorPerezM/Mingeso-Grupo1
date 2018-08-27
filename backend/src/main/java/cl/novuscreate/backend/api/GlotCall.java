@@ -55,11 +55,26 @@ public class GlotCall {
 //                    "  ]\n" +
 //                    "}";
 
+            System.out.println("codigoo");
+            System.out.println(getCode().replace("\"", "'"));
+
+            String fileName = "";
+
+
+            if (getLanguage().equals("java")) {
+                fileName = "Main.java";
+            } else if(getLanguage().equals("c")){
+                fileName = "main.c";
+            }else if(getLanguage().equals("python")){
+                fileName = "main.py";
+            }
+
+
             String input = "{\n" +
                     "  \"files\": [\n" +
                     "    {\n" +
-                    "      \"name\": \"main.py\",\n" +
-                    "      \"content\": \""+getCode()+"\"\n" +
+                    "      \"name\":\""+ fileName +"\",\n" +
+                    "      \"content\": \""+getCode().replace("\"", "'")+"\"\n" +
                     "    }\n" +
                     "  ]\n" +
                     "}";
