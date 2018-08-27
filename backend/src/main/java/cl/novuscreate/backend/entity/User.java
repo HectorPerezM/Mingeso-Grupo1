@@ -15,7 +15,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 
 @Entity
 @Table(name="users", uniqueConstraints = @UniqueConstraint(columnNames = "USER_ID"))
-public class User extends SuperUser {
+public class User {
 
 
     private int userId;
@@ -25,17 +25,17 @@ public class User extends SuperUser {
     private int userCareer;
     private int userSection;
 
-    public User() {
-    }
-
-    public User(String userEmail, String userPassword, int userType, int userCareer, int userSection) {
-
-        this.userEmail = userEmail;
-        this.userPassword = userPassword;
-        this.userType = userType;
-        this.userCareer = userCareer;
-        this.userSection = userSection;
-    }
+//    public User() {
+//    }
+//
+//    public User(String userEmail, String userPassword, int userType, int userCareer, int userSection) {
+//
+//        this.userEmail = userEmail;
+//        this.userPassword = userPassword;
+//        this.userType = userType;
+//        this.userCareer = userCareer;
+//        this.userSection = userSection;
+//    }
 
 
 
@@ -51,15 +51,15 @@ public class User extends SuperUser {
     private Set<UserProblem> userProblems = new HashSet<UserProblem>();
 
 
-    @Override
-    public void instanceWithPermission(User u) {
-        return;
-    }
-
-    @Override
-    public boolean isNil() {
-        return false;
-    }
+//    @Override
+//    public void instanceWithPermission(User u) {
+//        return;
+//    }
+//
+//    @Override
+//    public boolean isNil() {
+//        return false;
+//    }
 
     @Id
     @GeneratedValue(strategy = IDENTITY)

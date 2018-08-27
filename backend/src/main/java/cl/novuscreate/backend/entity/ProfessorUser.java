@@ -13,8 +13,8 @@ import java.util.Set;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
-@Entity
-@Table(name="users", uniqueConstraints = @UniqueConstraint(columnNames = "USER_ID"))
+//@Entity
+//@Table(name="users", uniqueConstraints = @UniqueConstraint(columnNames = "USER_ID"))
 public class ProfessorUser extends SuperUser {
 
 
