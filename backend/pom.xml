@@ -7,6 +7,18 @@
     <groupId>MINGESO</groupId>
     <artifactId>MINGESO</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <packaging>war</packaging>
+    
+    
+    <!--
+    <distributionManagement>
+        <site>
+            <id>mingeso</id>
+            <name>Mingeso</name>
+            <url>scp://beaver.codehaus.org/home/projects/mojo/public_html/</url>
+        </site>
+    </distributionManagement>
+    -->
 
     <!-- Define the parent pom -->
     <parent>

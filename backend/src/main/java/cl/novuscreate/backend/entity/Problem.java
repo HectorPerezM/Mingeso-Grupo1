@@ -25,8 +25,6 @@ public class Problem {
 
     private Set<Example> problemExamples = new HashSet();
 
-
-
     @Id
     @GeneratedValue(strategy = IDENTITY)
     @Column(name = "PROBLEM_ID", unique = true, nullable = false)

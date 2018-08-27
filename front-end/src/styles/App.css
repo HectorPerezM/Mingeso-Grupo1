@@ -1,7 +1,12 @@
-body{
+ html, body{
   background-color: #ededed;
   font-family: Roboto, sans-serif;
+  height: 100%;
+  margin: 0;
+  padding: 0;
 }
+
+
 .App {
     padding-bottom: 100px;
     min-height: 100%;
@@ -15,9 +20,6 @@ body{
     padding: 0;
 }
 
-.div {
-;
-}
 .sidebar {
   position: fixed;
   width: 10%;
@@ -90,16 +92,15 @@ body{
   margin-top: 0;
   border: 1px solid #e8ecf2;
   border-radius: 3px;
-  width: 80%;
-  margin-left:10%;
-  margin-right:10%;
+  width: 95%;
+  margin-left:3%;
+  margin-right:3%;
   background-color: white;
 
 }
 
 
 
-/*FormProblem*/
 .problem{
   color: black;
   border-left: 1px solid #d0d0d0;
@@ -153,7 +154,6 @@ background-color: rgba(222, 124, 0, 0.9);
   padding-left: -10%;
 }
 
-/* Problem Teacher */
 
 .problem-teacher{
 }
@@ -164,7 +164,6 @@ background-color: rgba(222, 124, 0, 0.9);
 }
 
 
-/*Problem Student */
 .problem-student{
   background-color:white;
 }
@@ -215,8 +214,17 @@ background-color: rgba(222, 124, 0, 0.9);
   border: unset;
 }
 
-/* Form Student */
 
+.spinLoading{
+  margin: 53%;
+}
+#modal .modal-content{
+  background-color: transparent;
+  border: unset;
+  box-shadow: unset;
+  width: 500;
+  height: 500%;
+}
 .form-student-problem-title{
 
 }
@@ -272,29 +280,31 @@ background-color: rgba(222, 124, 0, 0.9);
 }
 
 .form-student-monaco{
-  width: 70%;
-  height: 80%;
-  margin-left:15%;
-  margin-right:10%;
+  margin-left:0;
+  margin-right:0;
 
 }
 
 .form-student-solve{
-  margin-top: 1%;
 }
 
-/*HOME */
+.button-toolbar{
+  margin-left: 45%;
+  margin-right: 45%;
+}
+
+
 
 .pieChart{
-  width: 402px;
-  height: 402px;
+  border-right: 1px solid #e8ecf2;
+
+
 }
 
 .col-pieChart{
   padding-left: 50px;
 }
 
-/* Component-Card */
 
 .card{
   border: 1px solid #e8ecf2;
@@ -310,8 +320,7 @@ background-color: rgba(222, 124, 0, 0.9);
   margin-left: 10%;
 }
 
-/* Navbar */
 .Navbar{
   background: rgb(31, 32, 33, 0.95);
   color: #B1B1B1;
-}
+} 

@@ -4,6 +4,9 @@ import {Row, Col} from "react-bootstrap";
 
 export class Card extends Component {
 
+  componentDidMount() {
+    console.log(this.props);
+  }
   render() {
 
     var data = [

@@ -1,0 +1,113 @@
+
+.student-form{
+  background-color: white;
+  border-left: 1px solid #d0d0d0;
+  border-right: 1px solid #d0d0d0;
+  border-bottom: 1px solid #d0d0d0;
+  margin: 1% 5%;
+}
+
+  .form-student{
+    margin-top: 3%;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-bottom: 5%;
+  }
+  .form-student-problem-language{
+    margin-top: 7%;
+    margin-right: 15%;
+  }
+
+  .form-student-title-col{
+
+  }
+
+  .form-student-title{
+    color: white;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    padding-left: 5%;
+    padding-right: 5%;
+    background-color: rgba(222, 124, 0, 0.9);
+    /* text-align: center; */
+  }
+
+  .problem-title{
+    padding-left: 30%;
+    text-align: center;
+    vertical-align: middle;
+    display: inline-block;
+  }
+
+  .problem-title-icon{
+    display: inline-block;
+    text-align: left;
+    vertical-align: middle;
+    margin-top: 10px;
+    color: white;
+    font-size: 45px;
+  }
+
+  .form-student-timer{
+    margin-right: 15%;
+    text-align: right;
+  }
+
+  .form-student-btn{
+    color: black;
+    margin: 15% 0;
+    text-align: center;
+  }
+
+  .form-student-row-description{
+    text-align: justify;
+    padding-bottom: 3%;
+    border-bottom: 1px solid #B1B1B1;
+
+  }
+  .form-student-row-problem{
+
+  }
+
+  .form-student-modal{
+      margin-top: 1%;
+  }
+
+  .form-student-problem-row-language{
+    margin-top: 2%;
+  }
+
+  .form-student-monaco{
+    margin-left:0;
+    margin-right:0;
+
+  }
+
+  .form-student-select-lang{
+    margin-top: 20px;
+  }
+
+  .form-lang{
+    font-size: 50px;
+  }
+
+  .button-toolbar{
+    margin-top: 15%;
+  }
+
+  .btn-analizar{
+    margin: 15px 40%;
+    padding: 1% 3%;
+    background-color: #e18819;
+    color: white;
+    box-shadow: none;
+    border-radius: 12px;
+    font-size: 20px;
+  }
+
+  .example{
+  }
+
+  .parrafo{
+    margin-left: 80px;
+  }

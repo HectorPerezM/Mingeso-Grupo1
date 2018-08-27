@@ -7,19 +7,17 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'cd backend && mvn validate && mvn clean compile'
+                sh 'cd backend && mvn package -DskipTests'
 		    }
         }
-        // stage('Test') {
-        //     steps {
-        //         sh 'cd backend && mvn test && mvn sonar:sonar \
-        //         //     -Dsonar.host.url=http://localhost:9000 \
-        //         //     -Dsonar.login=000742e847d18dc752d5581789982fa4a6e3fa5c'   
-        //     }
-        // }
+        stage('Test') {
+            steps {
+                sh 'cd backend && mvn sonar:sonar -Dsonar.host.url=http://206.189.181.197:9000 -Dsonar.login=ef0f4b64121a9b8ddb72eb7433c04177262c612b'
+            }
+        }
         stage('Desploy') {
             steps {
-                sh 'cd backend && mvn clean deploy'
+                sh 'cd backend/target && java -jar MINGESO-1.0-SNAPSHOT.jar'
             }
         }
     }
