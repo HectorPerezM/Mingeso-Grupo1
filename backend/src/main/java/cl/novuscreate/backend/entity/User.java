@@ -37,6 +37,8 @@ public class User extends SuperUser {
         this.userSection = userSection;
     }
 
+
+
     @JsonIgnore
     private Set<Problem> problems = new HashSet<Problem>(0);;
 
@@ -52,6 +54,11 @@ public class User extends SuperUser {
     @Override
     public void instanceWithPermission(User u) {
         return;
+    }
+
+    @Override
+    public boolean isNil() {
+        return false;
     }
 
     @Id

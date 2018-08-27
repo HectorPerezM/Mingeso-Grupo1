@@ -1,5 +1,7 @@
+package cl.novuscreate.backend.entity;
 
 
+import cl.novuscreate.backend.entity.UserProblem;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.python.core.PyInteger;
 import org.python.core.PyObject;
@@ -9,6 +11,7 @@ import javax.persistence.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 
 import static javax.persistence.GenerationType.IDENTITY;
@@ -286,6 +289,8 @@ public class Solution {
 
         //Make split from any commentary in code
         String[] codeWords = code.split("([/][/])|([/][*])|([*][/])|\\n");
+//        List<String> codeWords = Arrays.asList(code.split("([/][/])|([/][*])|([*][/])|\\n"));
+
         String[] codeWordsInLine;
 
         currentLineCode = 1;
@@ -301,36 +306,47 @@ public class Solution {
         isTrueComentary = false;
 
         //For all line of code in codewords
-        for (i = 0; i < codeWords.length; i++) {
-            if (codeWords[i].contains("\n")) {
+
+
+
+
+        Iterator<String> iter =  Arrays.asList(codeWords).iterator();
+
+
+        while(iter.hasNext()){
+            String codeWord = (String)iter.next();
+            System.out.println("Name : " + codeWord);
+
+
+            if (codeWord.contains("\n")) {
                 currentLineCode++;
             }
 
             //if the string is the start or end of a commentary
-            if (codeWords[i].contains("/*")) {
+            if (codeWord.contains("/*")) {
                 isTrueComentary = true;
             }
-            else if (codeWords[i].contains("*/")) {
+            else if (codeWord.contains("*/")) {
                 isTrueComentary = false;
             }
-            else if (codeWords[i].contains("//")) {
+            else if (codeWord.contains("//")) {
                 isHalfComentary = true;
             }
             else if (isHalfComentary == true || isTrueComentary == true) {
                 isHalfComentary = false;
-                if (codeWords[i].toLowerCase().contains("entrada")) {
+                if (codeWord.toLowerCase().contains("entrada")) {
                     hasInputComment = true;
                 }
-                else if (codeWords[i].toLowerCase().contains("proces")) {
+                else if (codeWord.toLowerCase().contains("proces")) {
                     hasProcessComment = true;
                 }
-                else if (codeWords[i].toLowerCase().contains("salida")) {
+                else if (codeWord.toLowerCase().contains("salida")) {
                     hasOutputComment = true;
                 }
             }
             else
             {
-                codeWordsInLine = codeWords[i].split("[^a-zA-Z][^a-zA-Z,0-9]*");
+                codeWordsInLine = codeWord.split("[^a-zA-Z][^a-zA-Z,0-9]*");
                 for (String palabra:codeWordsInLine) {
                     if (palabra.length() == 1 && palabra.charAt(0)<'i') {
                         System.out.println("Buenas prácticas: Nombre no representativo en línea : "+currentLineCode);
@@ -342,7 +358,52 @@ public class Solution {
                     }
                 }
             }
+
+
         }
+
+//        for (i = 0; i < codeWords.length; i++) {
+//            if (codeWords[i].contains("\n")) {
+//                currentLineCode++;
+//            }
+//
+//            //if the string is the start or end of a commentary
+//            if (codeWords[i].contains("/*")) {
+//                isTrueComentary = true;
+//            }
+//            else if (codeWords[i].contains("*/")) {
+//                isTrueComentary = false;
+//            }
+//            else if (codeWords[i].contains("//")) {
+//                isHalfComentary = true;
+//            }
+//            else if (isHalfComentary == true || isTrueComentary == true) {
+//                isHalfComentary = false;
+//                if (codeWords[i].toLowerCase().contains("entrada")) {
+//                    hasInputComment = true;
+//                }
+//                else if (codeWords[i].toLowerCase().contains("proces")) {
+//                    hasProcessComment = true;
+//                }
+//                else if (codeWords[i].toLowerCase().contains("salida")) {
+//                    hasOutputComment = true;
+//                }
+//            }
+//            else
+//            {
+//                codeWordsInLine = codeWords[i].split("[^a-zA-Z][^a-zA-Z,0-9]*");
+//                for (String palabra:codeWordsInLine) {
+//                    if (palabra.length() == 1 && palabra.charAt(0)<'i') {
+//                        System.out.println("Buenas prácticas: Nombre no representativo en línea : "+currentLineCode);
+//                        Output+="Buenas prácticas: Nombre no representativo en línea : "+currentLineCode+"\n";
+//                    }
+//                    else if (palabra.length() != 0 && palabra.length() < 4 && !palabra.contains("if")) {
+//                        System.out.println("Buenas prácticas: Nombre demasiado corto en línea : "+currentLineCode);
+//                        Output+= "Buenas prácticas: Nombre demasiado corto en línea : "+currentLineCode+"\n";
+//                    }
+//                }
+//            }
+//        }
 
         if (hasInputComment == false)
         {

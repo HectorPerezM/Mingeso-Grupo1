@@ -51,6 +51,11 @@ public class ProfessorUser extends SuperUser {
         return;
     }
 
+    @Override
+    public boolean isNil() {
+        return false;
+    }
+
     @Id
     @GeneratedValue(strategy = IDENTITY)
     @Column(name = "USER_ID", unique = true, nullable = false)
@@ -139,6 +144,8 @@ public class ProfessorUser extends SuperUser {
         return true;
 
     }
+
+
 
 
 }

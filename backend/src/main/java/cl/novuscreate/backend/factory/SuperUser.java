@@ -20,6 +20,7 @@ public abstract class SuperUser {
     }
 
     public abstract void instanceWithPermission(User u);
+    public abstract boolean isNil();
 
 
     public int getUserId() {
