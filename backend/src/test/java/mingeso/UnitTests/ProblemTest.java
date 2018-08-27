@@ -17,9 +17,7 @@ import static junit.framework.TestCase.assertTrue;
 import java.util.HashSet; 
 import java.util.Set;
 
-@RunWith(SpringRunner.class)
-@WebAppConfiguration
-@SpringBootTest(classes = Application.class)
+
 public class ProblemTest {
 
     @Test

@@ -13,9 +13,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import static junit.framework.TestCase.assertEquals;
 import static junit.framework.TestCase.assertTrue;
 
-@RunWith(SpringRunner.class)
-@WebAppConfiguration
-@SpringBootTest(classes = Application.class)
+
 public class UserProblemTest {    
 
     @Test
