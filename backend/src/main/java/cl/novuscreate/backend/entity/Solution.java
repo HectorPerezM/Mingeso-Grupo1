@@ -76,6 +76,15 @@ public class Solution {
         this.theSolution = theSolution;
     }
 
+    public boolean verificateSolution(){  
+        if(getLanguage() == null)
+            return false;
+        if(getSolutionCode() == null)
+            return false;
+
+        return true;
+    }
+
     public void execPythonScript(String code){
         PythonInterpreter python = new PythonInterpreter();
 

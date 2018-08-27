@@ -147,8 +147,5 @@ public class User extends SuperUser {
             return false;
 
         return true;
-
     }
-
-
 }

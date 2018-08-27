@@ -66,8 +66,6 @@ public class Example {
         this.exampleInputs = problemInputs;
     }
 
-
-
     @OneToOne(fetch = FetchType.LAZY,
             cascade =  CascadeType.ALL,
             mappedBy = "example")
