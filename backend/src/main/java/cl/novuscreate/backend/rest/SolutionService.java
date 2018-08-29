@@ -100,9 +100,15 @@ public class SolutionService {
             }
         }
 
-        if (works){
+        if (true){
             UserProblem userProblem =resource.getUserProblem();
-            userProblem.setStatusComplete(1);
+            if(works){
+                userProblem.setStatusComplete(1);
+
+            }else {
+                userProblem.setStatusComplete(0);
+
+            }
             userProblem.setSolution(solution);
 
             if (solution.getLanguage().equals("Python") || solution.getLanguage().equals("python") ){

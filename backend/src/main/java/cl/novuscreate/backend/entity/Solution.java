@@ -131,9 +131,9 @@ public class Solution {
 
         //For all line of code in codewords
         for (int i = 0; i < codeWords.length; i++) {
-            if (codeWords[i].contains("\n")) {
+//            if (codeWords[i].contains("\n")) {
                 currentLineCode++;
-            }
+//            }
 
             //if the string is the start or end of a commentary
             if (codeWords[i].contains("\"\"\"\"")) {
