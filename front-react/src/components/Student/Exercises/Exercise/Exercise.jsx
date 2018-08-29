@@ -26,7 +26,7 @@ class Exercise extends Component{
             input: [],
             output: "",
             description: "",
-            language: "",
+            language: "python",
             code: "",
             show: false,
             disabled: true,
