@@ -82,7 +82,7 @@ class Exercise extends Component{
             },
             body: JSON.stringify({
               "solutionCode": this.state.code.toString(),
-              "language": this.state.languageEditor.toLowerCase(),
+              "language": this.state.language.toLowerCase(),
               "userProblem":{
                 "user":{
                   "userId": 1
@@ -100,6 +100,13 @@ class Exercise extends Component{
             // sleep(1000);
             console.log(this.state.language);
             console.log(response);
+
+
+            // this.setState({
+            //    spinLoading:
+            //  });
+
+
             // console.log(response.json());
 
             // console.log(response.json().PromiseValue );

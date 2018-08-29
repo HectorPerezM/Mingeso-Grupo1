@@ -112,6 +112,10 @@ public class SolutionService {
                 userProblem.setFeedback( solution.staticCodeAnalysisInC( userProblem.getSolution().getSolutionCode()) );
 
             }
+            else if (solution.getLanguage().equals("Java") || solution.getLanguage().equals("java") ){
+                userProblem.setFeedback( solution.staticCodeAnalysisInC( userProblem.getSolution().getSolutionCode()) );
+
+            }
             userProblemRepository.save(userProblem);
 
 //            resource.getUserProblem().setCreatedOn();

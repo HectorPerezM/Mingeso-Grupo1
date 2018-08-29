@@ -61,7 +61,7 @@ public class GlotCall {
             String fileName = "";
 
 
-            if (getLanguage().equals("java")) {
+            if (getLanguage().equals("java") || getLanguage().equals("Java") ) {
                 fileName = "Main.java";
             } else if(getLanguage().equals("c")){
                 fileName = "main.c";

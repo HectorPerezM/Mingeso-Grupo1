@@ -55,6 +55,7 @@ class Form extends Component {
   };
 
   onSubmit = e => {
+    alert(this.state.language.toLowerCase());
     e.preventDefault();
     this.setState({
       disabled: false
@@ -212,7 +213,7 @@ class Form extends Component {
             onChange={e => this.Change(e)}>
               <option value="python">python</option>
               <option value="c">c</option>
-              <option value="Java">Java</option>
+              <option value="java">Java</option>
             </FormControl>
         </Col>
       </Row>
