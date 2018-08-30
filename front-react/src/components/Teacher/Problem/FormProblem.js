@@ -17,7 +17,7 @@ const examples = problem => {
 const addProblem = problem => {
   const inputs = examples(problem);
   console.log(inputs);
-  fetch('http://localhost:8082/problems', {
+  fetch('http://206.189.181.197:8082/problems', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -50,7 +50,7 @@ const addProblem = problem => {
  }
 
  const addUserA = user => {
-   fetch('http://localhost:8082/users', {
+   fetch('http://206.189.181.197:8082/users', {
        method: 'POST',
        headers: {
          'Content-Type': 'application/json'
@@ -70,7 +70,7 @@ const addProblem = problem => {
   }
 
   const addUserP = user => {
-    fetch('http://localhost:8082/users', {
+    fetch('http://206.189.181.197:8082/users', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

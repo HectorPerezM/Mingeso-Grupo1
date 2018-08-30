@@ -50,7 +50,7 @@ class Exercises extends Component{
 
 
     componentWillMount() {
-        axios.get('http://localhost:8082/problems')
+        axios.get('http://206.189.181.197:8082/problems')
              .then(res => {
                 const problems = res.data;
                 this.setState({problems});

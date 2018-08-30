@@ -14,13 +14,6 @@ class Exercise extends Component{
     constructor(props, context) {
         super(props, context);
 
-        this.handleShow = this.handleShow.bind(this);
-        this.handleClose = this.handleClose.bind(this);
-        this.volver = this.volver.bind(this);
-
-        this.startTimer = this.startTimer.bind(this)
-        this.setLanguageIcon = this.setLanguageIcon.bind(this)
-
         this.state = {
             problemTitle: "",
             input: [],
@@ -37,6 +30,9 @@ class Exercise extends Component{
             languageIcon: 'fab fa-python',
             languageEditor: 'python',
             statusComplete: 0,
+            analisis: "Sin analisis",
+            resultado: "Incompleto",
+            tiempo: 0,
             evaluacion: {
                 variables: 10,
                 erroresIdentacion: 10,
@@ -45,6 +41,13 @@ class Exercise extends Component{
                 bloquePrincipal: "..."
             }
         };
+        this.handleShow = this.handleShow.bind(this);
+        this.handleClose = this.handleClose.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.volver = this.volver.bind(this);
+
+        this.startTimer = this.startTimer.bind(this)
+        this.setLanguageIcon = this.setLanguageIcon.bind(this)
     }
 
     handleClose() {
@@ -66,16 +69,16 @@ class Exercise extends Component{
       // })
       // console.log("codigo1");
       // console.log(this.state);
-
-
+          var ta = this.state.time;
           e.preventDefault();
           this.setState({
             show: true,
-            disabled: true
+            disabled: true,
           });
+          let currentComponent = this;
 
 
-          fetch('http://localhost:8082/solutions', {
+          fetch('http://206.189.181.197:8082/solutions', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json'
@@ -126,21 +129,45 @@ class Exercise extends Component{
                   estadoStr = "Incorrecto"
                 }
                 if (result.theSolution !== "\"/usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../x86_64-linux-gnu/crt1.o") {
-                  alert("Ejecución exitosa.\nResultado obtenido:"+result.theSolution+"\nEstado problema: "+estadoStr) //will log results.
                   if (result.userProblem.feedback!= null) {
-                    alert(result.userProblem.feedback)
+                    var analisis = result.userProblem.feedback.split("Buenas prácticas:", "").join("");
+                    alert(result.userProblem.feedback);
+                    alert(analisis);
+                    currentComponent.setState({
+                      analisis: analisis,
+                      resultado: "Correcto",
+                      show: false,
+                      disabled: false,
+                      tiempo: ta
+                    });
+                  }
+                  else{
+                    currentComponent.setState({
+                      resultado: "Incorrecto",
+                      show: false,
+                      disabled: false
+                    });
                   }
                 }else {
-                  alert("Ejecución Fallida.\nError obtenido:"+result.theSolution+"\nEstado problema: "+estadoStr) //will log results.
+                  currentComponent.setState({
+                    resultado: "Incorrecto",
+                    show: false,
+                    disabled: false
+                  });
 
                 }
+
                  // alert("Ejecución exitosa.\nResultado obtenido:"+result.theSolution+"\nEstado problema: "+estadoStr) //will log results.
                  // if (result.userProblem.feedback!= null) {
                  //   alert(result.userProblem.feedback)
                  // }
               }else {
-                alert("Fallo en la compilación vuelve a intentarlo.\nEstado problema: Incompleto") //will log results.
-                // alert("Feedback n")
+                currentComponent.setState({
+                  resultado: "No compila",
+                  show: false,
+                  disabled: false
+                });
+                //alert("Fallo en la compilación vuelve a intentarlo.\nEstado problema: Incompleto") //will log results.
               }
 
 
@@ -157,13 +184,13 @@ class Exercise extends Component{
 
 
 
-          alert("el algoritmo que será evaluado es: \n"+this.state.code.toString());
+          //alert("el algoritmo que será evaluado es: \n"+this.state.code.toString());
 
     }
 
 
-    componentWillMount() {
-         axios.get('http://localhost:8082/problems/'+this.props.match.params.id)
+    componentDidMount() {
+         axios.get('http://206.189.181.197:8082/problems/'+this.props.match.params.id)
              .then(res => {
                  const problem = res.data;
                  console.log(problem);
@@ -200,91 +227,6 @@ class Exercise extends Component{
         this.setLanguageIcon(e.target.value);
     };
 
-    onSubmit = e => {
-        e.preventDefault();
-        this.setState({
-          show: true
-        });
-
-
-        fetch('http://localhost:8082/solutions', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-            "solutionCode": this.state.code.toString(),
-            "language": this.state.language.toLowerCase(),
-            "userProblem":{
-              "user":{
-                "userId": 1
-              },
-              "problem":{
-                "problemId": this.props.match.params.id
-              },
-              "statusComplete": 0
-            }
-          })
-        })
-        .then(response => {
-          console.log("********");
-          // var a = response.json();\
-          // sleep(1000);
-          console.log(this.state.language);
-          console.log(response);
-          // console.log(response.json());
-
-          // console.log(response.json().PromiseValue );
-          // console.log(response.json().PromiseValue() );
-
-
-
-          response.json().then(function(result) {
-            console.log("este es el resultado");
-            console.log(result);
-            if (typeof result !== "undefined") {
-              var estado =result.userProblem.statusComplete;
-              var estadoStr ="";
-
-              if (estado == 1) {
-                estadoStr = "Completado"
-              }else {
-                estadoStr = "Incorrecto"
-              }
-              if (result.theSolution !== "\"/usr/lib/gcc/x86_64-linux-gnu/5.4.0/../../../x86_64-linux-gnu/crt1.o") {
-                alert("Ejecución exitosa.\nResultado obtenido:"+result.theSolution+"\nEstado problema: "+estadoStr) //will log results.
-                if (result.userProblem.feedback!= null) {
-                  alert(result.userProblem.feedback)
-                }
-              }else {
-                alert("Ejecución Fallida.\nError obtenido:"+result.theSolution+"\nEstado problema: "+estadoStr) //will log results.
-
-              }
-               // alert("Ejecución exitosa.\nResultado obtenido:"+result.theSolution+"\nEstado problema: "+estadoStr) //will log results.
-               // if (result.userProblem.feedback!= null) {
-               //   alert(result.userProblem.feedback)
-               // }
-            }else {
-              alert("Fallo en la compilación vuelve a intentarlo.\nEstado problema: Incompleto") //will log results.
-              // alert("Feedback n")
-            }
-
-
-          })
-
-          // console.log(response.json().promise_value );
-          console.log("********");
-          // alert(response.JSON);
-        })
-        .catch(error => {
-          console.error(error);
-        });
-
-
-
-
-        alert("el algoritmo que será evaluado es: \n"+this.state.code.toString());
-      };
 
 
     volver(){
@@ -427,7 +369,7 @@ class Exercise extends Component{
                                 <Col xs={12} md={4}>
                                     <Row>
                                         <Col md={12}>
-                                            <Analisis evaluated={this.state.isEvaluated} evaluacion={this.state.evaluacion}/>
+                                            <Analisis tiempo={this.state.tiempo} analisis={this.state.analisis} resultado={this.state.resultado} evaluated={this.state.isEvaluated} evaluacion={this.state.evaluacion}/>
                                         </Col>
                                     </Row>
                                     <Row>
