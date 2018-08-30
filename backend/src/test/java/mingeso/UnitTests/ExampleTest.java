@@ -17,8 +17,7 @@ import static junit.framework.TestCase.assertTrue;
 import java.util.HashSet; 
 import java.util.Set;
 
-
-public class ExampleTest {    
+public class ExampleTest {
 
     @Test
     public void testGetExampleId() {

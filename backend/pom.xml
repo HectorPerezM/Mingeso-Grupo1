@@ -30,6 +30,56 @@
     <!-- Set the Java version -->
     <properties>
         <java.version>1.8</java.version>
+
+        <!--<sonar.core.codeCoveragePlugin>jacoco</sonar.core.codeCoveragePlugin>-->
+        <!--<sonar.jacoco.reportPath>${project.basedir}/../target/jacoco.exec</sonar.jacoco.reportPath>-->
+        <!--<sonar.language>java</sonar.language>-->
+
+
+        <!-- Sonar-JaCoCo properties -->
+        <!--<sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>-->
+        <!--<sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>-->
+        <!--<sonar.jacoco.reportPath>${project.basedir}/../target/jacoco.exec</sonar.jacoco.reportPath>-->
+        <!--<sonar.language>java</sonar.language>-->
+
+
+        <!--<sonar.sources>src/main</sonar.sources>-->
+        <!--<sonar.tests>src/test</sonar.tests>-->
+        <!--&lt;!&ndash; Below property indicates the pattern of the test suite &ndash;&gt;-->
+        <!--<runSuite>**/*Suite.class</runSuite>-->
+        <!--&lt;!&ndash; Sonar-JaCoCo properties &ndash;&gt;-->
+        <!--<sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>-->
+        <!--<sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>-->
+        <!--<sonar.jacoco.reportPath>${project.basedir}/../target/jacoco.exec</sonar.jacoco.reportPath>-->
+        <!--<sonar.language>java</sonar.language>-->
+
+        <sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
+        <sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
+        <sonar.jacoco.reportPath>${project.basedir}/../target/jacoco.exec</sonar.jacoco.reportPath>
+        <sonar.language>java</sonar.language>
+
+        <sonar.coverage.exclusions>
+            **/common/*.java,
+            **/CompositePk/*.java,
+            **/factory/*.java,
+            **/repository/*.java,
+            **/rest/*.java,
+            **/Singleton/*.java,
+            **/Application.java,
+            **/Glot.java,
+            **/GlotCall.java,
+            **/jython.java,
+            **/NullUser.java,
+            **/ProfessorUser.java,
+            **/test.java,
+            **/UserProblemId.java,
+            **/UserProblem.java,
+            **/Solution.java,
+
+
+
+        </sonar.coverage.exclusions>
+
     </properties>
 
     <dependencies>
@@ -96,11 +146,98 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
+            <!--<plugin>-->
+                <!--<groupId>org.jacoco</groupId>-->
+                <!--<artifactId>jacoco-maven-plugin</artifactId>-->
+                <!--<version>0.7.9</version>-->
+
+                <!--<executions>-->
+                    <!--<execution>-->
+                        <!--<id>prepare-test</id>-->
+                        <!--<goals>-->
+                            <!--<goal>prepare-agent</goal>-->
+                        <!--</goals>-->
+                        <!--<configuration>-->
+                            <!--<destFile>${sonar.jacoco.reportPath}</destFile>-->
+                            <!--<propertyName>surefireArgLine</propertyName>-->
+                        <!--</configuration>-->
+                    <!--</execution>-->
+                    <!--<execution>-->
+                        <!--<id>prepare-integration</id>-->
+                        <!--<goals>-->
+                            <!--<goal>prepare-agent-integration</goal>-->
+                        <!--</goals>-->
+                        <!--<configuration>-->
+                            <!--<destFile>${sonar.jacoco.itReportPath}</destFile>-->
+                            <!--<propertyName>failsafeArgLine</propertyName>-->
+                        <!--</configuration>-->
+                    <!--</execution>-->
+                    <!--<execution>-->
+                        <!--<id>report</id>-->
+                        <!--<phase>site</phase>-->
+                        <!--<goals>-->
+                            <!--<goal>report</goal>-->
+                        <!--</goals>-->
+                    <!--</execution>-->
+                <!--</executions>-->
+
+            <!--</plugin>-->
+
+
+
+            <plugin>
+                <groupId>org.sonarsource.scanner.maven</groupId>
+                <artifactId>sonar-maven-plugin</artifactId>
+                <version>3.4.0.905</version>
+            </plugin>
+
+            <!-- Below plugin ensures the execution of test cases during maven build-->
+            <!--<plugin>-->
+                <!--<groupId>org.apache.maven.plugins</groupId>-->
+                <!--<artifactId>maven-surefire-plugin</artifactId>-->
+                <!--<configuration>-->
+                    <!--<includes>-->
+                        <!--<include>${runSuite}</include>-->
+                    <!--</includes>-->
+                <!--</configuration>-->
+            <!--</plugin>-->
+
+            <!-- Sonar-JaCoCo integration plugin -->
+            <!--<plugin>-->
+                <!--<groupId>org.jacoco</groupId>-->
+                <!--<artifactId>jacoco-maven-plugin</artifactId>-->
+                <!--<version>0.7.6.201602180812</version>-->
+                <!--<configuration>-->
+                    <!--<destFile>${sonar.jacoco.reportPath}</destFile>-->
+                    <!--<append>true</append>-->
+                <!--</configuration>-->
+                <!--<executions>-->
+                    <!--<execution>-->
+                        <!--<id>agent</id>-->
+                        <!--<goals>-->
+                            <!--<goal>prepare-agent</goal>-->
+                        <!--</goals>-->
+                    <!--</execution>-->
+                <!--</executions>-->
+            <!--</plugin>-->
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
-                <version>0.7.9</version>
+                <version>0.7.6.201602180812</version>
+                <configuration>
+                    <destFile>${sonar.jacoco.reportPath}</destFile>
+                    <append>true</append>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>agent</id>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
+
         </plugins>
     </build>
 
